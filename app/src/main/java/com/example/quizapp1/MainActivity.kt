@@ -12,6 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
+        Lägg till fler kategorier av frågor, tex byggnader eller kändisar.
+        Alternativt gör kategorier av världsdelar där man kan välja att få flagg-frågor
+        om tex Europa, Afrika eller hela världen.
+         */
         //Denna rad tar bort raden högst upp som visar batteri, klocka etc
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
