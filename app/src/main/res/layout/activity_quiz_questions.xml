@@ -18,8 +18,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
             android:background="@android:color/white"
             app:cardCornerRadius="8dp"
             app:cardElevation="5dp">
@@ -28,7 +28,7 @@
                 android:id="@+id/tv_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:gravity="center"
                 android:text="What country does this flag belong to?"
                 android:textColor="#363A43"
@@ -38,9 +38,9 @@
 
         <ImageView
             android:id="@+id/iv_image"
-            android:layout_width="345dp"
-            android:layout_height="190dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="330dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/afghanistan"
             android:scaleType="fitXY"/>
 
@@ -48,7 +48,7 @@
             android:id="@+id/ll_progress_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="15dp">
@@ -91,7 +91,7 @@
             <TextView
                 android:id="@+id/tv_option_one"
                 android:layout_width="160dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/default_option_border_bg"
                 android:gravity="center"
@@ -103,7 +103,7 @@
             <TextView
                 android:id="@+id/tv_option_two"
                 android:layout_width="160dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/default_option_border_bg"
                 android:gravity="center"
@@ -123,7 +123,7 @@
             <TextView
                 android:id="@+id/tv_option_three"
                 android:layout_width="160dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/default_option_border_bg"
                 android:gravity="center"
@@ -135,7 +135,7 @@
             <TextView
                 android:id="@+id/tv_option_four"
                 android:layout_width="160dp"
-                android:layout_height="100dp"
+                android:layout_height="95dp"
                 android:layout_margin="5dp"
                 android:background="@drawable/default_option_border_bg"
                 android:gravity="center"
@@ -160,13 +160,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:gravity="center">
         <ProgressBar
             android:id="@+id/progressBar_timer"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="2dp"
+            android:indeterminateDrawable="@drawable/progress"
             android:max="10"
             android:progress="10"/>
 
