@@ -1,12 +1,16 @@
 package com.example.quizapp1
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.View
+import android.view.animation.DecelerateInterpolator
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -23,6 +27,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
+    private var mCurrentTimerPosition: Int = 0
     private val countDownTimer = object : CountDownTimer(10000, 1000) {
         override fun onFinish() {
             questionSubmitted = true
@@ -30,6 +35,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
         override fun onTick(millisUntilFinished: Long) {
             tv_timer.text = "${millisUntilFinished/1000}"
+            progress_bar_timer.progress = mCurrentTimerPosition
+            mCurrentTimerPosition++
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
