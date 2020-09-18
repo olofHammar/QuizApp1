@@ -7,13 +7,14 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import java.util.*
 
@@ -27,7 +28,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
-    private var mCurrentTimerPosition: Int = 0
     private val countDownTimer = object : CountDownTimer(10000, 1000) {
         override fun onFinish() {
             questionSubmitted = true
@@ -35,8 +35,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
         override fun onTick(millisUntilFinished: Long) {
             tv_timer.text = "${millisUntilFinished/1000}"
-            progress_bar_timer.progress = mCurrentTimerPosition
-            mCurrentTimerPosition++
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +59,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         t.start()
     }
     private fun setQuestion() {
+
         tv_option_one.isClickable = true
         tv_option_two.isClickable = true
         tv_option_three.isClickable = true
@@ -82,6 +81,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_three.text = question.optionThree
         tv_option_four.text = question.optionFour
         reSetTimer(countDownTimer)
+        tv_timer.visibility = View.VISIBLE
+        progress_bar_timer.visibility = View.VISIBLE
     }
     private fun defaultOptionsView() {
         val options = ArrayList<TextView>()
@@ -112,6 +113,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 tv_option_three.isClickable = false
                 tv_option_four.isClickable = false
                 countDownTimer.cancel()
+                tv_timer.visibility = View.GONE
+                progress_bar_timer.visibility = View.GONE
 
                 val question = mQuestionsList?.get(mCurrentPosition - 1)
                 if (question!!.correctAnswer != mSelectedOptionPosition) {
