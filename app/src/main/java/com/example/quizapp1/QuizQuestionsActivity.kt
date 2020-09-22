@@ -34,7 +34,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             btn_submit.performClick()
         }
         override fun onTick(millisUntilFinished: Long) {
-            tv_timer.text = "${millisUntilFinished/1000}"
+            tv_timer.text = "${(millisUntilFinished+1000)/1000}"
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
