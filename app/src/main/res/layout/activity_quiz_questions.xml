@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:gravity="center"
-                android:text="What country does this flag belong to?"
+                android:text="Vilket land tillhör denna flagga?"
                 android:textColor="#363A43"
                 android:textSize="22sp" />
 
@@ -98,7 +98,7 @@
                 android:padding="15dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                tools:text="Apple" />
+                tools:text="Ett" />
 
             <TextView
                 android:id="@+id/tv_option_two"
@@ -110,7 +110,7 @@
                 android:padding="15dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                tools:text="Apple" />
+                tools:text="Två" />
 
         </LinearLayout>
 
@@ -130,7 +130,7 @@
                 android:padding="15dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                tools:text="Apple" />
+                tools:text="Tre" />
 
             <TextView
                 android:id="@+id/tv_option_four"
@@ -142,7 +142,7 @@
                 android:padding="15dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                tools:text="Apple" />
+                tools:text="Fyra" />
 
         </LinearLayout>
 
@@ -162,7 +162,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="1dp"
             android:gravity="center">
-        <ProgressBar
+
+            <ProgressBar
             android:id="@+id/progress_bar_timer"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
@@ -172,18 +173,44 @@
             android:indeterminateDuration="10000"
             android:progress="0" />
 
-        <TextView
-            android:id="@+id/tv_timer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/progress_bar_timer"
-            android:layout_alignStart="@+id/progress_bar_timer"
-            android:gravity="center"
-            android:layout_alignBottom="@+id/progress_bar_timer"
-            android:layout_alignTop="@+id/progress_bar_timer"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/progress_bar_timer"
+                android:layout_alignTop="@+id/progress_bar_timer"
+                android:layout_alignEnd="@+id/progress_bar_timer"
+                android:layout_alignBottom="@+id/progress_bar_timer"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="-1dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_circle_answer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/circle_wrong_answer" />
+
+            <TextView
+                android:id="@+id/tv_circle_answer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/iv_circle_answer"
+                android:layout_alignTop="@+id/iv_circle_answer"
+                android:layout_alignRight="@+id/iv_circle_answer"
+                android:layout_alignBottom="@+id/iv_circle_answer"
+                android:layout_margin="1dp"
+                android:gravity="center"
+                android:text="Fel"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
+
         </RelativeLayout>
 
 

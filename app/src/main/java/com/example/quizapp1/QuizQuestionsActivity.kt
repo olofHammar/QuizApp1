@@ -81,6 +81,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_three.text = question.optionThree
         tv_option_four.text = question.optionFour
         reSetTimer(countDownTimer)
+        tv_circle_answer_text.text = "FEL"
+        iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
+        tv_circle_answer_text.visibility = View.GONE
+        iv_circle_answer.visibility = View.GONE
         tv_timer.visibility = View.VISIBLE
         progress_bar_timer.visibility = View.VISIBLE
     }
@@ -115,6 +119,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 countDownTimer.cancel()
                 tv_timer.visibility = View.GONE
                 progress_bar_timer.visibility = View.GONE
+                iv_circle_answer.visibility = View.VISIBLE
+                tv_circle_answer_text.visibility = View.VISIBLE
 
                 val question = mQuestionsList?.get(mCurrentPosition - 1)
                 if (question!!.correctAnswer != mSelectedOptionPosition) {
@@ -122,6 +128,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
                 }
                 else if (question.correctAnswer == mSelectedOptionPosition) {
+                    iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
+                    tv_circle_answer_text.text = "RÄTT"
                     answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
                     mCorrectAnswers++
                 }
