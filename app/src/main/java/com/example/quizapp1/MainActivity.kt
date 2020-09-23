@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.nav_play -> {}
 
-                R.id.nav_high_score -> {}
+                R.id.nav_high_score -> {true}
 
                 else -> {}
             }
