@@ -18,9 +18,11 @@ import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import java.util.*
 
-
+/*
+Jag har satt en onClickListener här som fungerar som lyssnare till alla knappar som ska klickas.
+Jag har sedan skapat en override funktion som hanterar vad som ska hända vid respektive klick.
+ */
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
-
     private var mCurrentPosition: Int = 1
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
@@ -30,8 +32,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var questionSubmitted: Boolean = false
     private val countDownTimer = object : CountDownTimer(10000, 1000) {
         override fun onFinish() {
-            questionSubmitted = true
-            btn_submit.performClick()
+            submitAnswer()
         }
         override fun onTick(millisUntilFinished: Long) {
             tv_timer.text = "${(millisUntilFinished+1000)/1000}"
@@ -41,23 +42,52 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
 
+        //Här hämtar jag in användarnamnet från mainActivity
         mUserName = intent.getStringExtra(Constants.USER_NAME)
+        //Här hämtar jag in frågor som jag sparar i en lista som sedan blandas med shuffle
         mQuestionsList = Constants.getQuestion()
         Collections.shuffle(mQuestionsList)
 
+        //Här kallar jag på funktionen som skapar en fråga
         setQuestion()
 
         tv_option_one.setOnClickListener(this)
         tv_option_two.setOnClickListener(this)
         tv_option_three.setOnClickListener(this)
         tv_option_four.setOnClickListener(this)
-        btn_submit.setOnClickListener(this)
     }
 
-    private fun reSetTimer(t: CountDownTimer) {
-        t.cancel()
-        t.start()
+    private fun defaultOptionsView() {
+        val options = ArrayList<TextView>()
+        options.add(0, tv_option_one)
+        options.add(1, tv_option_two)
+        options.add(2, tv_option_three)
+        options.add(3, tv_option_four)
+
+        for (option in options) {
+            option.setTextColor(Color.parseColor("#000000"))
+            option.typeface = Typeface.DEFAULT
+            option.setBackgroundResource(R.drawable.default_option_border_bg)
+        }
     }
+
+    private fun answerView(answer: Int, drawableView: Int) {
+        when (answer) {
+            1 -> {tv_option_one.background = ContextCompat.getDrawable(this, drawableView)}
+            2 -> {tv_option_two.background = ContextCompat.getDrawable(this, drawableView)}
+            3 -> {tv_option_three.background = ContextCompat.getDrawable(this, drawableView)}
+            4 -> {tv_option_four.background = ContextCompat.getDrawable(this, drawableView)}
+        }
+    }
+
+/*
+Denna funktion skapar en fråga. Jag gör svarsalternativen klickbara, och sätter dom till deras default illustration.
+Jag skapar sedan variabeln question som hämtar en fråga från listan med hjälp av mCurrentPosition
+Sedan ger jag varje text/imageView rätt variabel från question och startar countDownTimer.
+Min timer består av fyra delar, en textView för nedräkning av siffror, en circularProgressBar,
+en imageView som visar rött eller grönt vid fel/rätt svar samt en textView som skriver ut om det var rätt eller fel svar.
+Jag sätter svaret till fel som default och väljer vilka delar av timern som ska synas från början.
+ */
     private fun setQuestion() {
 
         tv_option_one.isClickable = true
@@ -74,13 +104,13 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         progress_bar.progress = mCurrentPosition
         tv_progress.text = "$mCurrentPosition" + "/" + progress_bar.max
 
-        tv_question.text = question!!.question
+        tv_question.text = question.question
         iv_image.setImageResource(question.image)
         tv_option_one.text = question.optionOne
         tv_option_two.text = question.optionTwo
         tv_option_three.text = question.optionThree
         tv_option_four.text = question.optionFour
-        reSetTimer(countDownTimer)
+        countDownTimer.start()
         tv_circle_answer_text.text = "FEL"
         iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
         tv_circle_answer_text.visibility = View.GONE
@@ -88,90 +118,68 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_timer.visibility = View.VISIBLE
         progress_bar_timer.visibility = View.VISIBLE
     }
-    private fun defaultOptionsView() {
-        val options = ArrayList<TextView>()
-        options.add(0, tv_option_one)
-        options.add(1, tv_option_two)
-        options.add(2, tv_option_three)
-        options.add(3, tv_option_four)
-
-        for (option in options) {
-            option.setTextColor(Color.parseColor("#000000"))
-            option.typeface = Typeface.DEFAULT
-            option.background = ContextCompat.getDrawable(
-                this, R.drawable.default_option_border_bg
-            )
-        }
-    }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.tv_option_one -> {mSelectedOptionPosition = 1; questionSubmitted = true; btn_submit.performClick()}
-            R.id.tv_option_two -> {mSelectedOptionPosition = 2; questionSubmitted = true; btn_submit.performClick()}
-            R.id.tv_option_three -> {mSelectedOptionPosition = 3; questionSubmitted = true; btn_submit.performClick()}
-            R.id.tv_option_four -> {mSelectedOptionPosition = 4; questionSubmitted = true; btn_submit.performClick()}
-            R.id.btn_submit -> {
+            R.id.tv_option_one -> {mSelectedOptionPosition = 1; submitAnswer()}
+            R.id.tv_option_two -> {mSelectedOptionPosition = 2; submitAnswer()}
+            R.id.tv_option_three -> {mSelectedOptionPosition = 3; submitAnswer()}
+            R.id.tv_option_four -> {mSelectedOptionPosition = 4; submitAnswer()}
+        }
+    }
 
-                tv_option_one.isClickable = false
-                tv_option_two.isClickable = false
-                tv_option_three.isClickable = false
-                tv_option_four.isClickable = false
-                countDownTimer.cancel()
-                tv_timer.visibility = View.GONE
-                progress_bar_timer.visibility = View.GONE
-                iv_circle_answer.visibility = View.VISIBLE
-                tv_circle_answer_text.visibility = View.VISIBLE
+    private fun submitAnswer() {
 
-                val question = mQuestionsList?.get(mCurrentPosition - 1)
-                if (question!!.correctAnswer != mSelectedOptionPosition) {
-                    answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
-                    answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
-                }
-                else if (question.correctAnswer == mSelectedOptionPosition) {
-                    iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
-                    tv_circle_answer_text.text = "RÄTT"
-                    answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
-                    mCorrectAnswers++
-                }
-                mCurrentPosition++
+        questionSubmitted = true
+        tv_option_one.isClickable = false
+        tv_option_two.isClickable = false
+        tv_option_three.isClickable = false
+        tv_option_four.isClickable = false
+        countDownTimer.cancel()
+        tv_timer.visibility = View.GONE
+        progress_bar_timer.visibility = View.GONE
+        iv_circle_answer.visibility = View.VISIBLE
+        tv_circle_answer_text.visibility = View.VISIBLE
 
-                if (mCurrentPosition <= mTotalNrOfQuestions && questionSubmitted == true) {
-                    Handler().postDelayed(
-                        {
-                            setQuestion()
-                        },1000
-                    )
-                }
-                else {
-                    val intent = Intent(this, ResultActivity::class.java)
-                    intent.putExtra(Constants.USER_NAME, mUserName)
-                    intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-                    intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
-                    startActivity(intent)
-                    finish()
-                }
+        val question = mQuestionsList.get(mCurrentPosition - 1)
+        if (question.correctAnswer != mSelectedOptionPosition) {
+            answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
+            answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
+            when (question.correctAnswer) {
+                1 -> {tv_option_one.setTypeface(null, Typeface.BOLD)}
+                2 -> {tv_option_two.setTypeface(null, Typeface.BOLD)}
+                3 -> {tv_option_three.setTypeface(null, Typeface.BOLD)}
+                4 -> {tv_option_four.setTypeface(null, Typeface.BOLD)}
             }
         }
-    }
+        else if (question.correctAnswer == mSelectedOptionPosition) {
+            iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
+            tv_circle_answer_text.text = "RÄTT"
+            answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+            when (question.correctAnswer) {
+                1 -> {tv_option_one.setTypeface(null, Typeface.BOLD)}
+                2 -> {tv_option_two.setTypeface(null, Typeface.BOLD)}
+                3 -> {tv_option_three.setTypeface(null, Typeface.BOLD)}
+                4 -> {tv_option_four.setTypeface(null, Typeface.BOLD)}
+            }
+            mCorrectAnswers++
+        }
+        mCurrentPosition++
 
-    private fun answerView(answer: Int, drawableView: Int) {
-        when (answer) {
-            1 -> {tv_option_one.background = ContextCompat.getDrawable(this, drawableView)}
-            2 -> {tv_option_two.background = ContextCompat.getDrawable(this, drawableView)}
-            3 -> {tv_option_three.background = ContextCompat.getDrawable(this, drawableView)}
-            4 -> {tv_option_four.background = ContextCompat.getDrawable(this, drawableView)}
+        if (mCurrentPosition <= mTotalNrOfQuestions && questionSubmitted == true) {
+            Handler().postDelayed(
+                {
+                    setQuestion()
+                },1500
+            )
+        }
+        else {
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra(Constants.USER_NAME, mUserName)
+            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+            intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
+            startActivity(intent)
+            finish()
         }
     }
-/*
-    private fun selectedOptionsView(tv: TextView, selectedOptionNum: Int) {
-        defaultOptionsView()
-        mSelectedOptionPosition = selectedOptionNum
-        tv.setTextColor(Color.parseColor("#000000"))
-        tv.setTypeface(tv.typeface, Typeface.BOLD)
-        tv.background = ContextCompat.getDrawable(
-            this, R.drawable.selected_option_border_bg
-        )
-    }
-
- */
 }
