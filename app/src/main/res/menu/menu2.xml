@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Hem"
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item
+        android:id="@+id/nav_play"
+        android:title="Spela Quiz"
+        android:icon="@drawable/ic_baseline_play_circle_filled_24"/>
+    <item
+        android:id="@+id/nav_high_score"
+        android:title="High Score"
+        android:icon="@drawable/ic_baseline_high_score_24"/>
+</menu>

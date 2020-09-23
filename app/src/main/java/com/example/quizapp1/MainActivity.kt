@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -12,14 +13,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*
-        Lägg till fler kategorier av frågor, tex byggnader eller kändisar.
-        Alternativt gör kategorier av världsdelar där man kan välja att få flagg-frågor
-        om tex Europa, Afrika eller hela världen.
-         */
-        //Denna rad tar bort raden högst upp som visar batteri, klocka etc
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
+        var btmNav: BottomNavigationView = findViewById(R.id.bottom_navigation_view)
+
+        btmNav.setOnNavigationItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.nav_home -> {}
+
+                R.id.nav_play -> {}
+
+                R.id.nav_high_score -> {}
+
+                else -> {}
+            }
+            true
+        }
+        /*
         btn_start.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
                 Toast.makeText(this, "Skriv in ditt namn", Toast.LENGTH_SHORT).show()
@@ -32,5 +42,7 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+         */
     }
 }
