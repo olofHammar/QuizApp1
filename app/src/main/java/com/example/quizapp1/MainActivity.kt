@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.nav_high_score -> {loadFragment(HighScoreFragment())
                     return@setOnNavigationItemSelectedListener true}
-
             }
             false
         }

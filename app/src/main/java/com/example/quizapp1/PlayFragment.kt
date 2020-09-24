@@ -18,7 +18,6 @@ class PlayFragment : Fragment(){
         val btnStart: Button = view.findViewById(R.id.btn_start)
 
         btnStart.setOnClickListener {
-            //Log.d("!!!","click")
             if (et_name.text.toString().isEmpty()) {
                 Toast.makeText(this@PlayFragment.context, "Skriv in ditt namn", Toast.LENGTH_SHORT).show()
             }
@@ -31,5 +30,4 @@ class PlayFragment : Fragment(){
         }
         return view
     }
-
     }
