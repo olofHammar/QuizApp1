@@ -46,20 +46,21 @@
                     android:layout_alignParentTop="true"
                     android:src="@drawable/welcome_sv_tommy" />
 
-                <ImageView
-                    android:id="@+id/iv_welcome_mes"
-                    android:layout_width="323dp"
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="1dp"
-                    android:foregroundGravity="center"
-                    android:src="@drawable/welcome_message_sv_tommy_black" />
+                    android:gravity="center"
+                    android:fontFamily="@font/bitter"
+                    android:layout_marginTop="45dp"
+                    android:textSize="20sp"
+                    android:text="Låt oss se vad du kan om flaggor. Välj Spela Quiz i menyn nedan för att köra igång." />
 
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
 
     </RelativeLayout>
 

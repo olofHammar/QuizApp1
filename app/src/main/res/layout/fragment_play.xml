@@ -64,6 +64,7 @@
                         android:id="@+id/et_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/bitter"
                         android:hint="Namn"
                         android:textColor="#363A43"
                         android:textColorHint="#7A8089" />
@@ -76,9 +77,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="#000000"
+                    android:fontFamily="@font/bitter"
                     android:text="Start"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/white">
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold">
 
                 </Button>
 
