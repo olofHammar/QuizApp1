@@ -44,31 +44,35 @@
                     android:layout_width="323dp"
                     android:layout_height="60dp"
                     android:layout_alignParentTop="true"
-                    android:src="@drawable/welcome_sv_black" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:text="Låt oss se vad du kan om flaggor. \nVälj Spela Quiz i menyn nedan\n för att köra igårng."
-                    android:textColor="#363A43"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:src="@drawable/welcome_sv_tommy" />
 
                 <ImageView
-                    android:id="@+id/iv_good_luck"
+                    android:id="@+id/iv_welcome_mes"
                     android:layout_width="323dp"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/good_luck_sv_black" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="1dp"
+                    android:foregroundGravity="center"
+                    android:src="@drawable/welcome_message_sv_tommy_black" />
+
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_good_luck"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/good_luck_sv_cursive" />
+
+
 
 
 

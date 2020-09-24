@@ -37,14 +37,12 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Skriv in ditt namn"
-                    android:textColor="#000000"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/iv_welcome"
+                    android:layout_width="323dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/enter_name_tommy" />
 
                 <TextView
                     android:layout_width="match_parent"
