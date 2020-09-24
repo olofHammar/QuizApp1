@@ -6,11 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:id="@+id/iv_logo_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/quiz_logo"
-        android:layout_gravity="center"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="-164dp"
+        android:src="@drawable/fq_logo_one" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="385dp"
+            android:layout_height="250dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_welcome"
+                    android:layout_width="323dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/welcome_sv_black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="Låt oss se vad du kan om flaggor. \nVälj Spela Quiz i menyn nedan\n för att köra igårng."
+                    android:textColor="#363A43"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_good_luck"
+                    android:layout_width="323dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/good_luck_sv_black" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
+
 </FrameLayout>
