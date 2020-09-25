@@ -66,7 +66,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         for (option in options) {
             option.setTextColor(Color.parseColor("#000000"))
-            option.typeface = Typeface.DEFAULT
+            //option.typeface = Typeface.DEFAULT
             option.setBackgroundResource(R.drawable.default_option_border_bg)
         }
     }
@@ -145,23 +145,29 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
             iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
             answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
             answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
+           /*
             when (question.correctAnswer) {
                 1 -> {tv_option_one.setTypeface(null, Typeface.BOLD)}
                 2 -> {tv_option_two.setTypeface(null, Typeface.BOLD)}
                 3 -> {tv_option_three.setTypeface(null, Typeface.BOLD)}
                 4 -> {tv_option_four.setTypeface(null, Typeface.BOLD)}
             }
+
+            */
         }
         else if (question.correctAnswer == mSelectedOptionPosition) {
             iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
             tv_circle_answer_text.text = "RÄTT"
             answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
+            /*
             when (question.correctAnswer) {
                 1 -> {tv_option_one.setTypeface(null, Typeface.BOLD)}
                 2 -> {tv_option_two.setTypeface(null, Typeface.BOLD)}
                 3 -> {tv_option_three.setTypeface(null, Typeface.BOLD)}
                 4 -> {tv_option_four.setTypeface(null, Typeface.BOLD)}
             }
+
+             */
             mCorrectAnswers++
         }
         mCurrentPosition++
