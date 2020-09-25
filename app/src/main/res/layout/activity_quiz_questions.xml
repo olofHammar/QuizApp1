@@ -41,9 +41,14 @@
             android:id="@+id/iv_image"
             android:layout_width="330dp"
             android:layout_height="190dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_outline"
+            android:layout_gravity="center"
+            android:padding="1dp"
+            android:cropToPadding="true"
             android:src="@drawable/afghanistan"
-            android:scaleType="fitXY"/>
+            android:scaleType="centerCrop"/>
+
 
         <LinearLayout
             android:id="@+id/ll_progress_details"
@@ -187,7 +192,7 @@
                 android:layout_marginEnd="-1dp"
                 android:layout_marginBottom="1dp"
                 android:gravity="center"
-                android:textColor="#0ff517"
+                android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
