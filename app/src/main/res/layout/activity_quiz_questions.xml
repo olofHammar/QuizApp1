@@ -157,12 +157,19 @@
             android:layout_marginTop="1dp"
             android:gravity="center">
 
+            <ImageView
+                android:id="@+id/iv_circle_answer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                app:srcCompat="@drawable/circle_count_down" />
+
             <ProgressBar
             android:id="@+id/progress_bar_timer"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="2dp"
+                android:padding="13dp"
             android:indeterminateDrawable="@drawable/progress"
             android:indeterminateDuration="10000"
             android:progress="0" />
@@ -180,15 +187,10 @@
                 android:layout_marginEnd="-1dp"
                 android:layout_marginBottom="1dp"
                 android:gravity="center"
-                android:textColor="@android:color/white"
+                android:textColor="#0ff517"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_circle_answer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/circle_wrong_answer" />
 
             <TextView
                 android:id="@+id/tv_circle_answer_text"

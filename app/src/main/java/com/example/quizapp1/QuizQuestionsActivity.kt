@@ -112,9 +112,8 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         tv_option_four.text = question.optionFour
         countDownTimer.start()
         tv_circle_answer_text.text = "FEL"
-        iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
+        iv_circle_answer.setImageResource(R.drawable.circle_count_down)
         tv_circle_answer_text.visibility = View.GONE
-        iv_circle_answer.visibility = View.GONE
         tv_timer.visibility = View.VISIBLE
         progress_bar_timer.visibility = View.VISIBLE
     }
@@ -143,6 +142,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
 
         val question = mQuestionsList.get(mCurrentPosition - 1)
         if (question.correctAnswer != mSelectedOptionPosition) {
+            iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
             answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
             answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
             when (question.correctAnswer) {
