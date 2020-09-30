@@ -15,7 +15,14 @@ class PlayFragment : Fragment(){
 
         val view: View = inflater.inflate(R.layout.fragment_play, container, false)
 
+        var totalNrOfQuestions = 0
         val btnStart: Button = view.findViewById(R.id.btn_start)
+        val btnSelect: Button = view.findViewById(R.id.btn_select)
+
+        btnSelect.setOnClickListener {
+            btnSelect.setBackgroundResource(R.drawable.round_button_selected)
+            totalNrOfQuestions = 5
+        }
 
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
@@ -25,6 +32,7 @@ class PlayFragment : Fragment(){
                 val intent = Intent (this@PlayFragment.context, QuizQuestionsActivity::class.java)
                 startActivity(intent)
                 intent.putExtra(Constants.USER_NAME, et_name.text.toString())
+                intent.putExtra(Constants.TOTAL_QUESTIONS, totalNrOfQuestions)
                 startActivity(intent)
             }
         }

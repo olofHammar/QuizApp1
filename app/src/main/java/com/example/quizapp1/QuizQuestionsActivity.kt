@@ -44,6 +44,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         //Här hämtar jag in användarnamnet från mainActivity
         mUserName = intent.getStringExtra(Constants.USER_NAME)
+        mTotalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
         //Här hämtar jag in frågor som jag sparar i en lista som sedan blandas med shuffle
         mQuestionsList = Constants.getQuestion()
         Collections.shuffle(mQuestionsList)
@@ -100,6 +101,8 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         val question = mQuestionsList[mCurrentPosition - 1]
 
         defaultOptionsView()
+
+        progress_bar.setMax(mTotalNrOfQuestions)
 
         progress_bar.progress = mCurrentPosition
         tv_progress.text = "$mCurrentPosition" + "/" + progress_bar.max
