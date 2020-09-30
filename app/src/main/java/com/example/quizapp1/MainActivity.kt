@@ -5,13 +5,14 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
+var userName: String = ""
+var totalNrOfQuestions: Int = 0
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       // window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         loadFragment(HomeFragment())
 
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home -> {loadFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_play -> {loadFragment(PlayFragment())
+                R.id.nav_play -> {loadFragment(SetNrOfQuestionsFragment())
                     return@setOnNavigationItemSelectedListener true}
 
                 R.id.nav_high_score -> {loadFragment(HighScoreFragment())
