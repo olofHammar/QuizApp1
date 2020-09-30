@@ -71,35 +71,65 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btn_start"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:background="#000000"
-                    android:fontFamily="@font/bitter"
-                    android:text="Start"
-                    android:textColor="@android:color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold">
-
-                </Button>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
                 <Button
-                    android:id="@+id/btn_select"
+                    android:id="@+id/btn_select_ten"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="28dp"
                     android:background="@drawable/round_button"
                     android:fontFamily="@font/bitter"
-                    android:text="5"
-                    android:textSize="25dp"
-                    android:textStyle="bold"/>
+                    android:text="10"
+                    android:textSize="25dp" />
+                <Button
+                    android:id="@+id/btn_select_twenty"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="60dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/bitter"
+                    android:text="20"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/btn_select_thirty"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="60dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/bitter"
+                    android:text="30"
+                    android:textSize="25dp" />
+
+            </LinearLayout>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
+        android:background="#000000"
+        android:fontFamily="@font/bitter"
+        android:text="Start"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold">
+
+    </Button>
 
 </FrameLayout>
