@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="10dp">
 
                 <ImageView
                     android:id="@+id/iv_welcome"
@@ -56,7 +56,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="1dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
 
@@ -75,7 +75,7 @@
                     android:id="@+id/btn_start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="5dp"
                     android:background="#000000"
                     android:fontFamily="@font/bitter"
                     android:text="Start"
@@ -84,6 +84,17 @@
                     android:textStyle="bold">
 
                 </Button>
+
+                <Button
+                    android:id="@+id/btn_select"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/bitter"
+                    android:text="5"
+                    android:textSize="25dp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
 
