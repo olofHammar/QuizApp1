@@ -71,6 +71,13 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/iv_welcome"
+                    android:layout_width="323dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/ener_questions_tommy" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

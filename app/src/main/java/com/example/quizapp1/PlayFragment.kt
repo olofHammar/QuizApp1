@@ -41,6 +41,7 @@ class PlayFragment : Fragment(){
             totalNrOfQuestions = 30
         }
 
+
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
                 Toast.makeText(this@PlayFragment.context, "Skriv in ditt namn", Toast.LENGTH_SHORT).show()
