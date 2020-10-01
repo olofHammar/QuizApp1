@@ -3,16 +3,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HighScoreFragment">
 
-    <TextView
+    <ImageView
+        android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HIGH SCORE"
-        android:textSize="40sp"
-        android:textColor="@android:color/white"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="-164dp"
+        android:src="@drawable/high_score_orange" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="100dp"/>
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="385dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/white"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_welcome"
+                    android:layout_width="323dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ener_questions_tommy" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/btn_select_ten"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/bitter"
+                        android:text="10"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:id="@+id/btn_select_twenty"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="60dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/bitter"
+                        android:text="20"
+                        android:textSize="25dp" />
+
+                    <Button
+                        android:id="@+id/btn_select_thirty"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginStart="60dp"
+                        android:background="@drawable/round_button"
+                        android:fontFamily="@font/bitter"
+                        android:text="30"
+                        android:textSize="25dp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="30dp"
+                    android:background="#000000"
+                    android:fontFamily="@font/bitter"
+                    android:text="Fortsätt"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold">
+
+                </Button>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
 
 </FrameLayout>
