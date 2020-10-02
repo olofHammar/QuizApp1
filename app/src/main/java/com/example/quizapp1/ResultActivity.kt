@@ -22,11 +22,14 @@ class ResultActivity : AppCompatActivity() {
         tv_name.text = "Grattis ${username?.capitalize()}"
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS,0)
-
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
-        pref.edit().putString("highScoreOneName", username).apply()
-        pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
 
+        when  {
+            correctAnswers>highScoreOne.playerPoints -> {
+                pref.edit().putString("highScoreOneName", username).apply()
+                pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
+            }
+        }
 
         tv_score.text = "Din poäng är $correctAnswers av $totalQuestions."
 

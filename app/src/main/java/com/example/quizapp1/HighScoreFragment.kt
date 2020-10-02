@@ -25,8 +25,8 @@ class HighScoreFragment : Fragment(){
         val tvHsOneName: TextView = view.findViewById(R.id.tv_hs_one_name)
         val tvHsOnePoints: TextView = view.findViewById((R.id.tv_hs_one_points))
 
-        tvHsOneName.text = highScoreOneName
-        tvHsOnePoints.text = highScoreOnePoints.toString()
+        tvHsOneName.text = highScoreOne.playerName.capitalize()
+        tvHsOnePoints.text = "${highScoreOne.playerPoints} p"
 
 
         return view
