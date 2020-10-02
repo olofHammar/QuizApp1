@@ -23,11 +23,20 @@ class HighScoreFragment : Fragment(){
 
         val view: View = inflater.inflate(R.layout.fragment_high_score, container, false)
         val tvHsOneName: TextView = view.findViewById(R.id.tv_hs_one_name)
-        val tvHsOnePoints: TextView = view.findViewById((R.id.tv_hs_one_points))
+        val tvHsOnePoints: TextView = view.findViewById(R.id.tv_hs_one_points)
+        val tvHsTwoName: TextView = view.findViewById(R.id.tv_hs_two_name)
+        val tvHsTwoPoints: TextView = view.findViewById(R.id.tv_hs_two_points)
+        val tvHsThreeName: TextView = view.findViewById(R.id.tv_hs_three_name)
+        val tvHsThreePoints: TextView = view.findViewById(R.id.tv_hs_three_points)
 
         tvHsOneName.text = highScoreOne.playerName.capitalize()
         tvHsOnePoints.text = "${highScoreOne.playerPoints} p"
 
+        tvHsTwoName.text = highScoreTwo.playerName.capitalize()
+        tvHsTwoPoints.text = "${highScoreTwo.playerPoints} p"
+
+        tvHsThreeName.text = highScoreThree.playerName.capitalize()
+        tvHsThreePoints.text = "${highScoreThree.playerPoints} p"
 
         return view
     }

@@ -10,8 +10,9 @@ import kotlin.properties.Delegates
 
 var userName: String = ""
 var totalNrOfQuestions: Int = 0
-var highScoreOne: PlayerHighScore = PlayerHighScore("---", 0)
-
+var highScoreOne: PlayerHighScore = PlayerHighScore()
+var highScoreTwo: PlayerHighScore = PlayerHighScore()
+var highScoreThree: PlayerHighScore = PlayerHighScore()
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +20,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
-        highScoreOne.playerName = pref.getString("highScoreOneName", "").toString()
+
+        highScoreOne.playerName = pref.getString("highScoreOneName", "---").toString()
         highScoreOne.playerPoints = pref.getInt("highScoreOnePoints", 0)
+
+        highScoreTwo.playerName = pref.getString("highScoreTwoName","---").toString()
+        highScoreTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
+
+        highScoreThree.playerName = pref.getString("highScoreThreeName","---").toString()
+        highScoreThree.playerPoints = pref.getInt("highScoreThreePoints",0)
 
 
 

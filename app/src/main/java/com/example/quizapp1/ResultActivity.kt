@@ -12,8 +12,6 @@ import java.util.prefs.Preferences
 
 class ResultActivity : AppCompatActivity() {
 
-    private val sharedPrefFile = "kotlinsharedpreference"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
@@ -26,15 +24,29 @@ class ResultActivity : AppCompatActivity() {
 
         when  {
             correctAnswers>highScoreOne.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", highScoreTwo.playerName).apply()
+                pref.edit().putInt("highScoreThreePoints", highScoreTwo.playerPoints).apply()
+                pref.edit().putString("highScoreTwoName", highScoreOne.playerName).apply()
+                pref.edit().putInt("highScoreTwoPoints", highScoreOne.playerPoints).apply()
                 pref.edit().putString("highScoreOneName", username).apply()
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
             }
+            correctAnswers>highScoreTwo.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", highScoreTwo.playerName).apply()
+                pref.edit().putInt("highScoreThreePoints", highScoreTwo.playerPoints).apply()
+                pref.edit().putString("highScoreTwoName", username).apply()
+                pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
+            }
+            correctAnswers> highScoreThree.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", username).apply()
+                pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
+            }
         }
-
         tv_score.text = "Din poäng är $correctAnswers av $totalQuestions."
 
         btn_finish.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }
