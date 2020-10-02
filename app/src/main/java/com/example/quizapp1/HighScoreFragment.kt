@@ -1,8 +1,12 @@
 package com.example.quizapp1
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +22,13 @@ class HighScoreFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_high_score, container, false)
+        val tvHsOneName: TextView = view.findViewById(R.id.tv_hs_one_name)
+        val tvHsOnePoints: TextView = view.findViewById((R.id.tv_hs_one_points))
+
+        tvHsOneName.text = highScoreOneName
+        tvHsOnePoints.text = highScoreOnePoints.toString()
+
 
         return view
     }
-
 }

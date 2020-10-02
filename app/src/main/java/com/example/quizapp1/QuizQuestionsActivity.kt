@@ -184,7 +184,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         }
         else {
             val intent = Intent(this, ResultActivity::class.java)
-            intent.putExtra(Constants.USER_NAME, mUserName)
+            intent.putExtra("Constants.USER_NAME", mUserName)
             intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
             intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
             startActivity(intent)

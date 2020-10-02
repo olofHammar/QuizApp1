@@ -1,5 +1,7 @@
 package com.example.quizapp1
 
+import android.content.Context
+
 object Constants {
 
     const val USER_NAME: String = "user name"
