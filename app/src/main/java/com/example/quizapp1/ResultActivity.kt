@@ -21,7 +21,7 @@ class ResultActivity : AppCompatActivity() {
         Sedan skapar jag en variabel för sharedPreferences.
          */
         val username = intent.getStringExtra("Constants.USER_NAME")
-        tv_name.text = "Grattis ${username?.capitalize()}"
+        tv_name.text = resources.getString(R.string.congratulationz_message_sv, username?.capitalize())
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS,0)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
@@ -50,7 +50,7 @@ class ResultActivity : AppCompatActivity() {
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
             }
         }
-        tv_score.text = "Din poäng är $correctAnswers av $totalQuestions."
+        tv_score.text = resources.getString(R.string.result_message_sv, correctAnswers.toString(), totalQuestions.toString())
 
         btn_finish.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))

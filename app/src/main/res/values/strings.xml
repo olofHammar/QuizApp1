@@ -20,4 +20,6 @@
     <string name="nr_twenty">20</string>
     <string name="nr_thirty">30</string>
     <string name="continue_sv">Fortsätt</string>
+    <string name="result_message_sv">Din poäng är %1$s av %2$s</string>
+    <string name="congratulationz_message_sv">Grattis %1$s</string>
 </resources>
