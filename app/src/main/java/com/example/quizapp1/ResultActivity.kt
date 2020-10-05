@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_result.*
+import java.util.*
 import java.util.prefs.Preferences
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
 
+    @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
@@ -21,7 +23,8 @@ class ResultActivity : AppCompatActivity() {
         Sedan skapar jag en variabel för sharedPreferences.
          */
         val username = intent.getStringExtra("Constants.USER_NAME")
-        tv_name.text = resources.getString(R.string.congratulationz_message_sv, username?.capitalize())
+        tv_name.text = resources.getString(R.string.congratulationz_message_sv,
+            username?.capitalize(Locale.ROOT))
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
         val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS,0)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
