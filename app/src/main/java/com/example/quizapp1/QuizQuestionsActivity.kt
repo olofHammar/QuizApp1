@@ -105,7 +105,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         progress_bar.setMax(mTotalNrOfQuestions)
 
         progress_bar.progress = mCurrentPosition
-        tv_progress.text = "$mCurrentPosition" + "/" + progress_bar.max
+        tv_progress.text = resources.getString(R.string.tv_progress_bar_text_sv, mCurrentPosition.toString(), progress_bar.max.toString())
 
         tv_question.text = question.question
         iv_image.setImageResource(question.image)
@@ -114,7 +114,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         tv_option_three.text = question.optionThree
         tv_option_four.text = question.optionFour
         countDownTimer.start()
-        tv_circle_answer_text.text = "FEL"
+        tv_circle_answer_text.setText(R.string.question_answer_wrong_sv)
         iv_circle_answer.setImageResource(R.drawable.circle_count_down)
         tv_circle_answer_text.visibility = View.GONE
         tv_timer.visibility = View.VISIBLE
@@ -160,17 +160,9 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         }
         else if (question.correctAnswer == mSelectedOptionPosition) {
             iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
-            tv_circle_answer_text.text = "RÄTT"
+            tv_circle_answer_text.setText(R.string.question_answer_right_sv)
             answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
-            /*
-            when (question.correctAnswer) {
-                1 -> {tv_option_one.setTypeface(null, Typeface.BOLD)}
-                2 -> {tv_option_two.setTypeface(null, Typeface.BOLD)}
-                3 -> {tv_option_three.setTypeface(null, Typeface.BOLD)}
-                4 -> {tv_option_four.setTypeface(null, Typeface.BOLD)}
-            }
 
-             */
             mCorrectAnswers++
         }
         mCurrentPosition++

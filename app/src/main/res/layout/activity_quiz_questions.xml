@@ -31,7 +31,7 @@
                 android:layout_margin="15dp"
                 android:fontFamily="@font/bitter"
                 android:gravity="center"
-                android:text="Vilket land tillhör denna flagga?"
+                android:text="@string/quiz_question_sv"
                 android:textColor="#363A43"
                 android:textSize="22sp" />
 
@@ -105,7 +105,7 @@
                 android:padding="14dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                android:text="Ett" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_option_two"
@@ -118,7 +118,7 @@
                 android:padding="14dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                android:text="Två" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -139,7 +139,7 @@
                 android:padding="14dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                android:text="Tre" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/tv_option_four"
@@ -152,7 +152,7 @@
                 android:padding="14dp"
                 android:textColor="#7A8089"
                 android:textSize="18sp"
-                android:text="Fyra" />
+                android:text="" />
 
         </LinearLayout>
 
@@ -211,7 +211,7 @@
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/bitter"
                 android:gravity="center"
-                android:text="Fel"
+                android:text="@string/question_answer_wrong_sv"
                 android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
