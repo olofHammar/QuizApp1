@@ -10,9 +10,9 @@
         android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="-164dp"
+        android:contentDescription="@string/content_decription_image"
         android:src="@drawable/fq_logo_orange_fade" />
 
     <RelativeLayout
@@ -41,7 +41,7 @@
                     android:id="@+id/iv_welcome"
                     android:layout_width="323dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/content_decription_image"
                     android:src="@drawable/enter_name_tommy" />
 
                 <TextView
@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bitter"
-                        android:hint="Namn"
+                        android:hint="@string/name_sv"
                         android:textColor="#363A43"
                         android:textColorHint="#7A8089" />
 
@@ -79,7 +79,7 @@
                     android:layout_marginTop="47dp"
                     android:background="#000000"
                     android:fontFamily="@font/bitter"
-                    android:text="Spela"
+                    android:text="@string/play_sv"
                     android:textColor="@android:color/white"
                     android:textSize="22sp"
                     android:textStyle="bold">

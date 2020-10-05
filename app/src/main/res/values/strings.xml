@@ -14,4 +14,6 @@
     <string name="btn_highsvore_two">2</string>
     <string name="btn_highscore_three">3</string>
     <string name="welcome_message_sv">Låt oss se vad du kan om flaggor. Välj Spela Quiz i menyn nedan för att köra igång.</string>
+    <string name="name_sv">Namn</string>
+    <string name="play_sv">Spela</string>
 </resources>
