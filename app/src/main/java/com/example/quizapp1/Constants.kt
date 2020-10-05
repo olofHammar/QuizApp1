@@ -1,7 +1,8 @@
 package com.example.quizapp1
-
-import android.content.Context
-
+/*
+Här har jag mina singletons. Det tre översta variablerna använder jag enbart som "tags" för att skicka variabler mellan de olika aktiviteterna.
+Jag har även alla frågor till quizet här. Jag har gjort en funktion som returnerar en lista med frågor. Detta fungerar som en "static list".
+ */
 object Constants {
 
     const val USER_NAME: String = "user name"

@@ -1,6 +1,6 @@
 package com.example.quizapp1
 /*
-(Ändrade från 'data class' till 'class') Här skapar jag en klass som är mallen för alla frågor.
+Här skapar jag en klass som är mallen för alla frågor.
  */
 class Question (
     val id: Int,
