@@ -10,9 +10,9 @@
         android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="-164dp"
+        android:contentDescription="@string/content_decription_image"
         android:src="@drawable/fq_logo_orange_fade" />
 
     <RelativeLayout
@@ -41,8 +41,8 @@
                     android:id="@+id/iv_welcome"
                     android:layout_width="323dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/content_decription_image"
                     android:src="@drawable/ener_questions_tommy" />
 
                 <LinearLayout
@@ -59,8 +59,8 @@
                         android:layout_marginStart="5dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/bitter"
-                        android:text="10"
-                        android:textSize="25dp" />
+                        android:text="@string/nr_ten"
+                        android:textSize="25sp" />
 
                     <Button
                         android:id="@+id/btn_select_twenty"
@@ -70,8 +70,8 @@
                         android:layout_marginStart="60dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/bitter"
-                        android:text="20"
-                        android:textSize="25dp" />
+                        android:text="@string/nr_twenty"
+                        android:textSize="25sp" />
 
                     <Button
                         android:id="@+id/btn_select_thirty"
@@ -81,8 +81,8 @@
                         android:layout_marginStart="60dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/bitter"
-                        android:text="30"
-                        android:textSize="25dp" />
+                        android:text="@string/nr_thirty"
+                        android:textSize="25sp" />
 
                 </LinearLayout>
 
@@ -94,7 +94,7 @@
                     android:layout_marginTop="30dp"
                     android:background="#000000"
                     android:fontFamily="@font/bitter"
-                    android:text="Fortsätt"
+                    android:text="@string/continue_sv"
                     android:textColor="@android:color/white"
                     android:textSize="22sp"
                     android:textStyle="bold">
