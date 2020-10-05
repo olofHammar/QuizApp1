@@ -10,7 +10,6 @@
         android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="-164dp"
         android:src="@drawable/fq_logo_orange_fade" />
@@ -43,7 +42,7 @@
                     android:id="@+id/iv_welcome"
                     android:layout_width="323dp"
                     android:layout_height="60dp"
-                    android:layout_alignParentTop="true"
+                    android:contentDescription="@string/content_decription_image"
                     android:src="@drawable/welcome_sv_tommy" />
 
                 <TextView
@@ -54,7 +53,7 @@
                     android:fontFamily="@font/bitter"
                     android:layout_marginTop="45dp"
                     android:textSize="20sp"
-                    android:text="Låt oss se vad du kan om flaggor. Välj Spela Quiz i menyn nedan för att köra igång." />
+                    android:text="@string/welcome_message_sv" />
 
 
             </LinearLayout>
@@ -71,10 +70,7 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="50dp"
         android:foregroundGravity="center"
+        android:contentDescription="@string/content_decription_image"
         android:src="@drawable/good_luck_sv_cursive" />
-
-
-
-
 
 </FrameLayout>
