@@ -19,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Här skapar jag variabeln pref som kan hämta in strängarna som sparats i ResultActivity
+        //När dom hämtats sätter jag namn och poäng till rätt nummer i highscore-listan.
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         highScoreOne.playerName = pref.getString("highScoreOneName", "---").toString()
@@ -30,10 +32,11 @@ class MainActivity : AppCompatActivity() {
         highScoreThree.playerName = pref.getString("highScoreThreeName","---").toString()
         highScoreThree.playerPoints = pref.getInt("highScoreThreePoints",0)
 
-
-
+        //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
+        //Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
+        //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.nav_home -> {loadFragment(HomeFragment())
