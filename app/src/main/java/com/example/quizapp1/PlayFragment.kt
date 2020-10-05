@@ -19,9 +19,13 @@ class PlayFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_play, container, false)
-
+        /*
+        Här skapar jag en variabel som kopplas till startknappen. Sedan sätter jag en klicklyssnare till den knappen.
+        Lyssnaren kräver att användaren skriver in sitt namn, görs ej detta så visas en Toast som ber användaren skriva in sitt namn.
+        Är namnet ifyllt så skickas vi till QuizActivity. Jag skickar med namnet på spelaren. Jag skickar även med informationen från
+        det förra fragmentet gällande hur många frågot quizet ska innehålla.
+         */
         val btnStart: Button = view.findViewById(R.id.btn_start)
-
 
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
@@ -46,5 +50,4 @@ class PlayFragment : Fragment(){
         }
         return view
     }
-
 }
