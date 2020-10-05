@@ -24,7 +24,7 @@
         android:id="@+id/iv_trophy"
         android:layout_width="220dp"
         android:layout_height="263dp"
-        android:contentDescription="image"
+        android:contentDescription="@string/content_decription_image"
         android:src="@drawable/trophytwo" />
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@android:color/white"
-        android:text="SPELA IGEN"
+        android:text="@string/play_again_sv"
         android:textColor="@color/colorPrimary"
         android:textSize="25sp"
         android:textStyle="bold"/>

@@ -6,4 +6,6 @@
     <string name="question_answer_wrong_sv">Fel</string>
     <string name="question_answer_right_sv">Rätt</string>
     <string name="tv_progress_bar_text_sv">%1$s / %2$s</string>
+    <string name="content_decription_image">image</string>
+    <string name="play_again_sv">SPELA IGEN</string>
 </resources>
