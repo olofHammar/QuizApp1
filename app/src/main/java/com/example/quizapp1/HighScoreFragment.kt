@@ -17,11 +17,15 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import kotlinx.android.synthetic.main.fragment_play.*
 import java.util.ArrayList
-
+//Detta är fragment-klassen som visar spelets highscore-lista
 class HighScoreFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         val view: View = inflater.inflate(R.layout.fragment_high_score, container, false)
+
+        /*
+        Här sätter jag två variabler för varje highscore, namn och poäng. Dessa kopplas till rätt textView
+        och sedan sätter jag rätt text till respektive textView.
+         */
         val tvHsOneName: TextView = view.findViewById(R.id.tv_hs_one_name)
         val tvHsOnePoints: TextView = view.findViewById(R.id.tv_hs_one_points)
         val tvHsTwoName: TextView = view.findViewById(R.id.tv_hs_two_name)
