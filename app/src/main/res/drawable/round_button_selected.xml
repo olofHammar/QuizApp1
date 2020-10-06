@@ -1,19 +1,16 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:drawable="@drawable/shadow" />
-    <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="oval">
-            <stroke
-                android:width="3dp"
-                android:color="#000000"/>
-            <gradient
-                android:angle="0"
-                android:centerColor="#F17123"
-                android:endColor="#F19922"
-                android:startColor="#F05123" />
-            <corners android:radius="22dp" />
-            <size android:height="40dp"/>
+    <item android:bottom="3dp" android:right="3dp">  <!-- Button Shape -->
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF"/>
+            <corners android:radius="10dp" />
+
+            <padding android:left="10dp"
+                android:right="10dp"/>
+            <stroke android:width="6px"
+                android:color="#000000" />
         </shape>
     </item>
+
 </layer-list>

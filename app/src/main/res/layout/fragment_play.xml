@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="47dp"
-                    android:background="@drawable/btn_rounded_corner_black"
+                    android:background="@drawable/btn_rounded_corners_orange_fade"
                     android:fontFamily="@font/bitter"
                     android:text="@string/play_sv"
                     android:textColor="@android:color/white"

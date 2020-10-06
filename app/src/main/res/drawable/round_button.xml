@@ -1,17 +1,24 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:drawable="@drawable/shadow" />
-    <item>
-        <shape xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="oval">
+    <item android:left="5dp" android:top="5dp">
+        <shape android:shape="oval">
 
-            <gradient
-                android:angle="0"
-                android:centerColor="#F17123"
-                android:endColor="#F19922"
-                android:startColor="#F05123" />
-            <corners android:radius="22dp" />
-            <size android:height="40dp"/>
+            <corners android:radius="10dp" />
+            <solid android:color="#888888" />
         </shape>
     </item>
+
+    <item android:bottom="3dp" android:right="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF"/>
+            <corners android:radius="10dp" />
+
+            <padding android:left="10dp"
+                android:right="10dp"/>
+            <stroke android:width="3px"
+                android:color="@android:color/darker_gray" />
+        </shape>
+    </item>
+
 </layer-list>

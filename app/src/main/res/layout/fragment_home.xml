@@ -52,6 +52,7 @@
                     android:gravity="center"
                     android:fontFamily="@font/bitter"
                     android:layout_marginTop="45dp"
+                    android:textColor="@android:color/black"
                     android:textSize="20sp"
                     android:text="@string/welcome_message_sv" />
 
@@ -63,14 +64,6 @@
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_good_luck"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="50dp"
-        android:foregroundGravity="center"
-        android:contentDescription="@string/content_decription_image"
-        android:src="@drawable/good_luck_sv_cursive" />
+
 
 </FrameLayout>
