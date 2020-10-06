@@ -59,6 +59,7 @@
                         android:layout_marginStart="5dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/bitter"
+                        android:textColor="@android:color/white"
                         android:text="@string/nr_ten"
                         android:textSize="25sp" />
 
@@ -70,6 +71,7 @@
                         android:layout_marginStart="60dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/bitter"
+                        android:textColor="@android:color/white"
                         android:text="@string/nr_twenty"
                         android:textSize="25sp" />
 
@@ -81,6 +83,7 @@
                         android:layout_marginStart="60dp"
                         android:background="@drawable/round_button"
                         android:fontFamily="@font/bitter"
+                        android:textColor="@android:color/white"
                         android:text="@string/nr_thirty"
                         android:textSize="25sp" />
 
@@ -92,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="30dp"
-                    android:background="#000000"
+                    android:background="@drawable/btn_rounded_corner_black"
                     android:fontFamily="@font/bitter"
                     android:text="@string/continue_sv"
                     android:textColor="@android:color/white"

@@ -128,7 +128,7 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="100dp"
         android:layout_marginHorizontal="25dp"
-        android:background="#000000"
+        android:background="@drawable/btn_rounded_corners_orange_fade"
         android:fontFamily="@font/bitter"
         android:text="@string/play_again_sv"
         android:textColor="@android:color/white"
