@@ -51,6 +51,7 @@
                     android:orientation="horizontal"
                     android:padding="10dp">
 
+
                     <Button
                         android:id="@+id/btn_select_ten"
                         android:layout_width="60dp"
@@ -62,6 +63,7 @@
                         android:textColor="#888888"
                         android:text="@string/nr_ten"
                         android:textSize="25sp" />
+
 
                     <Button
                         android:id="@+id/btn_select_twenty"
