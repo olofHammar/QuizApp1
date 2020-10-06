@@ -29,19 +29,19 @@ class SetNrOfQuestionsFragment : Fragment(){
         btnSelectTen.setOnClickListener {
             defaultButtonView()
             btnSelectTen.setBackgroundResource(R.drawable.round_button_selected)
-            btnSelectTen.setTextColor(Color.parseColor("#000000"))
+            btnSelectTen.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 10
         }
         btnSelectTwenty.setOnClickListener {
             defaultButtonView()
             btnSelectTwenty.setBackgroundResource(R.drawable.round_button_selected)
-            btnSelectTen.setTextColor(Color.parseColor("#000000"))
+            btnSelectTwenty.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 20
         }
         btnSelectThirty.setOnClickListener {
             defaultButtonView()
             btnSelectThirty.setBackgroundResource(R.drawable.round_button_selected)
-            btnSelectTen.setTextColor(Color.parseColor("#000000"))
+            btnSelectThirty.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 30
         }
 
