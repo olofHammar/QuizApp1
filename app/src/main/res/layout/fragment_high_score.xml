@@ -47,8 +47,8 @@
                         android:clickable="false"
                         android:layout_marginTop="20dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/round_button"
-                        android:textColor="@android:color/white"
+                        android:background="@drawable/round_button_selected"
+                        android:textColor="#696969"
                         android:fontFamily="@font/bitter"
                         android:textStyle="bold"
                         android:text="@string/btn_highscore_one"
@@ -62,7 +62,7 @@
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/bitter"
                         android:text="@string/default_player_highscore_name"
-                        android:textColor="@android:color/black"
+                        android:textColor="#696969"
                         android:textSize="25sp" />
 
                     <TextView
@@ -72,7 +72,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginStart="10dp"
                         android:fontFamily="@font/bitter"
-                        android:textColor="@android:color/black"
+                        android:textColor="#696969"
                         android:textSize="25sp"
                         android:text="@string/default_player_highscore_points" />
 
@@ -90,8 +90,8 @@
                         android:clickable="false"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/round_button"
-                        android:textColor="@android:color/white"
+                        android:background="@drawable/round_button_selected"
+                        android:textColor="#696969"
                         android:fontFamily="@font/bitter"
                         android:textStyle="bold"
                         android:text="@string/btn_highsvore_two"
@@ -105,7 +105,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/bitter"
                     android:text="@string/default_player_highscore_name"
-                    android:textColor="@android:color/black"
+                    android:textColor="#696969"
                     android:textSize="25sp" />
 
                 <TextView
@@ -115,7 +115,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/bitter"
-                    android:textColor="@android:color/black"
+                    android:textColor="#696969"
                     android:textSize="25sp"
                     android:text="@string/default_player_highscore_points" />
 
@@ -134,8 +134,8 @@
                         android:clickable="false"
                         android:layout_marginTop="10dp"
                         android:layout_marginStart="5dp"
-                        android:background="@drawable/round_button"
-                        android:textColor="@android:color/white"
+                        android:background="@drawable/round_button_selected"
+                        android:textColor="#696969"
                         android:fontFamily="@font/bitter"
                         android:textStyle="bold"
                         android:text="@string/btn_highscore_three"
@@ -149,7 +149,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/bitter"
                     android:text="@string/default_player_highscore_name"
-                    android:textColor="@android:color/black"
+                    android:textColor="#696969"
                     android:textSize="25sp" />
 
                 <TextView
@@ -159,7 +159,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/bitter"
-                    android:textColor="@android:color/black"
+                    android:textColor="#696969"
                     android:textSize="25sp"
                     android:text="@string/default_player_highscore_points" />
 
