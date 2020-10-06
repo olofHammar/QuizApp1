@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="-164dp"
+        android:contentDescription="@string/content_decription_image"
         android:src="@drawable/result_orange_sv" />
 
     <RelativeLayout
@@ -39,21 +40,20 @@
             android:weightSum="2">
 
             <org.eazegraph.lib.charts.PieChart
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/piechart"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:padding="6dp"
                 android:layout_weight="1"
                 android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginBottom="15dp"
                 />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
                 >
@@ -64,7 +64,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp">
 
-                    <!--View to display the red color icon-->
                     <View
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
@@ -120,21 +119,22 @@
 
     </androidx.cardview.widget.CardView>
 
-
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@android:color/white"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="100dp"
+        android:layout_marginHorizontal="25dp"
+        android:background="#000000"
+        android:fontFamily="@font/bitter"
         android:text="@string/play_again_sv"
-        android:textColor="@color/colorPrimary"
-        android:textSize="25sp"
-        android:textStyle="bold"/>
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        android:textStyle="bold">
 
-    </RelativeLayout>
+    </Button>
 
 </FrameLayout>
