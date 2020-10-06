@@ -4,13 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import kotlinx.android.synthetic.main.fragment_play.*
 import java.util.ArrayList
@@ -25,20 +29,21 @@ class PlayFragment : Fragment(){
         Är namnet ifyllt så skickas vi till QuizActivity. Jag skickar med namnet på spelaren. Jag skickar även med informationen från
         det förra fragmentet gällande hur många frågot quizet ska innehålla.
          */
+        val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
+        btnEnterNameMessage.visibility = View.GONE
 
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
-                Toast.makeText(this@PlayFragment.context, "Skriv in ditt namn", Toast.LENGTH_SHORT).show()
+
+                btnEnterNameMessage.visibility = View.VISIBLE
+                Handler().postDelayed(
+                    {
+                        btnEnterNameMessage.visibility = View.GONE
+                    },1500
+                )
             }
             else {
-                /*
-                userName = et_name.text.toString()
-                val fragment = SetNrOfQuestionsFragment()
-                val transaction = fragmentManager?.beginTransaction()
-                transaction?.replace(R.id.fragment_layout, fragment)
-                transaction?.commit()
-                 */
                 userName = et_name.text.toString()
                 val intent =
                     Intent(this@PlayFragment.context, QuizQuestionsActivity::class.java)

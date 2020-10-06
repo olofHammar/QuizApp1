@@ -4,12 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_result.*
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
-import kotlin.properties.Delegates
+import java.util.*
+
 
 lateinit var chart: PieChart
 lateinit var tvRight: TextView
@@ -25,10 +29,10 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        var tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
         chart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
-
 
         /*
         Här hämtar jag information från tidigare aktiviteter som sätts till nya variabler i denna aktivitet.
@@ -58,16 +62,37 @@ class ResultActivity : AppCompatActivity() {
                 pref.edit().putInt("highScoreTwoPoints", highScoreOne.playerPoints).apply()
                 pref.edit().putString("highScoreOneName", username).apply()
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
+                Handler().postDelayed(
+                    {
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one,
+                            userName.capitalize(Locale.ROOT))
+                    },2500
+                )
             }
             correctAnswers > highScoreTwo.playerPoints -> {
                 pref.edit().putString("highScoreThreeName", highScoreTwo.playerName).apply()
                 pref.edit().putInt("highScoreThreePoints", highScoreTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", username).apply()
                 pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
+                Handler().postDelayed(
+                    {
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two, userName.capitalize(
+                            Locale.ROOT))
+                    },2500
+                )
             }
             correctAnswers > highScoreThree.playerPoints -> {
                 pref.edit().putString("highScoreThreeName", username).apply()
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
+                Handler().postDelayed(
+                    {
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three, userName.capitalize(
+                            Locale.ROOT))
+                    },2500
+                )
+            }
+            else -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_no_entry)
             }
         }
         tv_score.text = resources.getString(
@@ -77,6 +102,7 @@ class ResultActivity : AppCompatActivity() {
         )
 
         btn_finish.setOnClickListener {
+            //pref.edit().clear().apply()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -84,8 +110,8 @@ class ResultActivity : AppCompatActivity() {
 
     private fun setData() {
 
-        var percentageRight = (correctAnswersFloat.toDouble() / totalNrOfQuestions) * 100
-        var percentageWrong = (wrongAnswersFloat.toDouble() / totalNrOfQuestions) * 100
+        val percentageRight = (correctAnswersFloat.toDouble() / totalNrOfQuestions) * 100
+        val percentageWrong = (wrongAnswersFloat.toDouble() / totalNrOfQuestions) * 100
         // Set the percentage of language used
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")

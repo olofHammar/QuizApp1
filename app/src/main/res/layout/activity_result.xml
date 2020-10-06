@@ -16,6 +16,18 @@
         android:contentDescription="@string/content_decription_image"
         android:src="@drawable/result_orange_sv" />
 
+    <TextView
+        android:id="@+id/tv_highscore_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Du tog dig inte in på highscore" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

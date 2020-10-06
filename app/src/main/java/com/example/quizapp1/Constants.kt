@@ -318,7 +318,7 @@ object Constants {
             "Costa Rica",
             "Puerto Rico",
             "Dominikanska Republiken",
-            1)
+            2)
         questionsList.add(q28)
 
         val q29 = Question (
