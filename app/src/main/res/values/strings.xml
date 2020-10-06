@@ -26,4 +26,6 @@
     <string name="highscore_message_nr_two">Grattis %1$s! Du är ny tvåa på highscore-listan!</string>
     <string name="highscore_message_nr_three">Grattis %1$s! Du är ny trea på highscore-listan!</string>
     <string name="highscore_no_entry">Du tog dig inte in på highscore-listan.</string>
+    <string name="enter_nr_of_q_message">Välj antal frågor</string>
+    <string name="enter_name_message">Skriv in ditt namn</string>
 </resources>

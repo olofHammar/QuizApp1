@@ -15,7 +15,7 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:background="@drawable/btn_rounded_corner_white"
-        android:text="Skriv in ditt namn"
+        android:text="@string/enter_name_message"
         android:textColor="#F2000000"
         android:textSize="16sp" />
 

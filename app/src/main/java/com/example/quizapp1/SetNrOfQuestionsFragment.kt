@@ -3,6 +3,7 @@ package com.example.quizapp1
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,8 @@ class SetNrOfQuestionsFragment : Fragment(){
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
         val btnSelectThirty: Button = view.findViewById(R.id.btn_select_thirty)
         val btnNext: Button = view.findViewById(R.id.btn_next)
+        val btnEnterNrOfQuestionsMessage = view.findViewById<TextView>(R.id.tv_enter_nr_of_questions_message)
+        btnEnterNrOfQuestionsMessage.visibility = View.GONE
 
         btnSelectTen.setOnClickListener {
             defaultButtonView()
@@ -48,11 +51,12 @@ class SetNrOfQuestionsFragment : Fragment(){
         btnNext.setOnClickListener {
 
             if (totalNrOfQuestions == 0) {
-                Toast.makeText(
-                    this@SetNrOfQuestionsFragment.context,
-                    "Välj hur många frågor du vill svara på",
-                    Toast.LENGTH_SHORT
-                ).show()
+                btnEnterNrOfQuestionsMessage.visibility = View.VISIBLE
+                Handler().postDelayed(
+                    {
+                        btnEnterNrOfQuestionsMessage.visibility = View.GONE
+                    },1500
+                )
             } else {
 /*
                 val intent =

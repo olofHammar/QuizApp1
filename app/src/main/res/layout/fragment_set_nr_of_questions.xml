@@ -6,6 +6,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".PlayFragment">
 
+    <TextView
+        android:id="@+id/tv_enter_nr_of_questions_message"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:background="@drawable/btn_rounded_corner_white"
+        android:text="@string/enter_nr_of_q_message"
+        android:textColor="#F2000000"
+        android:textSize="16sp" />
+
     <ImageView
         android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"
