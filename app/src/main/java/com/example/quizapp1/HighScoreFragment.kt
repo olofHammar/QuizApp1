@@ -1,27 +1,30 @@
 package com.example.quizapp1
 
 import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_quiz_questions.*
-import kotlinx.android.synthetic.main.fragment_play.*
-import java.util.ArrayList
+import java.util.*
+
 //Detta är fragment-klassen som visar spelets highscore-lista
 class HighScoreFragment : Fragment(){
+    @ExperimentalStdlibApi
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_high_score, container, false)
 
+        val pref = context?.getSharedPreferences("highScore", Context.MODE_PRIVATE)
+        val pOne = PlayerHighScore()
+        pOne.playerName = pref?.getString("highScoreOneName", "---").toString()
+        val pTwo = PlayerHighScore()
+        pOne.playerPoints = pref!!.getInt("highScoreOnePoints", 0)
+        pTwo.playerName = pref.getString("highScoreTwoName", "---").toString()
+        pTwo.playerPoints = pref.getInt("highScoreTwoPoints", 0)
+        val pThree = PlayerHighScore()
+        pThree.playerName = pref.getString("highScoreThreeName", "---").toString()
+        pThree.playerPoints = pref.getInt("highScoreThreePoints", 0)
         /*
         Här sätter jag två variabler för varje highscore, namn och poäng. Dessa kopplas till rätt textView
         och sedan sätter jag rätt text till respektive textView.
@@ -34,14 +37,14 @@ class HighScoreFragment : Fragment(){
         val tvHsThreePoints: TextView = view.findViewById(R.id.tv_hs_three_points)
 
 
-        tvHsOneName.text = Singletons.highScoreOne.playerName.capitalize()
-        tvHsOnePoints.text = "${Singletons.highScoreOne.playerPoints} p"
+        tvHsOneName.text = pOne.playerName.capitalize(Locale.ROOT)
+        tvHsOnePoints.text = "${pOne.playerPoints} p"
 
-        tvHsTwoName.text = Singletons.highScoreTwo.playerName.capitalize()
-        tvHsTwoPoints.text = "${Singletons.highScoreTwo.playerPoints} p"
+        tvHsTwoName.text = pTwo.playerName.capitalize(Locale.ROOT)
+        tvHsTwoPoints.text = "${pTwo.playerPoints} p"
 
-        tvHsThreeName.text = Singletons.highScoreThree.playerName.capitalize()
-        tvHsThreePoints.text = "${Singletons.highScoreThree.playerPoints} p"
+        tvHsThreeName.text = pThree.playerName.capitalize(Locale.ROOT)
+        tvHsThreePoints.text = "${pThree.playerPoints} p"
 
         return view
     }

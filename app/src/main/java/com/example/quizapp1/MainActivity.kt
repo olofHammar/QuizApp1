@@ -12,19 +12,6 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Här skapar jag variabeln pref som kan hämta in strängarna som sparats i ResultActivity
-        //När dom hämtats sätter jag namn och poäng till rätt nummer i highscore-listan.
-        val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
-
-        Singletons.highScoreOne.playerName = pref.getString("highScoreOneName", "---").toString()
-        Singletons.highScoreOne.playerPoints = pref.getInt("highScoreOnePoints", 0)
-
-        Singletons.highScoreTwo.playerName = pref.getString("highScoreTwoName","---").toString()
-        Singletons.highScoreTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
-
-        Singletons.highScoreThree.playerName = pref.getString("highScoreThreeName","---").toString()
-        Singletons.highScoreThree.playerPoints = pref.getInt("highScoreThreePoints",0)
-
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
@@ -52,7 +39,10 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-//Denna funktion laddar playFragment och skickar med information om hur många frågor quizet ska ha.
+/*
+ Denna funktion laddar playFragment när funktionen kalla på från setNrOfQuestionsFragment
+ och skickar med information om hur många frågor quizet ska ha.
+ */
     override fun sendData(nr: Int) {
         val bundle = Bundle()
         bundle.putInt("Q", nr)
