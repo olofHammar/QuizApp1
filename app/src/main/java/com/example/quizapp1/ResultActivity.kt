@@ -19,17 +19,20 @@ import kotlin.properties.Delegates
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
 
-    lateinit var chart: PieChart
-    lateinit var tvRight: TextView
-    lateinit var tvWrong: TextView
-    lateinit var tvHighScoreMessage: TextView
-    lateinit var username: String
-    var totalQuestions = 0
-    var correctAnswers = 0
-    var correctAnswersFloat: Float = 0F
-    var wrongAnswersFloat: Float = 0F
+    private lateinit var chart: PieChart
+    private lateinit var tvRight: TextView
+    private lateinit var tvWrong: TextView
+    private lateinit var tvHighScoreMessage: TextView
+    private lateinit var username: String
+    private var highScoreNrOne: PlayerHighScore = PlayerHighScore()
+    private var highScoreNrTwo: PlayerHighScore = PlayerHighScore()
+    private var highScoreNrThree: PlayerHighScore = PlayerHighScore()
+    private var totalQuestions = 0
+    private var correctAnswers = 0
+    private var correctAnswersFloat: Float = 0F
+    private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
-    val highScoreMessageTimer = object: CountDownTimer (2000,1000){
+    private val highScoreMessageTimer = object: CountDownTimer (2000,1000){
         override fun onFinish() {
             displayResultMessage()
         }
@@ -55,7 +58,17 @@ class ResultActivity : AppCompatActivity() {
         username = intent.getStringExtra(Constants.USER_NAME).toString()
         totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
+
+        highScoreNrOne.playerName = pref.getString("highScoreOneName", "---").toString()
+        highScoreNrOne.playerPoints = pref.getInt("highScoreOnePoints", 0)
+
+        highScoreNrTwo.playerName = pref.getString("highScoreTwoName","---").toString()
+        highScoreNrTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
+
+        highScoreNrThree.playerName = pref.getString("highScoreThreeName","---").toString()
+        highScoreNrThree.playerPoints = pref.getInt("highScoreThreePoints",0)
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
@@ -65,23 +78,23 @@ class ResultActivity : AppCompatActivity() {
         det tidigare highscoren ett snäpp ner i listan.
          */
         when {
-            correctAnswers > Singletons.highScoreOne.playerPoints -> {
-                pref.edit().putString("highScoreThreeName", Singletons.highScoreTwo.playerName).apply()
-                pref.edit().putInt("highScoreThreePoints", Singletons.highScoreTwo.playerPoints).apply()
-                pref.edit().putString("highScoreTwoName", Singletons.highScoreOne.playerName).apply()
-                pref.edit().putInt("highScoreTwoPoints", Singletons.highScoreOne.playerPoints).apply()
+            correctAnswers > highScoreNrOne.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
+                pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
+                pref.edit().putString("highScoreTwoName", highScoreNrOne.playerName).apply()
+                pref.edit().putInt("highScoreTwoPoints", highScoreNrOne.playerPoints).apply()
                 pref.edit().putString("highScoreOneName", username).apply()
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
             }
-            correctAnswers > Singletons.highScoreTwo.playerPoints -> {
-                pref.edit().putString("highScoreThreeName", Singletons.highScoreTwo.playerName).apply()
-                pref.edit().putInt("highScoreThreePoints", Singletons.highScoreTwo.playerPoints).apply()
+            correctAnswers > highScoreNrTwo.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
+                pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", username).apply()
                 pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
             }
-            correctAnswers > Singletons.highScoreThree.playerPoints -> {
+            correctAnswers > highScoreNrThree.playerPoints -> {
                 pref.edit().putString("highScoreThreeName", username).apply()
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
@@ -105,15 +118,15 @@ class ResultActivity : AppCompatActivity() {
     @ExperimentalStdlibApi
     private fun displayResultMessage () {
         when {
-            correctAnswers > Singletons.highScoreOne.playerPoints -> {
+            correctAnswers > highScoreNrOne.playerPoints -> {
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                     username.capitalize(Locale.ROOT))
             }
-            correctAnswers > Singletons.highScoreTwo.playerPoints -> {
+            correctAnswers > highScoreNrTwo.playerPoints -> {
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
-            correctAnswers > Singletons.highScoreThree.playerPoints -> {
+            correctAnswers > highScoreNrThree.playerPoints -> {
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(
                     Locale.ROOT))
             }
