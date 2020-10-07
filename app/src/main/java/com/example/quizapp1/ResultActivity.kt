@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
@@ -13,23 +14,32 @@ import kotlinx.android.synthetic.main.activity_result.*
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
-
-
-lateinit var chart: PieChart
-lateinit var tvRight: TextView
-lateinit var tvWrong: TextView
-var correctAnswersFloat: Float = 0F
-var wrongAnswersFloat: Float = 0F
+import kotlin.properties.Delegates
 
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
+    lateinit var chart: PieChart
+    lateinit var tvRight: TextView
+    lateinit var tvWrong: TextView
+    lateinit var tvHighScoreMessage: TextView
+    var correctAnswers by Delegates.notNull<Int>()
+    var correctAnswersFloat: Float = 0F
+    var wrongAnswersFloat: Float = 0F
+    @ExperimentalStdlibApi
+    val highScoreMessageTimer = object: CountDownTimer (2000,1000){
+        override fun onFinish() {
+            displayResultMessage()
+        }
 
+        override fun onTick(millisUntilFinished: Long) {
+        }
+    }
     @ExperimentalStdlibApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
+        tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
         chart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
@@ -42,14 +52,12 @@ class ResultActivity : AppCompatActivity() {
         // tv_name.text = resources.getString(R.string.congratulationz_message_sv,
         //   username?.capitalize(Locale.ROOT))
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
-        val correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+        correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalNrOfQuestions.toFloat() - correctAnswersFloat)
         setData()
-
-
         /*
         Om spelarens poäng är högre än någon av tidigar highscore så sparas denna poäng och flyttar ner
         det tidigare highscoren ett snäpp ner i listan.
@@ -62,41 +70,22 @@ class ResultActivity : AppCompatActivity() {
                 pref.edit().putInt("highScoreTwoPoints", highScoreOne.playerPoints).apply()
                 pref.edit().putString("highScoreOneName", username).apply()
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
-                Handler().postDelayed(
-                    {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
-                            userName.capitalize(Locale.ROOT))
-                    },2500
-                )
+                highScoreMessageTimer.start()
             }
             correctAnswers > highScoreTwo.playerPoints -> {
                 pref.edit().putString("highScoreThreeName", highScoreTwo.playerName).apply()
                 pref.edit().putInt("highScoreThreePoints", highScoreTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", username).apply()
                 pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
-                Handler().postDelayed(
-                    {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, userName.capitalize(
-                            Locale.ROOT))
-                    },2500
-                )
+                highScoreMessageTimer.start()
             }
             correctAnswers > highScoreThree.playerPoints -> {
                 pref.edit().putString("highScoreThreeName", username).apply()
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
-                Handler().postDelayed(
-                    {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, userName.capitalize(
-                            Locale.ROOT))
-                    },2500
-                )
+                highScoreMessageTimer.start()
             }
             else -> {
-                Handler().postDelayed(
-                    {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_no_entry_sv)
-                    },2500
-                )
+                highScoreMessageTimer.start()
             }
         }
         tv_score.text = resources.getString(
@@ -111,7 +100,26 @@ class ResultActivity : AppCompatActivity() {
             finish()
         }
     }
-
+    @ExperimentalStdlibApi
+    private fun displayResultMessage () {
+        when {
+            correctAnswers > highScoreOne.playerPoints -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
+                    userName.capitalize(Locale.ROOT))
+            }
+            correctAnswers > highScoreTwo.playerPoints -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, userName.capitalize(
+                    Locale.ROOT))
+            }
+            correctAnswers > highScoreThree.playerPoints -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, userName.capitalize(
+                    Locale.ROOT))
+            }
+            else -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_no_entry_sv)
+            }
+        }
+    }
     private fun setData() {
 
         val percentageRight = (correctAnswersFloat.toDouble() / totalNrOfQuestions) * 100

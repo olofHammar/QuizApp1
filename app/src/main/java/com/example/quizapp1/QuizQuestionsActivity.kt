@@ -4,16 +4,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.provider.Settings
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import java.util.*
-import kotlinx.coroutines.*
-import java.util.concurrent.TimeUnit
 
 /*
 Jag har satt en onClickListener här som fungerar som lyssnare till alla knappar som ska klickas.
@@ -34,6 +30,15 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         override fun onTick(millisUntilFinished: Long) {
             tv_timer.text = "${(millisUntilFinished+1000)/1000}"
         }
+    }
+    private val setQuestionTimer = object : CountDownTimer (1500,1000){
+        override fun onFinish() {
+            setQuestion()
+        }
+        override fun onTick(millisUntilFinished: Long) {
+
+        }
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -157,11 +162,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
 
         if (mCurrentPosition <= mTotalNrOfQuestions && questionSubmitted == true) {
 
-            Handler().postDelayed(
-                {
-                    setQuestion()
-                },1500
-            )
+            setQuestionTimer.start()
         }
         else {
             val intent = Intent(this, ResultActivity::class.java)
@@ -171,4 +172,5 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
             startActivity(intent)
         }
     }
+
 }

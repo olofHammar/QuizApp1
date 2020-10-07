@@ -2,12 +2,9 @@ package com.example.quizapp1
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.properties.Delegates
-
 
 var userName: String = ""
 var totalNrOfQuestions: Int = 0
