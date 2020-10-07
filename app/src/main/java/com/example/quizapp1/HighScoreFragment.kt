@@ -33,14 +33,15 @@ class HighScoreFragment : Fragment(){
         val tvHsThreeName: TextView = view.findViewById(R.id.tv_hs_three_name)
         val tvHsThreePoints: TextView = view.findViewById(R.id.tv_hs_three_points)
 
-        tvHsOneName.text = highScoreOne.playerName.capitalize()
-        tvHsOnePoints.text = "${highScoreOne.playerPoints} p"
 
-        tvHsTwoName.text = highScoreTwo.playerName.capitalize()
-        tvHsTwoPoints.text = "${highScoreTwo.playerPoints} p"
+        tvHsOneName.text = Singletons.highScoreOne.playerName.capitalize()
+        tvHsOnePoints.text = "${Singletons.highScoreOne.playerPoints} p"
 
-        tvHsThreeName.text = highScoreThree.playerName.capitalize()
-        tvHsThreePoints.text = "${highScoreThree.playerPoints} p"
+        tvHsTwoName.text = Singletons.highScoreTwo.playerName.capitalize()
+        tvHsTwoPoints.text = "${Singletons.highScoreTwo.playerPoints} p"
+
+        tvHsThreeName.text = Singletons.highScoreThree.playerName.capitalize()
+        tvHsThreePoints.text = "${Singletons.highScoreThree.playerPoints} p"
 
         return view
     }

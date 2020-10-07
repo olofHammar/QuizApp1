@@ -44,12 +44,12 @@ class PlayFragment : Fragment(){
                 )
             }
             else {
-                userName = et_name.text.toString()
+                Singletons.userName = et_name.text.toString()
                 val intent =
                     Intent(this@PlayFragment.context, QuizQuestionsActivity::class.java)
                 startActivity(intent)
-                intent.putExtra(Constants.USER_NAME, userName)
-                intent.putExtra(Constants.TOTAL_QUESTIONS, totalNrOfQuestions)
+                intent.putExtra(Constants.USER_NAME, Singletons.userName)
+                intent.putExtra(Constants.TOTAL_QUESTIONS, Singletons.totalNrOfQuestions)
                 startActivity(intent)
             }
         }

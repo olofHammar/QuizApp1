@@ -6,13 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-var userName: String = ""
-var totalNrOfQuestions: Int = 0
-var highScoreOne: PlayerHighScore = PlayerHighScore()
-var highScoreTwo: PlayerHighScore = PlayerHighScore()
-var highScoreThree: PlayerHighScore = PlayerHighScore()
-
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,14 +16,14 @@ class MainActivity : AppCompatActivity() {
         //När dom hämtats sätter jag namn och poäng till rätt nummer i highscore-listan.
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
-        highScoreOne.playerName = pref.getString("highScoreOneName", "---").toString()
-        highScoreOne.playerPoints = pref.getInt("highScoreOnePoints", 0)
+        Singletons.highScoreOne.playerName = pref.getString("highScoreOneName", "---").toString()
+        Singletons.highScoreOne.playerPoints = pref.getInt("highScoreOnePoints", 0)
 
-        highScoreTwo.playerName = pref.getString("highScoreTwoName","---").toString()
-        highScoreTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
+        Singletons.highScoreTwo.playerName = pref.getString("highScoreTwoName","---").toString()
+        Singletons.highScoreTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
 
-        highScoreThree.playerName = pref.getString("highScoreThreeName","---").toString()
-        highScoreThree.playerPoints = pref.getInt("highScoreThreePoints",0)
+        Singletons.highScoreThree.playerName = pref.getString("highScoreThreeName","---").toString()
+        Singletons.highScoreThree.playerPoints = pref.getInt("highScoreThreePoints",0)
 
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())

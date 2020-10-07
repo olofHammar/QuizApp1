@@ -20,7 +20,7 @@ class SetNrOfQuestionsFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_set_nr_of_questions, container, false)
-        totalNrOfQuestions = 0
+        Singletons.totalNrOfQuestions = 0
 
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
@@ -33,24 +33,24 @@ class SetNrOfQuestionsFragment : Fragment(){
             defaultButtonView()
             btnSelectTen.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTen.setTextColor(Color.parseColor("#696969"))
-            totalNrOfQuestions = 10
+            Singletons.totalNrOfQuestions = 10
         }
         btnSelectTwenty.setOnClickListener {
             defaultButtonView()
             btnSelectTwenty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTwenty.setTextColor(Color.parseColor("#696969"))
-            totalNrOfQuestions = 20
+            Singletons.totalNrOfQuestions = 20
         }
         btnSelectThirty.setOnClickListener {
             defaultButtonView()
             btnSelectThirty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectThirty.setTextColor(Color.parseColor("#696969"))
-            totalNrOfQuestions = 30
+            Singletons.totalNrOfQuestions = 30
         }
 
         btnNext.setOnClickListener {
 
-            if (totalNrOfQuestions == 0) {
+            if (Singletons.totalNrOfQuestions == 0) {
                 btnEnterNrOfQuestionsMessage.visibility = View.VISIBLE
                 Handler().postDelayed(
                     {

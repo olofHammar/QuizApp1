@@ -16,6 +16,7 @@ Jag har satt en onClickListener här som fungerar som lyssnare till alla knappar
 Jag har sedan skapat en override funktion som hanterar vad som ska hända vid respektive klick.
  */
 class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
+
     private var mCurrentPosition: Int = 1
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0

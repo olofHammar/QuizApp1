@@ -18,6 +18,7 @@ import kotlin.properties.Delegates
 
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
+
     lateinit var chart: PieChart
     lateinit var tvRight: TextView
     lateinit var tvWrong: TextView
@@ -35,6 +36,7 @@ class ResultActivity : AppCompatActivity() {
         }
     }
     @ExperimentalStdlibApi
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
@@ -56,30 +58,30 @@ class ResultActivity : AppCompatActivity() {
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         correctAnswersFloat = correctAnswers.toFloat()
-        wrongAnswersFloat = (totalNrOfQuestions.toFloat() - correctAnswersFloat)
+        wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
         setData()
         /*
         Om spelarens poäng är högre än någon av tidigar highscore så sparas denna poäng och flyttar ner
         det tidigare highscoren ett snäpp ner i listan.
          */
         when {
-            correctAnswers > highScoreOne.playerPoints -> {
-                pref.edit().putString("highScoreThreeName", highScoreTwo.playerName).apply()
-                pref.edit().putInt("highScoreThreePoints", highScoreTwo.playerPoints).apply()
-                pref.edit().putString("highScoreTwoName", highScoreOne.playerName).apply()
-                pref.edit().putInt("highScoreTwoPoints", highScoreOne.playerPoints).apply()
+            correctAnswers > Singletons.highScoreOne.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", Singletons.highScoreTwo.playerName).apply()
+                pref.edit().putInt("highScoreThreePoints", Singletons.highScoreTwo.playerPoints).apply()
+                pref.edit().putString("highScoreTwoName", Singletons.highScoreOne.playerName).apply()
+                pref.edit().putInt("highScoreTwoPoints", Singletons.highScoreOne.playerPoints).apply()
                 pref.edit().putString("highScoreOneName", username).apply()
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
             }
-            correctAnswers > highScoreTwo.playerPoints -> {
-                pref.edit().putString("highScoreThreeName", highScoreTwo.playerName).apply()
-                pref.edit().putInt("highScoreThreePoints", highScoreTwo.playerPoints).apply()
+            correctAnswers > Singletons.highScoreTwo.playerPoints -> {
+                pref.edit().putString("highScoreThreeName", Singletons.highScoreTwo.playerName).apply()
+                pref.edit().putInt("highScoreThreePoints", Singletons.highScoreTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", username).apply()
                 pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
             }
-            correctAnswers > highScoreThree.playerPoints -> {
+            correctAnswers > Singletons.highScoreThree.playerPoints -> {
                 pref.edit().putString("highScoreThreeName", username).apply()
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
@@ -103,16 +105,16 @@ class ResultActivity : AppCompatActivity() {
     @ExperimentalStdlibApi
     private fun displayResultMessage () {
         when {
-            correctAnswers > highScoreOne.playerPoints -> {
+            correctAnswers > Singletons.highScoreOne.playerPoints -> {
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
-                    userName.capitalize(Locale.ROOT))
+                    Singletons.userName.capitalize(Locale.ROOT))
             }
-            correctAnswers > highScoreTwo.playerPoints -> {
-                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, userName.capitalize(
+            correctAnswers > Singletons.highScoreTwo.playerPoints -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, Singletons.userName.capitalize(
                     Locale.ROOT))
             }
-            correctAnswers > highScoreThree.playerPoints -> {
-                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, userName.capitalize(
+            correctAnswers > Singletons.highScoreThree.playerPoints -> {
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, Singletons.userName.capitalize(
                     Locale.ROOT))
             }
             else -> {
@@ -122,8 +124,8 @@ class ResultActivity : AppCompatActivity() {
     }
     private fun setData() {
 
-        val percentageRight = (correctAnswersFloat.toDouble() / totalNrOfQuestions) * 100
-        val percentageWrong = (wrongAnswersFloat.toDouble() / totalNrOfQuestions) * 100
+        val percentageRight = (correctAnswersFloat.toDouble() / Singletons.totalNrOfQuestions) * 100
+        val percentageWrong = (wrongAnswersFloat.toDouble() / Singletons.totalNrOfQuestions) * 100
 
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")
