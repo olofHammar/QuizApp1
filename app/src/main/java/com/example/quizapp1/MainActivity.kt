@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.properties.Delegates
 
+
 var userName: String = ""
 var totalNrOfQuestions: Int = 0
 var highScoreOne: PlayerHighScore = PlayerHighScore()

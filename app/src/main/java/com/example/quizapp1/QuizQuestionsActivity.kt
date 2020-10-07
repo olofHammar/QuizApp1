@@ -1,22 +1,19 @@
 package com.example.quizapp1
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.provider.Settings
 import android.view.View
-import android.view.animation.AnimationUtils
-import android.view.animation.DecelerateInterpolator
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
 import java.util.*
+import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 
 /*
 Jag har satt en onClickListener här som fungerar som lyssnare till alla knappar som ska klickas.
@@ -148,15 +145,6 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
             iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
             answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
             answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
-           /*
-            when (question.correctAnswer) {
-                1 -> {tv_option_one.setTypeface(null, Typeface.BOLD)}
-                2 -> {tv_option_two.setTypeface(null, Typeface.BOLD)}
-                3 -> {tv_option_three.setTypeface(null, Typeface.BOLD)}
-                4 -> {tv_option_four.setTypeface(null, Typeface.BOLD)}
-            }
-
-            */
         }
         else if (question.correctAnswer == mSelectedOptionPosition) {
             iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
@@ -168,6 +156,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         mCurrentPosition++
 
         if (mCurrentPosition <= mTotalNrOfQuestions && questionSubmitted == true) {
+
             Handler().postDelayed(
                 {
                     setQuestion()

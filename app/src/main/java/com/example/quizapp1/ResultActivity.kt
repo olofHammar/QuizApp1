@@ -29,7 +29,7 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        var tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
+        val tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
         chart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
@@ -64,7 +64,7 @@ class ResultActivity : AppCompatActivity() {
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
                 Handler().postDelayed(
                     {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one,
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                             userName.capitalize(Locale.ROOT))
                     },2500
                 )
@@ -76,7 +76,7 @@ class ResultActivity : AppCompatActivity() {
                 pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
                 Handler().postDelayed(
                     {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two, userName.capitalize(
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, userName.capitalize(
                             Locale.ROOT))
                     },2500
                 )
@@ -86,13 +86,17 @@ class ResultActivity : AppCompatActivity() {
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
                 Handler().postDelayed(
                     {
-                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three, userName.capitalize(
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, userName.capitalize(
                             Locale.ROOT))
                     },2500
                 )
             }
             else -> {
-                tvHighScoreMessage.text = resources.getString(R.string.highscore_no_entry)
+                Handler().postDelayed(
+                    {
+                        tvHighScoreMessage.text = resources.getString(R.string.highscore_no_entry_sv)
+                    },2500
+                )
             }
         }
         tv_score.text = resources.getString(
@@ -112,11 +116,10 @@ class ResultActivity : AppCompatActivity() {
 
         val percentageRight = (correctAnswersFloat.toDouble() / totalNrOfQuestions) * 100
         val percentageWrong = (wrongAnswersFloat.toDouble() / totalNrOfQuestions) * 100
-        // Set the percentage of language used
+
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")
 
-        // Set the data and color to the pie chart
         chart.addPieSlice(
             PieModel(
                 "Rätt",

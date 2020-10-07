@@ -22,10 +22,13 @@
     <string name="continue_sv">Fortsätt</string>
     <string name="result_message_sv">Din poäng är %1$s av %2$s</string>
     <string name="congratulationz_message_sv">Grattis %1$s</string>
-    <string name="highscore_message_nr_one">Grattis %1$s! Du är ny etta på highscore-listan!</string>
-    <string name="highscore_message_nr_two">Grattis %1$s! Du är ny tvåa på highscore-listan!</string>
-    <string name="highscore_message_nr_three">Grattis %1$s! Du är ny trea på highscore-listan!</string>
-    <string name="highscore_no_entry">Du tog dig inte in på highscore-listan.</string>
-    <string name="enter_nr_of_q_message">Välj antal frågor</string>
-    <string name="enter_name_message">Skriv in ditt namn</string>
+    <string name="highscore_message_nr_one_sv">Grattis %1$s! Du är ny etta på highscore-listan!</string>
+    <string name="highscore_message_nr_two_sv">Grattis %1$s! Du är ny tvåa på highscore-listan!</string>
+    <string name="highscore_message_nr_three_sv">Grattis %1$s! Du är ny trea på highscore-listan!</string>
+    <string name="highscore_no_entry_sv">Du tog dig inte in på highscore-listan.</string>
+    <string name="enter_nr_of_q_message_sv">Välj antal frågor</string>
+    <string name="enter_name_message_sv">Skriv in ditt namn</string>
+    <string name="tv_right_answers_sv">%1$d % Rätt</string>
+    <string name="tv_wrong_answers_sv"> % Fel</string>
+
 </resources>
