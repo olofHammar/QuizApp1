@@ -79,7 +79,7 @@
                     <View
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
-                        android:background="#0ff517"/>
+                        android:background="#00E135"/>
 
                     <TextView
                         android:id="@+id/tv_correct_answers"
@@ -101,7 +101,7 @@
                     <View
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
-                        android:background="#FF0000"/>
+                        android:background="#FB1900"/>
 
                     <TextView
                         android:id="@+id/tv_wrong_answers"

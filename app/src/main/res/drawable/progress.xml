@@ -7,14 +7,13 @@
             android:pivotX="50%"
             android:pivotY="50%" >
             <shape
-                android:innerRadiusRatio="2.5"
+                android:innerRadiusRatio="2.3"
                 android:shape="ring"
                 android:thicknessRatio="10.0" >
                 <gradient
-                    android:centerColor="@android:color/white"
-                    android:endColor="@android:color/white"
-                    android:startColor="@android:color/white"
-                    android:type="sweep" />
+                    android:centerColor="#00E135"
+                    android:endColor="#00E135"
+                    android:startColor="#00E135" />
             </shape>
         </rotate>
     </item>
