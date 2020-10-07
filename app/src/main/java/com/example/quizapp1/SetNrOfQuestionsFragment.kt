@@ -1,20 +1,16 @@
 package com.example.quizapp1
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.activity_quiz_questions.*
-import kotlinx.android.synthetic.main.fragment_play.*
 import kotlinx.android.synthetic.main.fragment_set_nr_of_questions.*
-import java.util.ArrayList
+import java.util.*
 
 class SetNrOfQuestionsFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,20 +48,16 @@ class SetNrOfQuestionsFragment : Fragment(){
 
             if (Singletons.totalNrOfQuestions == 0) {
                 btnEnterNrOfQuestionsMessage.visibility = View.VISIBLE
-                Handler().postDelayed(
-                    {
+                val messageTimer = object : CountDownTimer(1500, 1000) {
+                    override fun onFinish() {
                         btnEnterNrOfQuestionsMessage.visibility = View.GONE
-                    },1500
-                )
+                    }
+                    override fun onTick(millisUntilFinished: Long) {
+                    }
+                }
+                messageTimer.start()
             } else {
-/*
-                val intent =
-                    Intent(this@SetNrOfQuestionsFragment.context, QuizQuestionsActivity::class.java)
-                startActivity(intent)
-                intent.putExtra(Constants.USER_NAME, userName)
-                intent.putExtra(Constants.TOTAL_QUESTIONS, totalNrOfQuestions)
-                startActivity(intent)
- */
+
                 val fragment = PlayFragment()
                 val transaction = fragmentManager?.beginTransaction()
                 transaction?.replace(R.id.fragment_layout, fragment)
