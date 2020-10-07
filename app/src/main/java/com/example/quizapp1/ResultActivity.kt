@@ -23,6 +23,7 @@ class ResultActivity : AppCompatActivity() {
     lateinit var tvRight: TextView
     lateinit var tvWrong: TextView
     lateinit var tvHighScoreMessage: TextView
+    var username = ""
     var correctAnswers by Delegates.notNull<Int>()
     var correctAnswersFloat: Float = 0F
     var wrongAnswersFloat: Float = 0F
@@ -50,7 +51,7 @@ class ResultActivity : AppCompatActivity() {
         Här hämtar jag information från tidigare aktiviteter som sätts till nya variabler i denna aktivitet.
         Sedan skapar jag en variabel för sharedPreferences.
          */
-        val username = intent.getStringExtra("Constants.USER_NAME")
+        username = intent.getStringExtra(Constants.USER_NAME).toString()
         // tv_name.text = resources.getString(R.string.congratulationz_message_sv,
         //   username?.capitalize(Locale.ROOT))
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
@@ -107,14 +108,14 @@ class ResultActivity : AppCompatActivity() {
         when {
             correctAnswers > Singletons.highScoreOne.playerPoints -> {
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
-                    Singletons.userName.capitalize(Locale.ROOT))
+                    username.capitalize(Locale.ROOT))
             }
             correctAnswers > Singletons.highScoreTwo.playerPoints -> {
-                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, Singletons.userName.capitalize(
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
             correctAnswers > Singletons.highScoreThree.playerPoints -> {
-                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, Singletons.userName.capitalize(
+                tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(
                     Locale.ROOT))
             }
             else -> {
