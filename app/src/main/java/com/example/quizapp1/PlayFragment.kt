@@ -11,10 +11,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_play.*
+import kotlinx.android.synthetic.main.fragment_play.view.*
 
 class PlayFragment : Fragment(){
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+    var totalQuestions: Int? = 0
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_play, container, false)
         /*
         Här skapar jag en variabel som kopplas till startknappen. Sedan sätter jag en klicklyssnare till den knappen.
@@ -22,6 +25,7 @@ class PlayFragment : Fragment(){
         Är namnet ifyllt så skickas vi till QuizActivity. Jag skickar med namnet på spelaren. Jag skickar även med informationen från
         det förra fragmentet gällande hur många frågot quizet ska innehålla.
          */
+        totalQuestions = arguments?.getInt("Q")
         val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
         btnEnterNameMessage.visibility = View.GONE
@@ -45,7 +49,7 @@ class PlayFragment : Fragment(){
                     Intent(this@PlayFragment.context, QuizQuestionsActivity::class.java)
                 startActivity(intent)
                 intent.putExtra(Constants.USER_NAME, userName)
-                intent.putExtra(Constants.TOTAL_QUESTIONS, Singletons.totalNrOfQuestions)
+                intent.putExtra(Constants.TOTAL_QUESTIONS, totalQuestions)
                 startActivity(intent)
             }
         }

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Communicator {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +50,18 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_layout, fragment)
         transaction.addToBackStack(null)
+        transaction.commit()
+    }
+//Denna funktion laddar playFragment och skickar med information om hur många frågor quizet ska ha.
+    override fun sendData(nr: Int) {
+        val bundle = Bundle()
+        bundle.putInt("Q", nr)
+
+        val transaction = this.supportFragmentManager.beginTransaction()
+        val fragmentPlay = PlayFragment()
+        fragmentPlay.arguments = bundle
+
+        transaction.replace(R.id.fragment_layout, fragmentPlay)
         transaction.commit()
     }
 }

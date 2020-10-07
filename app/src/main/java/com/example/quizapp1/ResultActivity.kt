@@ -23,8 +23,9 @@ class ResultActivity : AppCompatActivity() {
     lateinit var tvRight: TextView
     lateinit var tvWrong: TextView
     lateinit var tvHighScoreMessage: TextView
-    var username = ""
-    var correctAnswers by Delegates.notNull<Int>()
+    lateinit var username: String
+    var totalQuestions = 0
+    var correctAnswers = 0
     var correctAnswersFloat: Float = 0F
     var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
@@ -52,9 +53,7 @@ class ResultActivity : AppCompatActivity() {
         Sedan skapar jag en variabel för sharedPreferences.
          */
         username = intent.getStringExtra(Constants.USER_NAME).toString()
-        // tv_name.text = resources.getString(R.string.congratulationz_message_sv,
-        //   username?.capitalize(Locale.ROOT))
-        val totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
+        totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
@@ -125,8 +124,8 @@ class ResultActivity : AppCompatActivity() {
     }
     private fun setData() {
 
-        val percentageRight = (correctAnswersFloat.toDouble() / Singletons.totalNrOfQuestions) * 100
-        val percentageWrong = (wrongAnswersFloat.toDouble() / Singletons.totalNrOfQuestions) * 100
+        val percentageRight = (correctAnswersFloat.toDouble() / totalQuestions) * 100
+        val percentageWrong = (wrongAnswersFloat.toDouble() / totalQuestions) * 100
 
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")

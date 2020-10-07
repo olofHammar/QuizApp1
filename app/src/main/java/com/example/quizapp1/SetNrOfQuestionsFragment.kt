@@ -13,11 +13,13 @@ import kotlinx.android.synthetic.main.fragment_set_nr_of_questions.*
 import java.util.*
 
 class SetNrOfQuestionsFragment : Fragment(){
+    private lateinit var communicator: Communicator
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         val view: View = inflater.inflate(R.layout.fragment_set_nr_of_questions, container, false)
-        Singletons.totalNrOfQuestions = 0
 
+        communicator = activity as Communicator
+        var totalNrOfQuestions = 0
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
         val btnSelectThirty: Button = view.findViewById(R.id.btn_select_thirty)
@@ -29,24 +31,23 @@ class SetNrOfQuestionsFragment : Fragment(){
             defaultButtonView()
             btnSelectTen.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTen.setTextColor(Color.parseColor("#696969"))
-            Singletons.totalNrOfQuestions = 10
+            totalNrOfQuestions = 10
         }
         btnSelectTwenty.setOnClickListener {
             defaultButtonView()
             btnSelectTwenty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTwenty.setTextColor(Color.parseColor("#696969"))
-            Singletons.totalNrOfQuestions = 20
+            totalNrOfQuestions = 20
         }
         btnSelectThirty.setOnClickListener {
             defaultButtonView()
             btnSelectThirty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectThirty.setTextColor(Color.parseColor("#696969"))
-            Singletons.totalNrOfQuestions = 30
+            totalNrOfQuestions = 30
         }
-
         btnNext.setOnClickListener {
 
-            if (Singletons.totalNrOfQuestions == 0) {
+            if (totalNrOfQuestions == 0) {
                 btnEnterNrOfQuestionsMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {
                     override fun onFinish() {
@@ -56,16 +57,14 @@ class SetNrOfQuestionsFragment : Fragment(){
                     }
                 }
                 messageTimer.start()
-            } else {
-
-                val fragment = PlayFragment()
-                val transaction = fragmentManager?.beginTransaction()
-                transaction?.replace(R.id.fragment_layout, fragment)
-                transaction?.commit()
+            }
+            else {
+                communicator.sendData(nr = totalNrOfQuestions)
             }
         }
         return view
     }
+
     private fun defaultButtonView() {
         val options = ArrayList<TextView>()
         options.add(0, btn_select_ten)
