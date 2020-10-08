@@ -34,7 +34,7 @@ class ResultActivity : AppCompatActivity() {
     private var correctAnswersFloat: Float = 0F
     private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
-    private val highScoreMessageTimer = object: CountDownTimer (2000,1000){
+    private val highScoreMessageTimer = object: CountDownTimer (2300,1000){
         override fun onFinish() {
             displayResultMessage()
         }
