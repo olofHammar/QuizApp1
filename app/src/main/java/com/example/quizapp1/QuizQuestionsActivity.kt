@@ -25,6 +25,8 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
+    private lateinit var alert_right: MediaPlayer
+    private lateinit var alert_wrong: MediaPlayer
     private val countDownTimer = object : CountDownTimer(10000, 1000) {
         override fun onFinish() {
             submitAnswer()
@@ -45,6 +47,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
+
+        alert_right = MediaPlayer.create(applicationContext, R.raw.alert_right_answer)
+        alert_wrong = MediaPlayer.create(applicationContext, R.raw.alert_wrong_answer)
 
         //Här hämtar jag in användarnamnet från mainActivity
         mUserName = intent.getStringExtra(Constants.USER_NAME)
@@ -149,11 +154,13 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
 
         val question = mQuestionsList.get(mCurrentPosition - 1)
         if (question.correctAnswer != mSelectedOptionPosition) {
+            alert_wrong.start()
             iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
             answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
             answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
         }
         else if (question.correctAnswer == mSelectedOptionPosition) {
+            alert_right.start()
             iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
             tv_circle_answer_text.setText(R.string.question_answer_right_sv)
             answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
