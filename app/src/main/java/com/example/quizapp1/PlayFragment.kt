@@ -1,6 +1,7 @@
 package com.example.quizapp1
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -26,6 +27,7 @@ class PlayFragment : Fragment(){
         det förra fragmentet gällande hur många frågot quizet ska innehålla.
          */
         totalQuestions = arguments?.getInt("Q")
+        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_multimedia)
         val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
         btnEnterNameMessage.visibility = View.GONE
@@ -33,7 +35,7 @@ class PlayFragment : Fragment(){
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
 
-                Sounds.click(activity!!.applicationContext)
+                click.start()
                 btnEnterNameMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {
                     override fun onFinish() {
@@ -45,10 +47,10 @@ class PlayFragment : Fragment(){
                 messageTimer.start()
             }
             else {
-                Sounds.click(activity!!.applicationContext)
+                click.start()
                 val userName = et_name.text.toString()
                 val intent =
-                    Intent(this@PlayFragment.context, QuizQuestionsActivity::class.java)
+                    Intent(this@PlayFragment.context, CountDownActivity::class.java)
                 startActivity(intent)
                 intent.putExtra(Constants.USER_NAME, userName)
                 intent.putExtra(Constants.TOTAL_QUESTIONS, totalQuestions)

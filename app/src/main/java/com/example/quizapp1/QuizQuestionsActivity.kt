@@ -2,6 +2,7 @@ package com.example.quizapp1
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
@@ -29,7 +30,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             submitAnswer()
         }
         override fun onTick(millisUntilFinished: Long) {
-            Sounds.tick(applicationContext)
             tv_timer.text = "${(millisUntilFinished+1000)/1000}"
         }
     }

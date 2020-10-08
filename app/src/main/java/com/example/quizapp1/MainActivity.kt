@@ -23,13 +23,13 @@ class MainActivity : AppCompatActivity(), Communicator {
         //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.nav_home -> {Sounds.click(applicationContext); loadFragment(HomeFragment())
+                R.id.nav_home -> {click.start(); loadFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_play -> {Sounds.click(applicationContext); loadFragment(SetNrOfQuestionsFragment())
+                R.id.nav_play -> {click.start(); loadFragment(SetNrOfQuestionsFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_high_score -> {Sounds.click(applicationContext); loadFragment(HighScoreFragment())
+                R.id.nav_high_score -> {click.start(); loadFragment(HighScoreFragment())
                     return@setOnNavigationItemSelectedListener true}
             }
             false
