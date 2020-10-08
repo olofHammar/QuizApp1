@@ -147,14 +147,14 @@ class ResultActivity : AppCompatActivity() {
             PieModel(
                 "Rätt",
                 correctAnswersFloat,
-                Color.parseColor("#0ff517")
+                Color.parseColor("#00E135")
             )
         )
         chart.addPieSlice(
             PieModel(
                 "Fel",
                 wrongAnswersFloat,
-                Color.parseColor("#FF0000")
+                Color.parseColor("#FB1900")
             )
         )
         chart.startAnimation()

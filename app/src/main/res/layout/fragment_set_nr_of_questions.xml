@@ -25,7 +25,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginBottom="-164dp"
         android:contentDescription="@string/content_decription_image"
-        android:src="@drawable/fq_logo_orange_fade" />
+        android:src="@drawable/play_quiz_orange_fade_extra_text" />
 
     <RelativeLayout
         android:layout_width="match_parent"
