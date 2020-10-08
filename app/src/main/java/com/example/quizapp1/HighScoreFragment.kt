@@ -38,13 +38,13 @@ class HighScoreFragment : Fragment(){
 
 
         tvHsOneName.text = pOne.playerName.capitalize(Locale.ROOT)
-        tvHsOnePoints.text = "${pOne.playerPoints} p"
+        tvHsOnePoints.text = resources.getString(R.string.player_highscore_points, pOne.playerPoints.toString())
 
         tvHsTwoName.text = pTwo.playerName.capitalize(Locale.ROOT)
-        tvHsTwoPoints.text = "${pTwo.playerPoints} p"
+        tvHsTwoPoints.text = resources.getString(R.string.player_highscore_points, pTwo.playerPoints.toString())
 
         tvHsThreeName.text = pThree.playerName.capitalize(Locale.ROOT)
-        tvHsThreePoints.text = "${pThree.playerPoints} p"
+        tvHsThreePoints.text = resources.getString(R.string.player_highscore_points, pThree.playerPoints.toString())
 
         return view
     }

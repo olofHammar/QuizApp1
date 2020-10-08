@@ -8,6 +8,7 @@
     <string name="play_again_sv">SPELA IGEN</string>
     <string name="default_player_highscore_name">---</string>
     <string name="default_player_highscore_points">0 p</string>
+    <string name="player_highscore_points">%1$s p</string>
     <string name="btn_highscore_one">1</string>
     <string name="btn_highsvore_two">2</string>
     <string name="btn_highscore_three">3</string>
