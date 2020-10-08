@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_result.*
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
+import kotlin.math.absoluteValue
 import kotlin.properties.Delegates
 
 //Denna aktivitet visar resultatet av quizet.
@@ -29,6 +30,7 @@ class ResultActivity : AppCompatActivity() {
     private var highScoreNrThree: PlayerHighScore = PlayerHighScore()
     private var totalQuestions = 0
     private var correctAnswers = 0
+    private var wrongAnswers = 0
     private var correctAnswersFloat: Float = 0F
     private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
@@ -58,6 +60,7 @@ class ResultActivity : AppCompatActivity() {
         username = intent.getStringExtra(Constants.USER_NAME).toString()
         totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+        wrongAnswers = (totalQuestions - correctAnswers)
 
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
@@ -137,8 +140,8 @@ class ResultActivity : AppCompatActivity() {
     }
     private fun setData() {
 
-        val percentageRight = (correctAnswersFloat.toDouble() / totalQuestions) * 100
-        val percentageWrong = (wrongAnswersFloat.toDouble() / totalQuestions) * 100
+        val percentageRight = (correctAnswers.toDouble() / totalQuestions) * 100
+        val percentageWrong = (wrongAnswers.toDouble() / totalQuestions) * 100
 
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")
