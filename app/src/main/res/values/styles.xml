@@ -1,16 +1,21 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Detta är mitt default-tema -->
+    <style name="QuizTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Här sätter jag font. -->
         <item name="fontFamily">@font/bitter</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:soundEffectsEnabled">false</item>
     </style>
 
+    <!-- Detta är default temat. -->
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:soundEffectsEnabled">false</item>
     </style>
+
+
 </resources>

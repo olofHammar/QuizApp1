@@ -33,6 +33,7 @@ class PlayFragment : Fragment(){
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
 
+                Sounds.click(activity!!.applicationContext)
                 btnEnterNameMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {
                     override fun onFinish() {
@@ -44,6 +45,7 @@ class PlayFragment : Fragment(){
                 messageTimer.start()
             }
             else {
+                Sounds.click(activity!!.applicationContext)
                 val userName = et_name.text.toString()
                 val intent =
                     Intent(this@PlayFragment.context, QuizQuestionsActivity::class.java)

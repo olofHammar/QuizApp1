@@ -24,8 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@android:color/white"
+        android:soundEffectsEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu2"/>
+        app:menu="@menu/menu2" />
 
 
 

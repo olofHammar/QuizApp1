@@ -29,6 +29,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             submitAnswer()
         }
         override fun onTick(millisUntilFinished: Long) {
+            Sounds.tick(applicationContext)
             tv_timer.text = "${(millisUntilFinished+1000)/1000}"
         }
     }

@@ -1,9 +1,12 @@
 package com.example.quizapp1
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Communicator {
@@ -12,6 +15,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_multimedia)
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
@@ -19,13 +23,13 @@ class MainActivity : AppCompatActivity(), Communicator {
         //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.nav_home -> {loadFragment(HomeFragment())
+                R.id.nav_home -> {Sounds.click(applicationContext); loadFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_play -> {loadFragment(SetNrOfQuestionsFragment())
+                R.id.nav_play -> {Sounds.click(applicationContext); loadFragment(SetNrOfQuestionsFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_high_score -> {loadFragment(HighScoreFragment())
+                R.id.nav_high_score -> {Sounds.click(applicationContext); loadFragment(HighScoreFragment())
                     return@setOnNavigationItemSelectedListener true}
             }
             false

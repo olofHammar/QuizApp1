@@ -1,6 +1,7 @@
 package com.example.quizapp1
 
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -28,18 +29,21 @@ class SetNrOfQuestionsFragment : Fragment(){
         btnEnterNrOfQuestionsMessage.visibility = View.GONE
 
         btnSelectTen.setOnClickListener {
+            Sounds.click(activity!!.applicationContext)
             defaultButtonView()
             btnSelectTen.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTen.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 10
         }
         btnSelectTwenty.setOnClickListener {
+            Sounds.click(activity!!.applicationContext)
             defaultButtonView()
             btnSelectTwenty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTwenty.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 20
         }
         btnSelectThirty.setOnClickListener {
+            Sounds.click(activity!!.applicationContext)
             defaultButtonView()
             btnSelectThirty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectThirty.setTextColor(Color.parseColor("#696969"))
@@ -47,6 +51,7 @@ class SetNrOfQuestionsFragment : Fragment(){
         }
         btnNext.setOnClickListener {
 
+            Sounds.click(activity!!.applicationContext)
             if (totalNrOfQuestions == 0) {
                 btnEnterNrOfQuestionsMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {
