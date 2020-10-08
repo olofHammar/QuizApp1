@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:layout_marginBottom="-164dp"
-        android:contentDescription="@string/content_decription_image"
+        android:contentDescription="@string/iv_content_result_logo_sv"
         android:src="@drawable/result_orange_sv" />
 
     <TextView
@@ -87,8 +87,9 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
-                        android:text="Rätt"
-                        android:paddingLeft="10dp"/>
+                        android:text="@string/tv_right_answers_sv"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"/>
 
                 </LinearLayout>
 
@@ -109,8 +110,9 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
-                        android:text="Fel"
-                        android:paddingLeft="10dp"/>
+                        android:text="@string/tv_wrong_answers_sv"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"/>
 
                 </LinearLayout>
 
@@ -126,7 +128,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                tools:text="Your score is 9 out of 10" />
+                android:text="@string/result_message_sv" />
 
 
     </androidx.cardview.widget.CardView>

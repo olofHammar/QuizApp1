@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">QuizApp1</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="quiz_question_sv">Vilket land tillhör denna flagga?</string>
     <string name="question_answer_wrong_sv">Fel</string>
     <string name="question_answer_right_sv">Rätt</string>
@@ -30,5 +28,16 @@
     <string name="enter_name_message_sv">Skriv in ditt namn</string>
     <string name="tv_right_answers_sv">%1$d % Rätt</string>
     <string name="tv_wrong_answers_sv"> % Fel</string>
+    <string name="msg_choose_nr_of_questions_sv">Välj antal frågor</string>
+    <string name="msg_enter_name_sv">Skriv in ditt namn</string>
+    <string name="iv_content_flag">Bild på flagga</string>
+    <string name="iv_content_circle_timer_background">Bild för cirkeltimer</string>
+    <string name="iv_content_result_logo_sv">Resultatlogo svenska</string>
+    <string name="iv_content_highscore_logo">Highscorelogo svenska</string>
+    <string name="iv_content_quiz_logo">Flagquizlogo</string>
+    <string name="iv_content_welcome_msg_sv">Välkomstmeddelande svenska</string>
+    <string name="iv_content_play_quiz_sv">Spela quiz logo</string>
+    <string name="iv_content_enter_name_sv">Bild skriv in ditt namn</string>
+
 
 </resources>
