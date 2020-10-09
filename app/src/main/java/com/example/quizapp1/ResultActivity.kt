@@ -18,7 +18,7 @@ import java.util.*
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
 
-    private lateinit var chart: PieChart
+    private lateinit var pieChart: PieChart
     private lateinit var tvRight: TextView
     private lateinit var tvWrong: TextView
     private lateinit var tvHighScoreMessage: TextView
@@ -48,7 +48,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
-        chart = findViewById(R.id.piechart)
+        pieChart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
 
@@ -157,24 +157,24 @@ class ResultActivity : AppCompatActivity() {
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")
 
-        chart.addPieSlice(
+        pieChart.addPieSlice(
             PieModel(
                 "Rätt",
                 correctAnswersFloat,
                 Color.parseColor("#00E135")
             )
         )
-        chart.addPieSlice(
+        pieChart.addPieSlice(
             PieModel(
                 "Fel",
                 wrongAnswersFloat,
                 Color.parseColor("#FB1900")
             )
         )
-        chart.startAnimation()
+        pieChart.startAnimation()
     }
     private fun confetti() {
-
+//Importerar bibliotek som innehåller ParticleSystem. Sedan skapar jag den och sätter värden.
         ParticleSystem(this, 80, R.drawable.confeti2, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 0)
             .setRotationSpeed(144f)
