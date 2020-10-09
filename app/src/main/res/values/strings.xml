@@ -15,6 +15,7 @@
     <string name="welcome_message_sv">Låt oss se vad du kan om flaggor. Välj Spela Quiz i menyn nedan för att köra igång.</string>
     <string name="name_sv">Namn</string>
     <string name="play_sv">Spela</string>
+    <string name="return_sv">Tillbaka</string>
     <string name="nr_ten">10</string>
     <string name="nr_twenty">20</string>
     <string name="nr_thirty">30</string>
@@ -39,6 +40,7 @@
     <string name="iv_content_welcome_msg_sv">Välkomstmeddelande svenska</string>
     <string name="iv_content_play_quiz_sv">Spela quiz logo</string>
     <string name="iv_content_enter_name_sv">Bild skriv in ditt namn</string>
+    <string name="iv_content_settings_sv">Inställningar logo</string>
 
 
 </resources>
