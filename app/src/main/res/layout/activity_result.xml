@@ -7,6 +7,26 @@
     android:background="@drawable/background_plain_dark_blue_fade"
     tools:context=".ResultActivity">
 
+    <View android:id="@+id/emiter_top_left"
+        android:layout_gravity="top|left"
+        android:layout_marginTop="-20dp"
+        android:layout_width="1dp"
+        android:layout_height="1dp" />
+
+    <View android:id="@+id/emiter_top_right"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="-20dp"
+        android:layout_width="1dp"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:visibility="gone"
+        android:text="Button" />
+
     <ImageView
         android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"

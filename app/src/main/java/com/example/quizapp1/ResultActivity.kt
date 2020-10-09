@@ -6,17 +6,14 @@ import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.plattysoft.leonids.ParticleSystem
 import kotlinx.android.synthetic.main.activity_result.*
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
-import kotlin.math.absoluteValue
-import kotlin.properties.Delegates
+
 
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
@@ -54,6 +51,7 @@ class ResultActivity : AppCompatActivity() {
         chart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
+
 
         /*
         Här hämtar jag information från tidigare aktiviteter som sätts till nya variabler i denna aktivitet.
@@ -130,16 +128,19 @@ class ResultActivity : AppCompatActivity() {
         when {
             correctAnswers > highScoreNrOne.playerPoints -> {
                 fanfare.start()
+                confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                     username.capitalize(Locale.ROOT))
             }
             correctAnswers > highScoreNrTwo.playerPoints -> {
                 fanfare.start()
+                confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
             correctAnswers > highScoreNrThree.playerPoints -> {
                 fanfare.start()
+                confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(
                     Locale.ROOT))
             }
@@ -172,4 +173,19 @@ class ResultActivity : AppCompatActivity() {
         )
         chart.startAnimation()
     }
+    private fun confetti() {
+
+        ParticleSystem(this, 80, R.drawable.confeti2, 10000)
+            .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 0)
+            .setRotationSpeed(144f)
+            .setAcceleration(0.00005f, 90)
+            .emit(findViewById(R.id.emiter_top_right), 8)
+
+        ParticleSystem(this, 80, R.drawable.confeti3, 10000)
+            .setSpeedModuleAndAngleRange(0f, 0.3f, 0, 0)
+            .setRotationSpeed(144f)
+            .setAcceleration(0.00005f, 90)
+            .emit(findViewById(R.id.emiter_top_left), 8)
+    }
+
 }
