@@ -20,7 +20,7 @@ class SetNrOfQuestionsFragment : Fragment(){
         val view: View = inflater.inflate(R.layout.fragment_set_nr_of_questions, container, false)
 
         communicator = activity as Communicator
-        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_multimedia)
+        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
         var totalNrOfQuestions = 0
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)

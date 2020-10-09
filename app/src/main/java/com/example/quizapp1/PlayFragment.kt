@@ -27,7 +27,7 @@ class PlayFragment : Fragment(){
         det förra fragmentet gällande hur många frågot quizet ska innehålla.
          */
         totalQuestions = arguments?.getInt("Q")
-        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_multimedia)
+        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
         val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
         btnEnterNameMessage.visibility = View.GONE

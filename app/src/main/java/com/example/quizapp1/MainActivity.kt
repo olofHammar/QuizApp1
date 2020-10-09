@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_multimedia)
+        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_mouth_pop)
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 

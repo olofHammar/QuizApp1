@@ -26,6 +26,7 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var tvWrong: TextView
     private lateinit var tvHighScoreMessage: TextView
     private lateinit var username: String
+    private lateinit var fanfare: MediaPlayer
     private var highScoreNrOne: PlayerHighScore = PlayerHighScore()
     private var highScoreNrTwo: PlayerHighScore = PlayerHighScore()
     private var highScoreNrThree: PlayerHighScore = PlayerHighScore()
@@ -35,7 +36,7 @@ class ResultActivity : AppCompatActivity() {
     private var correctAnswersFloat: Float = 0F
     private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
-    private val highScoreMessageTimer = object: CountDownTimer (2300,1000){
+    private val highScoreMessageTimer = object: CountDownTimer (3000,1000){
         override fun onFinish() {
             displayResultMessage()
         }
@@ -64,7 +65,8 @@ class ResultActivity : AppCompatActivity() {
         wrongAnswers = (totalQuestions - correctAnswers)
 
         val pieSound: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.load_piechart)
-        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_multimedia)
+        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_mouth_pop)
+        fanfare = MediaPlayer.create(applicationContext, R.raw.fanfare_highscore)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         highScoreNrOne.playerName = pref.getString("highScoreOneName", "---").toString()
@@ -127,14 +129,17 @@ class ResultActivity : AppCompatActivity() {
     private fun displayResultMessage () {
         when {
             correctAnswers > highScoreNrOne.playerPoints -> {
+                fanfare.start()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                     username.capitalize(Locale.ROOT))
             }
             correctAnswers > highScoreNrTwo.playerPoints -> {
+                fanfare.start()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
             correctAnswers > highScoreNrThree.playerPoints -> {
+                fanfare.start()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(
                     Locale.ROOT))
             }
