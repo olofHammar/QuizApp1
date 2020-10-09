@@ -3,6 +3,7 @@ package com.example.quizapp1
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -62,6 +63,8 @@ class ResultActivity : AppCompatActivity() {
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         wrongAnswers = (totalQuestions - correctAnswers)
 
+        val pieSound: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.load_piechart)
+        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_multimedia)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         highScoreNrOne.playerName = pref.getString("highScoreOneName", "---").toString()
@@ -75,6 +78,7 @@ class ResultActivity : AppCompatActivity() {
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
+        pieSound.start()
         setData()
         /*
         Om spelarens poäng är högre än någon av tidigar highscore så sparas denna poäng och flyttar ner
@@ -114,6 +118,7 @@ class ResultActivity : AppCompatActivity() {
 
         btn_finish.setOnClickListener {
             //pref.edit().clear().apply()
+            click.start()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
