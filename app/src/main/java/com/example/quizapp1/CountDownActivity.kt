@@ -1,17 +1,25 @@
 package com.example.quizapp1
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_count_down.*
-import kotlinx.android.synthetic.main.activity_quiz_questions.*
+import java.util.*
+
 
 class CountDownActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val highScoreMessageTimer = object: CountDownTimer (2300,1000){
+        val myTimer = Timer()
+        val tick: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_djungle)
+        val finished: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.tick_finished_marimba)
+        val quizCountDownTimer = object: CountDownTimer (3000,1000){
             override fun onFinish() {
+                myTimer.cancel()
+                finished.start()
                 val userName = intent.getStringExtra(Constants.USER_NAME)
                 val totalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
                 val intent = Intent(this@CountDownActivity, QuizQuestionsActivity::class.java)
@@ -27,7 +35,27 @@ class CountDownActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_count_down)
 
-        highScoreMessageTimer.start()
+
+        tv_quiz_countdown.visibility = View.GONE
+        val waitTimer = object: CountDownTimer (2000,1000) {
+            override fun onFinish() {
+                tv_quiz_countdown.visibility = View.VISIBLE
+                quizCountDownTimer.start()
+
+                myTimer.schedule(object : TimerTask() {
+                    override fun run() {
+                        tick.start()
+                    }
+                }, 0,1000)
+
+            }
+            override fun onTick(millisUntilFinished: Long) {
+            }
+        }
+        waitTimer.start()
+
+
+
 
     }
 }
