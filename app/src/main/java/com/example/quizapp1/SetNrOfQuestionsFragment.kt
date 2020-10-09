@@ -21,6 +21,7 @@ class SetNrOfQuestionsFragment : Fragment(){
 
         communicator = activity as Communicator
         val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
+        val clickNrOfQuestions = MediaPlayer.create(activity!!.applicationContext, R.raw.click_slime_drip)
         var totalNrOfQuestions = 0
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
@@ -30,21 +31,21 @@ class SetNrOfQuestionsFragment : Fragment(){
         btnEnterNrOfQuestionsMessage.visibility = View.GONE
 
         btnSelectTen.setOnClickListener {
-            click.start()
+            clickNrOfQuestions.start()
             defaultButtonView()
             btnSelectTen.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTen.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 10
         }
         btnSelectTwenty.setOnClickListener {
-            click.start()
+            clickNrOfQuestions.start()
             defaultButtonView()
             btnSelectTwenty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTwenty.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 20
         }
         btnSelectThirty.setOnClickListener {
-            click.start()
+            clickNrOfQuestions.start()
             defaultButtonView()
             btnSelectThirty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectThirty.setTextColor(Color.parseColor("#696969"))

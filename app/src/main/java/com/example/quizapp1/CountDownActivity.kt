@@ -16,7 +16,7 @@ class CountDownActivity : AppCompatActivity() {
         val myTimer = Timer()
         val tick: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_djungle)
         val finished: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.tick_finished_marimba)
-        val quizCountDownTimer = object: CountDownTimer (3000,1000){
+        val quizCountDownTimer = object: CountDownTimer (2500,1000){
             override fun onFinish() {
                 myTimer.cancel()
                 finished.start()
