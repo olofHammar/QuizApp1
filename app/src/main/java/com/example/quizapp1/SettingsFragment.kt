@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -24,6 +23,7 @@ class SettingsFragment : Fragment(){
 
 
         val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
+        val clickSlime = MediaPlayer.create(activity!!.applicationContext, R.raw.click_slime_drip)
         val pref = context?.getSharedPreferences("soundSettings", Context.MODE_PRIVATE)
         var soundSetting: Int
         val btnBackHome: Button = view.findViewById(R.id.btn_back_home)
@@ -53,7 +53,7 @@ class SettingsFragment : Fragment(){
             t.commit()
         }
         btnSoundOn.setOnClickListener {
-            click.start()
+            clickSlime.start()
             defaultButtonView()
             btnSoundOn.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOn.setTextColor(Color.parseColor("#696969"))
@@ -63,7 +63,7 @@ class SettingsFragment : Fragment(){
 
         }
         btnSoundOff.setOnClickListener {
-            click.start()
+            clickSlime.start()
             defaultButtonView()
             btnSoundOff.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOff.setTextColor(Color.parseColor("#696969"))
