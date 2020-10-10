@@ -16,6 +16,8 @@
     <string name="name_sv">Namn</string>
     <string name="play_sv">Spela</string>
     <string name="return_sv">Tillbaka</string>
+    <string name="button_on_sv">På</string>
+    <string name="button_off_sv">Av</string>
     <string name="nr_ten">10</string>
     <string name="nr_twenty">20</string>
     <string name="nr_thirty">30</string>
