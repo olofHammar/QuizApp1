@@ -1,5 +1,6 @@
 package com.example.quizapp1
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.media.MediaPlayer
@@ -25,9 +26,25 @@ class SettingsFragment : Fragment(){
 
 
         val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
+        val pref = context?.getSharedPreferences("soundSettings", Context.MODE_PRIVATE)
+        var soundSetting: Int
         val btnBackHome: Button = view.findViewById(R.id.btn_back_home)
         val btnSoundOn: Button = view.findViewById(R.id.btn_sound_on)
         val btnSoundOff: Button = view.findViewById(R.id.btn_sound_off)
+
+        soundSetting = pref!!.getInt("soundSettings", 0)
+
+        when (soundSetting) {
+            0 -> {
+                btnSoundOn.setBackgroundResource(R.drawable.round_button_selected);
+                btnSoundOn.setTextColor(Color.parseColor("#696969"))
+            }
+            1 -> {
+                btnSoundOff.setBackgroundResource(R.drawable.round_button_selected);
+                btnSoundOff.setTextColor(Color.parseColor("#696969"))
+            }
+        }
+
 
         btnBackHome.setOnClickListener {
 
@@ -42,12 +59,17 @@ class SettingsFragment : Fragment(){
             defaultButtonView()
             btnSoundOn.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOn.setTextColor(Color.parseColor("#696969"))
+            soundSetting = 0
+            pref.edit().putInt("soundSettings", soundSetting).apply()
+
         }
         btnSoundOff.setOnClickListener {
             click.start()
             defaultButtonView()
             btnSoundOff.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOff.setTextColor(Color.parseColor("#696969"))
+            soundSetting = 1
+            pref.edit().putInt("soundSettings", soundSetting).apply()
         }
 
         return view
