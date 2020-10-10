@@ -4,12 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_settings.*
@@ -17,6 +19,7 @@ import java.util.*
 
 
 class SettingsFragment : Fragment(){
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view: View = inflater.inflate(R.layout.fragment_settings, container, false)
@@ -84,25 +87,28 @@ class SettingsFragment : Fragment(){
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun mute() {
 
         val audioManager =
            activity!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
-        audioManager!!.setStreamMute(AudioManager.STREAM_NOTIFICATION, true)
-        audioManager.setStreamMute(AudioManager.STREAM_ALARM, true)
-        audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
-        audioManager.setStreamMute(AudioManager.STREAM_RING, true)
-        audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true)
+
+        audioManager!!.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_TOGGLE_MUTE, 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_TOGGLE_MUTE, 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_TOGGLE_MUTE,0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_TOGGLE_MUTE, 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_TOGGLE_MUTE, 0)
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun unMute() {
 
         val audioManager =
             activity!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
-        audioManager!!.setStreamMute(AudioManager.STREAM_NOTIFICATION, false)
-        audioManager.setStreamMute(AudioManager.STREAM_ALARM, false)
-        audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
-        audioManager.setStreamMute(AudioManager.STREAM_RING, false)
-        audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, false)
+        audioManager!!.adjustStreamVolume(AudioManager.STREAM_NOTIFICATION, AudioManager.ADJUST_UNMUTE, 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_ALARM, AudioManager.ADJUST_UNMUTE, 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE,0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0)
+        audioManager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0)
 
     }
 }
