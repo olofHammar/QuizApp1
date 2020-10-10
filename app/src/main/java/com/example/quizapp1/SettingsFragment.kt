@@ -1,8 +1,8 @@
 package com.example.quizapp1
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,14 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import kotlinx.android.synthetic.main.activity_quiz_questions.*
-import kotlinx.android.synthetic.main.fragment_play.*
-import kotlinx.android.synthetic.main.fragment_set_nr_of_questions.*
 import kotlinx.android.synthetic.main.fragment_settings.*
-import java.util.ArrayList
+import java.util.*
+
 
 class SettingsFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,6 +57,7 @@ class SettingsFragment : Fragment(){
             defaultButtonView()
             btnSoundOn.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOn.setTextColor(Color.parseColor("#696969"))
+            unMute()
             soundSetting = 0
             pref.edit().putInt("soundSettings", soundSetting).apply()
 
@@ -68,6 +67,7 @@ class SettingsFragment : Fragment(){
             defaultButtonView()
             btnSoundOff.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOff.setTextColor(Color.parseColor("#696969"))
+            mute()
             soundSetting = 1
             pref.edit().putInt("soundSettings", soundSetting).apply()
         }
@@ -83,5 +83,27 @@ class SettingsFragment : Fragment(){
             option.setBackgroundResource(R.drawable.round_button)
             option.setTextColor(Color.parseColor("#888888"))
         }
+    }
+
+    private fun mute() {
+
+        val audioManager =
+           activity!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+        audioManager!!.setStreamMute(AudioManager.STREAM_NOTIFICATION, true)
+        audioManager.setStreamMute(AudioManager.STREAM_ALARM, true)
+        audioManager.setStreamMute(AudioManager.STREAM_MUSIC, true)
+        audioManager.setStreamMute(AudioManager.STREAM_RING, true)
+        audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, true)
+    }
+    private fun unMute() {
+
+        val audioManager =
+            activity!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager?
+        audioManager!!.setStreamMute(AudioManager.STREAM_NOTIFICATION, false)
+        audioManager.setStreamMute(AudioManager.STREAM_ALARM, false)
+        audioManager.setStreamMute(AudioManager.STREAM_MUSIC, false)
+        audioManager.setStreamMute(AudioManager.STREAM_RING, false)
+        audioManager.setStreamMute(AudioManager.STREAM_SYSTEM, false)
+
     }
 }
