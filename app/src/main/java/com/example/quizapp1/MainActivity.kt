@@ -12,7 +12,8 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_mouth_pop)
+        //val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_mouth_pop)
+        val sound = Sound(this)
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
@@ -20,13 +21,13 @@ class MainActivity : AppCompatActivity(), Communicator {
         //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.nav_home -> {click.start(); loadFragment(HomeFragment())
+                R.id.nav_home -> {sound.clickStandard(); loadFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_play -> {click.start(); loadFragment(SetNrOfQuestionsFragment())
+                R.id.nav_play -> {sound.clickStandard(); loadFragment(SetNrOfQuestionsFragment())
                     return@setOnNavigationItemSelectedListener true}
 
-                R.id.nav_high_score -> {click.start(); loadFragment(HighScoreFragment())
+                R.id.nav_high_score -> {sound.clickStandard(); loadFragment(HighScoreFragment())
                     return@setOnNavigationItemSelectedListener true}
             }
             false

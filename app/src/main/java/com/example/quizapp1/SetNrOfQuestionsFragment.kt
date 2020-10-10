@@ -20,8 +20,7 @@ class SetNrOfQuestionsFragment : Fragment(){
         val view: View = inflater.inflate(R.layout.fragment_set_nr_of_questions, container, false)
 
         communicator = activity as Communicator
-        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
-        val clickNrOfQuestions = MediaPlayer.create(activity!!.applicationContext, R.raw.click_slime_drip)
+        val sound = Sound(activity!!.applicationContext)
         var totalNrOfQuestions = 0
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
@@ -31,21 +30,21 @@ class SetNrOfQuestionsFragment : Fragment(){
         btnEnterNrOfQuestionsMessage.visibility = View.GONE
 
         btnSelectTen.setOnClickListener {
-            clickNrOfQuestions.start()
+            sound.clickSlime()
             defaultButtonView()
             btnSelectTen.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTen.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 10
         }
         btnSelectTwenty.setOnClickListener {
-            clickNrOfQuestions.start()
+            sound.clickSlime()
             defaultButtonView()
             btnSelectTwenty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectTwenty.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 20
         }
         btnSelectThirty.setOnClickListener {
-            clickNrOfQuestions.start()
+            sound.clickSlime()
             defaultButtonView()
             btnSelectThirty.setBackgroundResource(R.drawable.round_button_selected)
             btnSelectThirty.setTextColor(Color.parseColor("#696969"))
@@ -53,7 +52,7 @@ class SetNrOfQuestionsFragment : Fragment(){
         }
         btnNext.setOnClickListener {
 
-            click.start()
+            sound.clickStandard()
             if (totalNrOfQuestions == 0) {
                 btnEnterNrOfQuestionsMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {

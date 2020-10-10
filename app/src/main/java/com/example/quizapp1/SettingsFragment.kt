@@ -22,8 +22,7 @@ class SettingsFragment : Fragment(){
         val view: View = inflater.inflate(R.layout.fragment_settings, container, false)
 
 
-        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
-        val clickSlime = MediaPlayer.create(activity!!.applicationContext, R.raw.click_slime_drip)
+        val sound = Sound(activity!!.applicationContext)
         val pref = context?.getSharedPreferences("soundSettings", Context.MODE_PRIVATE)
         var soundSetting: Int
         val btnBackHome: Button = view.findViewById(R.id.btn_back_home)
@@ -34,11 +33,11 @@ class SettingsFragment : Fragment(){
 
         when (soundSetting) {
             0 -> {
-                btnSoundOn.setBackgroundResource(R.drawable.round_button_selected);
+                btnSoundOn.setBackgroundResource(R.drawable.round_button_selected)
                 btnSoundOn.setTextColor(Color.parseColor("#696969"))
             }
             1 -> {
-                btnSoundOff.setBackgroundResource(R.drawable.round_button_selected);
+                btnSoundOff.setBackgroundResource(R.drawable.round_button_selected)
                 btnSoundOff.setTextColor(Color.parseColor("#696969"))
             }
         }
@@ -46,14 +45,14 @@ class SettingsFragment : Fragment(){
 
         btnBackHome.setOnClickListener {
 
-            click.start()
+            sound.clickStandard()
             val t: FragmentTransaction = this.fragmentManager!!.beginTransaction()
             val mFrag: Fragment = HomeFragment()
             t.replace(R.id.fragment_layout, mFrag)
             t.commit()
         }
         btnSoundOn.setOnClickListener {
-            clickSlime.start()
+            sound.clickSlime()
             defaultButtonView()
             btnSoundOn.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOn.setTextColor(Color.parseColor("#696969"))
@@ -63,7 +62,7 @@ class SettingsFragment : Fragment(){
 
         }
         btnSoundOff.setOnClickListener {
-            clickSlime.start()
+            sound.clickSlime()
             defaultButtonView()
             btnSoundOff.setBackgroundResource(R.drawable.round_button_selected)
             btnSoundOff.setTextColor(Color.parseColor("#696969"))

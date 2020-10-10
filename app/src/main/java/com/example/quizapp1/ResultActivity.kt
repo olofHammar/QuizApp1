@@ -23,7 +23,7 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var tvWrong: TextView
     private lateinit var tvHighScoreMessage: TextView
     private lateinit var username: String
-    private lateinit var fanfare: MediaPlayer
+    private val sound = Sound(this)
     private var highScoreNrOne: PlayerHighScore = PlayerHighScore()
     private var highScoreNrTwo: PlayerHighScore = PlayerHighScore()
     private var highScoreNrThree: PlayerHighScore = PlayerHighScore()
@@ -62,9 +62,6 @@ class ResultActivity : AppCompatActivity() {
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         wrongAnswers = (totalQuestions - correctAnswers)
 
-        val pieSound: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.load_piechart)
-        val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_mouth_pop)
-        fanfare = MediaPlayer.create(applicationContext, R.raw.fanfare_highscore)
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         highScoreNrOne.playerName = pref.getString("highScoreOneName", "---").toString()
@@ -78,7 +75,7 @@ class ResultActivity : AppCompatActivity() {
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
-        pieSound.start()
+        sound.loadPieChart()
         setData()
         /*
         Om spelarens poäng är högre än någon av tidigar highscore så sparas denna poäng och flyttar ner
@@ -118,7 +115,7 @@ class ResultActivity : AppCompatActivity() {
 
         btn_finish.setOnClickListener {
             //pref.edit().clear().apply()
-            click.start()
+            sound.clickStandard()
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -127,19 +124,19 @@ class ResultActivity : AppCompatActivity() {
     private fun displayResultMessage () {
         when {
             correctAnswers > highScoreNrOne.playerPoints -> {
-                fanfare.start()
+                sound.fanfare()
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                     username.capitalize(Locale.ROOT))
             }
             correctAnswers > highScoreNrTwo.playerPoints -> {
-                fanfare.start()
+                sound.fanfare()
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
             correctAnswers > highScoreNrThree.playerPoints -> {
-                fanfare.start()
+                sound.fanfare()
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(
                     Locale.ROOT))

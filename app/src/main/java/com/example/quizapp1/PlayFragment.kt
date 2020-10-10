@@ -27,7 +27,7 @@ class PlayFragment : Fragment(){
         det förra fragmentet gällande hur många frågot quizet ska innehålla.
          */
         totalQuestions = arguments?.getInt("Q")
-        val click: MediaPlayer = MediaPlayer.create(activity!!.applicationContext, R.raw.click_mouth_pop)
+        val sound = Sound(activity!!.applicationContext)
         val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
         btnEnterNameMessage.visibility = View.GONE
@@ -35,7 +35,7 @@ class PlayFragment : Fragment(){
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
 
-                click.start()
+                sound.clickStandard()
                 btnEnterNameMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {
                     override fun onFinish() {
@@ -47,7 +47,7 @@ class PlayFragment : Fragment(){
                 messageTimer.start()
             }
             else {
-                click.start()
+                sound.clickStandard()
                 val userName = et_name.text.toString()
                 val intent =
                     Intent(this@PlayFragment.context, CountDownActivity::class.java)

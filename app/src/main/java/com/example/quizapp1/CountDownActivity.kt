@@ -14,12 +14,11 @@ class CountDownActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val myTimer = Timer()
-        val tick: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_djungle)
-        val finished: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.tick_finished_marimba)
+        val sound = Sound(this)
         val quizCountDownTimer = object: CountDownTimer (2500,1000){
             override fun onFinish() {
                 myTimer.cancel()
-                finished.start()
+                sound.tickMarimba()
                 val userName = intent.getStringExtra(Constants.USER_NAME)
                 val totalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
                 val intent = Intent(this@CountDownActivity, QuizQuestionsActivity::class.java)
@@ -44,7 +43,7 @@ class CountDownActivity : AppCompatActivity() {
 
                 myTimer.schedule(object : TimerTask() {
                     override fun run() {
-                        tick.start()
+                        sound.clickDjungle()
                     }
                 }, 0,1000)
 
@@ -53,9 +52,5 @@ class CountDownActivity : AppCompatActivity() {
             }
         }
         waitTimer.start()
-
-
-
-
     }
 }
