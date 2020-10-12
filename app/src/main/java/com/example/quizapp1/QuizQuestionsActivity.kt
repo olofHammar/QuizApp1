@@ -43,6 +43,13 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
 
     }
+    private val loadResultTimer = object : CountDownTimer (1500,1000){
+        override fun onFinish() {
+            loadResult()
+        }
+        override fun onTick(millisUntilFinished: Long) {
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
@@ -166,16 +173,18 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         mCurrentPosition++
 
         if (mCurrentPosition <= mTotalNrOfQuestions && questionSubmitted == true) {
-
             setQuestionTimer.start()
         }
         else {
-            val intent = Intent(this, ResultActivity::class.java)
-            intent.putExtra(Constants.USER_NAME, mUserName)
-            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
-            intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
-            startActivity(intent)
+            loadResultTimer.start()
         }
+    }
+    private fun loadResult() {
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra(Constants.USER_NAME, mUserName)
+        intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+        intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
+        startActivity(intent)
     }
 
 }
