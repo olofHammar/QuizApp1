@@ -15,9 +15,9 @@
 
     <item>
         <shape android:shape="oval">
-            <!-- transparent stroke = larger_circle_size - smaller_circle_size -->
+            <!-- Nedanför här är den gråa linjen -->
             <stroke android:color="@android:color/transparent"
-                android:width="3.5dp"/>
+                android:width="4dp"/>
             <solid android:color="#EEEEEE"/>
             <size
                 android:width="14dp"
