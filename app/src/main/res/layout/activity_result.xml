@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,55 +7,70 @@
     android:background="@drawable/background_plain_dark_blue_fade"
     tools:context=".ResultActivity">
 
-    <View android:id="@+id/emiter_top_left"
+    <View
+        android:id="@+id/emiter_top_left"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
         android:layout_gravity="top|start"
         android:layout_marginTop="-20dp"
-        android:layout_width="1dp"
-        android:layout_height="1dp" />
+        android:layout_marginEnd="392dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <View android:id="@+id/emiter_top_right"
+    <View
+        android:id="@+id/emiter_top_right"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
         android:layout_gravity="top|end"
         android:layout_marginTop="-20dp"
-        android:layout_width="1dp"
-        android:layout_height="1dp" />
+        android:layout_marginEnd="392dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/iv_logo_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:layout_marginBottom="-164dp"
         android:contentDescription="@string/iv_content_result_logo_sv"
-        android:src="@drawable/result_orange_sv" />
+        android:src="@drawable/result_orange_sv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_highscore_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="200dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo_text"
         tools:text="Du tog dig inte in på highscore" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="385dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@android:color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="5dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:padding="5dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_highscore_message"
+        app:layout_constraintWidth_percent="0.9">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,20 +82,19 @@
                 android:id="@+id/piechart"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:padding="6dp"
-                android:layout_weight="1"
-                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
-                />
+                android:layout_weight="1"
+                android:padding="6dp" />
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_marginStart="20dp"
-                android:orientation="vertical"
+                android:layout_weight="1"
                 android:gravity="center_vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -91,40 +105,40 @@
                     <View
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
-                        android:background="#00E135"/>
+                        android:background="#00E135" />
 
                     <TextView
                         android:id="@+id/tv_correct_answers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:text="@string/result_percentage_right"
                         android:paddingStart="10dp"
-                        android:paddingEnd="10dp"/>
+                        android:paddingEnd="10dp"
+                        android:text="@string/result_percentage_right"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center_vertical">
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="10dp">
 
                     <View
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
-                        android:background="#FB1900"/>
+                        android:background="#FB1900" />
 
                     <TextView
                         android:id="@+id/tv_wrong_answers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:text="@string/result_percentage_wrong"
                         android:paddingStart="10dp"
-                        android:paddingEnd="10dp"/>
+                        android:paddingEnd="10dp"
+                        android:text="@string/result_percentage_wrong"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -132,35 +146,35 @@
 
         </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="210dp"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:text="@string/result_message_sv" />
+        <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="250dp"
+            android:text="@string/result_message_sv"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
 
     </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="100dp"
         android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/btn_rounded_corners_orange_fade"
         android:fontFamily="@font/bitter"
         android:text="@string/play_again_sv"
         android:textColor="@android:color/white"
         android:textSize="22sp"
-        android:textStyle="bold">
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        tools:layout_editor_absoluteX="25dp">
 
     </Button>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
