@@ -9,7 +9,7 @@
         <item name="android:soundEffectsEnabled">false</item>
     </style>
 
-    <!-- Detta är default temat. -->
+    <!-- Detta är androids default temat. -->
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
