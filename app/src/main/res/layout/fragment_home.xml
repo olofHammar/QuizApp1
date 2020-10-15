@@ -57,6 +57,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_weight="0.55"
+                android:paddingHorizontal="10dp"
                 android:contentDescription="@string/iv_content_welcome_msg_sv"
                 android:src="@drawable/welcome_sv_tommy" />
 

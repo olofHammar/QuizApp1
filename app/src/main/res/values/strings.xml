@@ -34,6 +34,7 @@
     <string name="enter_name_message_sv">Skriv in ditt namn</string>
     <string name="msg_choose_nr_of_questions_sv">Välj antal frågor</string>
     <string name="msg_enter_name_sv">Skriv in ditt namn</string>
+    <string name="iv_content_questions_logo">Välj antal frågor logo</string>
     <string name="iv_content_flag">Bild på flagga</string>
     <string name="iv_content_circle_timer_background">Bild för cirkeltimer</string>
     <string name="iv_content_result_logo_sv">Resultatlogo svenska</string>
