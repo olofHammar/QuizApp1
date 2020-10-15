@@ -17,88 +17,88 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo_text"
+        app:layout_constraintWidth_percent="0.9"
+        android:padding="5dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="385dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@android:color/white"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <Button
-                        android:id="@+id/btn_hs_one"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:clickable="false"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="5dp"
-                        android:background="@drawable/round_button_selected"
-                        android:textColor="#696969"
-                        android:fontFamily="@font/bitter"
-                        android:textStyle="bold"
-                        android:text="@string/btn_highscore_one"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:id="@+id/tv_hs_one_name"
-                        android:layout_width="170dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
-                        android:fontFamily="@font/bitter"
-                        android:text="@string/default_player_highscore_name"
-                        android:textColor="#696969"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:id="@+id/tv_hs_one_points"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="10dp"
-                        android:fontFamily="@font/bitter"
-                        android:textColor="#696969"
-                        android:textSize="25sp"
-                        android:text="@string/default_player_highscore_points" />
-
-                </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btn_hs_two"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:clickable="false"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="5dp"
-                        android:background="@drawable/round_button_selected"
-                        android:textColor="#696969"
-                        android:fontFamily="@font/bitter"
-                        android:textStyle="bold"
-                        android:text="@string/btn_highsvore_two"
-                        android:textSize="25sp" />
+                <Button
+                    android:id="@+id/btn_hs_one"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/round_button_selected"
+                    android:clickable="false"
+                    android:fontFamily="@font/bitter"
+                    android:text="@string/btn_highscore_one"
+                    android:textColor="#696969"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_hs_one_name"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bitter"
+                    android:text="@string/default_player_highscore_name"
+                    android:textColor="#696969"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/tv_hs_one_points"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/bitter"
+                    android:text="@string/default_player_highscore_points"
+                    android:textColor="#696969"
+                    android:textSize="25sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_hs_two"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_button_selected"
+                    android:clickable="false"
+                    android:fontFamily="@font/bitter"
+                    android:text="@string/btn_highsvore_two"
+                    android:textColor="#696969"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_hs_two_name"
@@ -115,12 +115,12 @@
                     android:id="@+id/tv_hs_two_points"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/bitter"
+                    android:text="@string/default_player_highscore_points"
                     android:textColor="#696969"
-                    android:textSize="25sp"
-                    android:text="@string/default_player_highscore_points" />
+                    android:textSize="25sp" />
 
             </LinearLayout>
 
@@ -131,18 +131,18 @@
 
 
                 <Button
-                        android:id="@+id/btn_hs_three"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:clickable="false"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="5dp"
-                        android:background="@drawable/round_button_selected"
-                        android:textColor="#696969"
-                        android:fontFamily="@font/bitter"
-                        android:textStyle="bold"
-                        android:text="@string/btn_highscore_three"
-                        android:textSize="25sp" />
+                    android:id="@+id/btn_hs_three"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_button_selected"
+                    android:clickable="false"
+                    android:fontFamily="@font/bitter"
+                    android:text="@string/btn_highscore_three"
+                    android:textColor="#696969"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_hs_three_name"
@@ -159,20 +159,17 @@
                     android:id="@+id/tv_hs_three_points"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/bitter"
+                    android:text="@string/default_player_highscore_points"
                     android:textColor="#696969"
-                    android:textSize="25sp"
-                    android:text="@string/default_player_highscore_points" />
+                    android:textSize="25sp" />
 
             </LinearLayout>
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
-
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
