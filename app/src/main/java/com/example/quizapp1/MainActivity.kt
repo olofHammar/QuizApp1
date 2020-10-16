@@ -1,6 +1,5 @@
 package com.example.quizapp1
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,12 +11,16 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Här skapar jag ett objekt av klassen Sound
         val sound = Sound(this)
+
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
-        //Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
-        //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
+        /*
+        Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
+        Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
+         */
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.nav_home -> {sound.clickStandard(); loadFragment(HomeFragment())
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity(), Communicator {
             false
         }
     }
-    //Denna funktion skapar fragmentet i mainActivity
+    //Denna funktion ersätter det nuvarande fragmentet med det fragment vi väljer att skicka in
     private fun loadFragment(fragment: Fragment) {
 
         val transaction = supportFragmentManager.beginTransaction()
@@ -40,10 +43,10 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-/*
- Denna funktion laddar playFragment när funktionen kalla på från setNrOfQuestionsFragment
- och skickar med information om hur många frågor quizet ska ha.
- */
+    /*
+     Denna funktion laddar playFragment när funktionen kallas på från setNrOfQuestionsFragment
+     och skickar med information om hur många frågor quizet ska ha.
+    */
     override fun sendData(nr: Int) {
         val bundle = Bundle()
         bundle.putInt("Q", nr)
