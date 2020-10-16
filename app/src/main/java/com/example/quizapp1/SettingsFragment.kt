@@ -26,13 +26,15 @@ class SettingsFragment : Fragment(){
 
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
         soundPool.load(activity!!.applicationContext, R.raw.click_slime_drip)
+
         val pref = context?.getSharedPreferences("soundSettings", Context.MODE_PRIVATE)
-        var soundSetting: Int
+
+        //Denna variabel använder jag för att spara ljudinställningarna i sharedPreferences
+        var soundSetting = pref!!.getInt("soundSettings", 0)
+
         val btnBackHome: Button = view.findViewById(R.id.btn_back_home)
         val btnSoundOn: Button = view.findViewById(R.id.btn_sound_on)
         val btnSoundOff: Button = view.findViewById(R.id.btn_sound_off)
-
-        soundSetting = pref!!.getInt("soundSettings", 0)
 
         when (soundSetting) {
             0 -> {
@@ -46,7 +48,6 @@ class SettingsFragment : Fragment(){
                 btnSoundOff.isClickable = false
             }
         }
-
 
         btnBackHome.setOnClickListener {
 

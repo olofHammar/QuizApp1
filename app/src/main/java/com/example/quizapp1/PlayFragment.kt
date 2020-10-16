@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.fragment_play.view.*
 
 class PlayFragment : Fragment(){
 
-    var totalQuestions: Int? = 0
+    private var totalQuestions: Int? = 0
+    private var soundPool = SoundPool()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_play, container, false)
@@ -27,7 +28,8 @@ class PlayFragment : Fragment(){
         det förra fragmentet gällande hur många frågot quizet ska innehålla.
          */
         totalQuestions = arguments?.getInt("Q")
-        val sound = Sound(activity!!.applicationContext)
+        soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
+        //Detta är en toast som ber användaren att skriva in sitt namn.
         val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
         btnEnterNameMessage.visibility = View.GONE
@@ -35,7 +37,7 @@ class PlayFragment : Fragment(){
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
 
-                sound.clickStandard()
+                soundPool.play(R.raw.click_mouth_pop)
                 btnEnterNameMessage.visibility = View.VISIBLE
                 val messageTimer = object : CountDownTimer(1500, 1000) {
                     override fun onFinish() {
@@ -47,8 +49,8 @@ class PlayFragment : Fragment(){
                 messageTimer.start()
             }
             else {
-                sound.clickStandard()
 
+                soundPool.play(R.raw.click_mouth_pop)
                 val userName = et_name.text.toString()
                 val intent =
                     Intent(this@PlayFragment.context, CountDownActivity::class.java)
@@ -59,5 +61,10 @@ class PlayFragment : Fragment(){
             }
         }
         return view
+    }
+
+    override fun onDestroy() {
+        soundPool.unload(R.raw.click_mouth_pop)
+        super.onDestroy()
     }
 }

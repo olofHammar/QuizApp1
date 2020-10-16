@@ -11,17 +11,18 @@ import java.util.*
 
 
 class CountDownActivity : AppCompatActivity() {
+
+    private var soundPool = SoundPool()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_count_down)
 
-        //Jag hade från början sound.clickDjungle i quiz-timerns onTick men detta synkade dåligt så därför gjorde jag en egen timer till den.
-        val clickTimer = Timer()
-        val sound = Sound(this)
+        soundPool.load(this, R.raw.tick_finished_marimba)
+        soundPool.load(this, R.raw.click_djungle)
         val quizCountDownTimer = object: CountDownTimer (2500,1000){
             override fun onFinish() {
-                clickTimer.cancel()
-                sound.tickMarimba()
+                soundPool.play(R.raw.tick_finished_marimba)
                 val userName = intent.getStringExtra(Constants.USER_NAME)
                 val totalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
                 val intent = Intent(this@CountDownActivity, QuizQuestionsActivity::class.java)
@@ -31,6 +32,7 @@ class CountDownActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             override fun onTick(millisUntilFinished: Long) {
+                soundPool.play(R.raw.click_djungle)
                 tv_quiz_countdown.text = "${(millisUntilFinished+1000)/1000}"
             }
         }
@@ -45,16 +47,15 @@ class CountDownActivity : AppCompatActivity() {
             override fun onFinish() {
                 tv_quiz_countdown.visibility = View.VISIBLE
                 quizCountDownTimer.start()
-
-                clickTimer.schedule(object : TimerTask() {
-                    override fun run() {
-                        sound.clickDjungle()
-                    }
-                }, 0,1000)
-
             }
             override fun onTick(millisUntilFinished: Long) {}
         }
         waitTimer.start()
+    }
+
+    override fun onDestroy() {
+        soundPool.unload(R.raw.tick_finished_marimba)
+        soundPool.unload(R.raw.click_djungle)
+        super.onDestroy()
     }
 }

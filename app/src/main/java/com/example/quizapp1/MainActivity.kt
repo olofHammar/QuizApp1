@@ -17,9 +17,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         soundPool.load(this, R.raw.click_mouth_pop)
-
 
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
@@ -54,11 +52,12 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.addToBackStack(null)
         transaction.commit()
     }
-/*
- Denna funktion laddar playFragment när funktionen kallas på från setNrOfQuestionsFragment
- och skickar med information om hur många frågor quizet ska ha.
- */
+    /*
+    Denna funktion laddar playFragment när funktionen kallas på från setNrOfQuestionsFragment
+    och skickar med information om hur många frågor quizet ska ha.
+    */
     override fun sendData(nr: Int) {
+
         val bundle = Bundle()
         bundle.putInt("Q", nr)
 
@@ -69,10 +68,9 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.replace(R.id.fragment_layout, fragmentPlay)
         transaction.commit()
     }
-
     override fun onDestroy() {
+
         soundPool.unload(R.raw.click_mouth_pop)
         super.onDestroy()
     }
-
 }
