@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:gravity="top"
             android:padding="10dp">
 
             <LinearLayout
@@ -48,7 +49,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/round_button_selected"
                     android:clickable="false"
                     android:fontFamily="@font/bitter"
@@ -62,7 +63,7 @@
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/bitter"
                     android:text="@string/default_player_highscore_name"
                     android:textColor="#696969"
@@ -73,7 +74,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/bitter"
                     android:text="@string/default_player_highscore_points"
                     android:textColor="#696969"
