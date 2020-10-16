@@ -3,7 +3,6 @@ package com.example.quizapp1
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
@@ -13,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_result.*
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
-
 
 //Denna aktivitet visar resultatet av quizet.
 class ResultActivity : AppCompatActivity() {
@@ -117,7 +115,6 @@ class ResultActivity : AppCompatActivity() {
             //pref.edit().clear().apply()
             sound.clickStandard()
             startActivity(Intent(this, MainActivity::class.java))
-            Constants.soundPool.unload(R.raw.click_mouth_pop)
             finish()
         }
     }

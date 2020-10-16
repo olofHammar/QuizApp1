@@ -12,12 +12,15 @@ import java.util.*
 
 class CountDownActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_count_down)
 
-        val myTimer = Timer()
+        //Jag hade från början sound.clickDjungle i quiz-timerns onTick men detta synkade dåligt så därför gjorde jag en egen timer till den.
+        val clickTimer = Timer()
         val sound = Sound(this)
         val quizCountDownTimer = object: CountDownTimer (2500,1000){
             override fun onFinish() {
-                myTimer.cancel()
+                clickTimer.cancel()
                 sound.tickMarimba()
                 val userName = intent.getStringExtra(Constants.USER_NAME)
                 val totalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
@@ -31,25 +34,26 @@ class CountDownActivity : AppCompatActivity() {
                 tv_quiz_countdown.text = "${(millisUntilFinished+1000)/1000}"
             }
         }
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_count_down)
-
 
         tv_quiz_countdown.visibility = View.GONE
+
+        /*
+       Denna timer skapar ett delay på två sekunder innan nedräkningen börjar.
+       När den är klar visas en textView med nedräkning och clickTimern startar.
+        */
         val waitTimer = object: CountDownTimer (2000,1000) {
             override fun onFinish() {
                 tv_quiz_countdown.visibility = View.VISIBLE
                 quizCountDownTimer.start()
 
-                myTimer.schedule(object : TimerTask() {
+                clickTimer.schedule(object : TimerTask() {
                     override fun run() {
                         sound.clickDjungle()
                     }
                 }, 0,1000)
 
             }
-            override fun onTick(millisUntilFinished: Long) {
-            }
+            override fun onTick(millisUntilFinished: Long) {}
         }
         waitTimer.start()
     }

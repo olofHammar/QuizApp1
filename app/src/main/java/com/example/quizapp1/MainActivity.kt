@@ -11,12 +11,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Communicator {
 
+    private var soundPool = SoundPool()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sound = Sound(this)
-        Constants.soundPool.load(this, R.raw.click_mouth_pop)
+
+        soundPool.load(this, R.raw.click_mouth_pop)
 
 
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
@@ -27,17 +29,17 @@ class MainActivity : AppCompatActivity(), Communicator {
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> {
-                    Constants.soundPool.play(R.raw.click_mouth_pop); loadFragment(HomeFragment())
+                    soundPool.play(R.raw.click_mouth_pop); loadFragment(HomeFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_play -> {
-                    Constants.soundPool.play(R.raw.click_mouth_pop); loadFragment(SetNrOfQuestionsFragment())
+                    soundPool.play(R.raw.click_mouth_pop); loadFragment(SetNrOfQuestionsFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.nav_high_score -> {
-                    Constants.soundPool.play(R.raw.click_mouth_pop); loadFragment(HighScoreFragment())
+                    soundPool.play(R.raw.click_mouth_pop); loadFragment(HighScoreFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -66,6 +68,11 @@ class MainActivity : AppCompatActivity(), Communicator {
 
         transaction.replace(R.id.fragment_layout, fragmentPlay)
         transaction.commit()
+    }
+
+    override fun onDestroy() {
+        soundPool.unload(R.raw.click_mouth_pop)
+        super.onDestroy()
     }
 
 }

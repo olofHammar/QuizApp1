@@ -9,8 +9,6 @@ Jag har även alla frågor till quizet här. Jag har gjort en funktion som retur
  */
 object Constants {
 
-    val soundPool = SoundPool()
-
     const val USER_NAME: String = "user name"
     const val TOTAL_QUESTIONS: String = "total questions"
     const val CORRECT_ANSWERS: String = "correct answers"
