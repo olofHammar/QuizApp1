@@ -1,10 +1,15 @@
 package com.example.quizapp1
 
+import android.media.AudioAttributes
+import android.media.SoundPool
+
 /*
 Här har jag mina singletons. Det tre översta variablerna använder jag enbart som "tags" för att skicka variabler mellan de olika aktiviteterna.
 Jag har även alla frågor till quizet här. Jag har gjort en funktion som returnerar en lista med frågor. Detta fungerar som en "static list".
  */
 object Constants {
+
+    val soundPool = SoundPool()
 
     const val USER_NAME: String = "user name"
     const val TOTAL_QUESTIONS: String = "total questions"

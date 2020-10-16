@@ -1,10 +1,13 @@
 package com.example.quizapp1
 
+import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), Communicator {
 
@@ -12,23 +15,31 @@ class MainActivity : AppCompatActivity(), Communicator {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val click: MediaPlayer = MediaPlayer.create(applicationContext, R.raw.click_mouth_pop)
         val sound = Sound(this)
+        Constants.soundPool.load(this, R.raw.click_mouth_pop)
+
+
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
         //Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
         //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
         bottom_navigation_view.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_home -> {sound.clickStandard(); loadFragment(HomeFragment())
-                    return@setOnNavigationItemSelectedListener true}
+            when (it.itemId) {
+                R.id.nav_home -> {
+                    Constants.soundPool.play(R.raw.click_mouth_pop); loadFragment(HomeFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
 
-                R.id.nav_play -> {sound.clickStandard(); loadFragment(SetNrOfQuestionsFragment())
-                    return@setOnNavigationItemSelectedListener true}
+                R.id.nav_play -> {
+                    Constants.soundPool.play(R.raw.click_mouth_pop); loadFragment(SetNrOfQuestionsFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
 
-                R.id.nav_high_score -> {sound.clickStandard(); loadFragment(HighScoreFragment())
-                    return@setOnNavigationItemSelectedListener true}
+                R.id.nav_high_score -> {
+                    Constants.soundPool.play(R.raw.click_mouth_pop); loadFragment(HighScoreFragment())
+                    return@setOnNavigationItemSelectedListener true
+                }
             }
             false
         }
@@ -42,7 +53,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.commit()
     }
 /*
- Denna funktion laddar playFragment när funktionen kalla på från setNrOfQuestionsFragment
+ Denna funktion laddar playFragment när funktionen kallas på från setNrOfQuestionsFragment
  och skickar med information om hur många frågor quizet ska ha.
  */
     override fun sendData(nr: Int) {
@@ -56,4 +67,5 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.replace(R.id.fragment_layout, fragmentPlay)
         transaction.commit()
     }
+
 }

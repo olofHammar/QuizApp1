@@ -48,6 +48,7 @@ class PlayFragment : Fragment(){
             }
             else {
                 sound.clickStandard()
+
                 val userName = et_name.text.toString()
                 val intent =
                     Intent(this@PlayFragment.context, CountDownActivity::class.java)

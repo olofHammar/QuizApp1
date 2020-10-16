@@ -117,6 +117,7 @@ class ResultActivity : AppCompatActivity() {
             //pref.edit().clear().apply()
             sound.clickStandard()
             startActivity(Intent(this, MainActivity::class.java))
+            Constants.soundPool.unload(R.raw.click_mouth_pop)
             finish()
         }
     }
