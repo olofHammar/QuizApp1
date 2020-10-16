@@ -25,7 +25,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
-    private var sound = Sound(this)
+    private var soundPool = SoundPool()
     private val countDownTimer = object : CountDownTimer(10000, 1000) {
         override fun onFinish() {
             submitAnswer()
@@ -38,22 +38,21 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         override fun onFinish() {
             setQuestion()
         }
-        override fun onTick(millisUntilFinished: Long) {
-
-        }
-
+        override fun onTick(millisUntilFinished: Long) {}
     }
     private val loadResultTimer = object : CountDownTimer (1500,1000){
         override fun onFinish() {
             loadResult()
         }
-        override fun onTick(millisUntilFinished: Long) {
-        }
+        override fun onTick(millisUntilFinished: Long) {}
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_questions)
 
+        soundPool.load(this, R.raw.alert_right_answer)
+        soundPool.load(this, R.raw.alert_wrong_answer)
         //Här hämtar jag in användarnamnet från mainActivity
         mUserName = intent.getStringExtra(Constants.USER_NAME)
         mTotalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
@@ -157,13 +156,13 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
 
         val question = mQuestionsList.get(mCurrentPosition - 1)
         if (question.correctAnswer != mSelectedOptionPosition) {
-            sound.alertWrong()
+            soundPool.play(R.raw.alert_wrong_answer)
             iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
             answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
             answerView(question.correctAnswer, R.drawable.correct_option_border_when_wrong_bg)
         }
         else if (question.correctAnswer == mSelectedOptionPosition) {
-            sound.alertRight()
+            soundPool.play(R.raw.alert_right_answer)
             iv_circle_answer.setImageResource(R.drawable.circle_right_answer)
             tv_circle_answer_text.setText(R.string.question_answer_right_sv)
             answerView(question.correctAnswer, R.drawable.correct_option_border_bg)
@@ -185,6 +184,12 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
         intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
         startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        soundPool.unload(R.raw.alert_wrong_answer)
+        soundPool.unload(R.raw.alert_right_answer)
+        super.onDestroy()
     }
 
 }

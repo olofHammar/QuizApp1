@@ -3,10 +3,6 @@ package com.example.quizapp1
 import android.content.Context
 import android.media.AudioAttributes
 
-/**
- * Created by songc on 2017/02/21.
- * @param maxStreams 同時に再生できる効果音の数。デフォルトでは３つ。
- */
 class SoundPool(maxStreams: Int = 3) {
     val audioAttributes = AudioAttributes
         .Builder()
@@ -14,7 +10,7 @@ class SoundPool(maxStreams: Int = 3) {
         .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
         .build()
 
-    val soundPool = android.media.SoundPool.Builder()
+    var soundPool = android.media.SoundPool.Builder()
         .setAudioAttributes(audioAttributes)
         .setMaxStreams(maxStreams)
         .build()
@@ -26,7 +22,7 @@ class SoundPool(maxStreams: Int = 3) {
     }
 
     fun unload(resourceId: Int) {
-        aliases[resourceId]?.let { soundPool.unload(it) }
+        aliases[resourceId]?.let { soundPool.unload(it); soundPool.release(); soundPool = null }
     }
 
     fun play(resourceId: Int) {

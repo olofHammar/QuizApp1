@@ -3,6 +3,7 @@ package com.example.quizapp1
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.TextView
@@ -21,7 +22,7 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var tvWrong: TextView
     private lateinit var tvHighScoreMessage: TextView
     private lateinit var username: String
-    private val sound = Sound(this)
+    private var soundPool = SoundPool()
     private var highScoreNrOne: PlayerHighScore = PlayerHighScore()
     private var highScoreNrTwo: PlayerHighScore = PlayerHighScore()
     private var highScoreNrThree: PlayerHighScore = PlayerHighScore()
@@ -31,13 +32,12 @@ class ResultActivity : AppCompatActivity() {
     private var correctAnswersFloat: Float = 0F
     private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
+    //Här har jag satt en timer som väntar tre sekunder med att meddela spelaren om denna tog sig in på highscore eller inte.
     private val highScoreMessageTimer = object: CountDownTimer (3000,1000){
         override fun onFinish() {
             displayResultMessage()
         }
-
-        override fun onTick(millisUntilFinished: Long) {
-        }
+        override fun onTick(millisUntilFinished: Long) {}
     }
     @ExperimentalStdlibApi
 
@@ -45,11 +45,13 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        soundPool.load(this, R.raw.click_mouth_pop)
+        soundPool.load(this, R.raw.fanfare_highscore)
+
         tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
         pieChart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
-
 
         /*
         Här hämtar jag information från tidigare aktiviteter som sätts till nya variabler i denna aktivitet.
@@ -73,8 +75,9 @@ class ResultActivity : AppCompatActivity() {
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
-        sound.loadPieChart()
+
         setData()
+        loadPieChart(this)
         /*
         Om spelarens poäng är högre än någon av tidigar highscore så sparas denna poäng och flyttar ner
         det tidigare highscoren ett snäpp ner i listan.
@@ -112,8 +115,8 @@ class ResultActivity : AppCompatActivity() {
         )
 
         btn_finish.setOnClickListener {
-            //pref.edit().clear().apply()
-            sound.clickStandard()
+            pref.edit().clear().apply()
+            soundPool.play(R.raw.click_mouth_pop)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -122,19 +125,19 @@ class ResultActivity : AppCompatActivity() {
     private fun displayResultMessage () {
         when {
             correctAnswers > highScoreNrOne.playerPoints -> {
-                sound.fanfare()
+                soundPool.play(R.raw.fanfare_highscore)
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                     username.capitalize(Locale.ROOT))
             }
             correctAnswers > highScoreNrTwo.playerPoints -> {
-                sound.fanfare()
+                soundPool.play(R.raw.fanfare_highscore)
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
             correctAnswers > highScoreNrThree.playerPoints -> {
-                sound.fanfare()
+                soundPool.play(R.raw.fanfare_highscore)
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(
                     Locale.ROOT))
@@ -169,7 +172,7 @@ class ResultActivity : AppCompatActivity() {
         pieChart.startAnimation()
     }
     private fun confetti() {
-//Importerar bibliotek som innehåller ParticleSystem. Sedan skapar jag den och sätter värden.
+    //Importerar bibliotek som innehåller ParticleSystem. Sedan skapar jag den och sätter värden.
         ParticleSystem(this, 80, R.drawable.confeti2, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 0)
             .setRotationSpeed(144f)
@@ -181,6 +184,15 @@ class ResultActivity : AppCompatActivity() {
             .setRotationSpeed(144f)
             .setAcceleration(0.00005f, 90)
             .emit(findViewById(R.id.emiter_top_left), 8)
+    }
+    fun loadPieChart (context: Context) {
+        var loadPieChart = MediaPlayer.create(context, R.raw.load_piechart)
+        loadPieChart.setOnCompletionListener(MediaPlayer.OnCompletionListener { mp ->
+            mp.reset()
+            mp.release()
+            loadPieChart = null
+        })
+        loadPieChart.start()
     }
 
 }

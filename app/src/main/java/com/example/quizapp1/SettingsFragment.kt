@@ -40,12 +40,10 @@ class SettingsFragment : Fragment(){
             0 -> {
                 btnSoundOn.setBackgroundResource(R.drawable.round_button_selected)
                 btnSoundOn.setTextColor(Color.parseColor("#696969"))
-                btnSoundOn.isClickable = false
             }
             1 -> {
                 btnSoundOff.setBackgroundResource(R.drawable.round_button_selected)
                 btnSoundOff.setTextColor(Color.parseColor("#696969"))
-                btnSoundOff.isClickable = false
             }
         }
 
@@ -79,6 +77,7 @@ class SettingsFragment : Fragment(){
 
         return view
     }
+
     private fun defaultButtonView() {
         val options = ArrayList<TextView>()
         options.add(0, btn_sound_on)
@@ -113,9 +112,4 @@ class SettingsFragment : Fragment(){
         audioManager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0)
     }
 
-    override fun onDestroy() {
-        soundPool.unload(R.raw.click_slime_drip)
-        soundPool.unload(R.raw.click_mouth_pop)
-        super.onDestroy()
-    }
 }
