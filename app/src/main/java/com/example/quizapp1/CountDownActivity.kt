@@ -1,13 +1,11 @@
 package com.example.quizapp1
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_count_down.*
-import java.util.*
 
 
 class CountDownActivity : AppCompatActivity() {

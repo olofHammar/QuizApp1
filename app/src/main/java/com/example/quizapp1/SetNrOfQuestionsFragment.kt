@@ -1,7 +1,6 @@
 package com.example.quizapp1
 
 import android.graphics.Color
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater

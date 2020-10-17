@@ -21,9 +21,6 @@ class SoundPool(maxStreams: Int = 3) {
         aliases[resourceId] = soundPool.load(context, resourceId, 1)
     }
 
-    fun unload(resourceId: Int) {
-        aliases[resourceId]?.let { soundPool.unload(it)}
-    }
     fun release() {
         soundPool.release()
         soundPool = null
