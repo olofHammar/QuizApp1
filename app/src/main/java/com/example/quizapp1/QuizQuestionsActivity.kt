@@ -184,12 +184,12 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
         intent.putExtra(Constants.TOTAL_QUESTIONS, mTotalNrOfQuestions)
         startActivity(intent)
+        finish()
     }
 
     override fun onDestroy() {
-        soundPool.unload(R.raw.alert_wrong_answer)
-        soundPool.unload(R.raw.alert_right_answer)
         super.onDestroy()
+        soundPool.release()
     }
 
 }

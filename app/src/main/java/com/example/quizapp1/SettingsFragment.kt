@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +55,12 @@ class SettingsFragment : Fragment(){
             val mFrag: Fragment = HomeFragment()
             t.replace(R.id.fragment_layout, mFrag)
             t.commit()
+            object: CountDownTimer (1500,1000){
+                override fun onFinish() {
+                    soundPool.release()
+                }
+                override fun onTick(millisUntilFinished: Long) {}
+            }
         }
         btnSoundOn.setOnClickListener {
             soundPool.play(R.raw.click_slime_drip)

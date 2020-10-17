@@ -115,7 +115,7 @@ class ResultActivity : AppCompatActivity() {
         )
 
         btn_finish.setOnClickListener {
-            pref.edit().clear().apply()
+            //pref.edit().clear().apply()
             soundPool.play(R.raw.click_mouth_pop)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -172,7 +172,7 @@ class ResultActivity : AppCompatActivity() {
         pieChart.startAnimation()
     }
     private fun confetti() {
-    //Importerar bibliotek som innehåller ParticleSystem. Sedan skapar jag den och sätter värden.
+    //Konfettin är importerad i implementations och skapas sedan här.
         ParticleSystem(this, 80, R.drawable.confeti2, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 0)
             .setRotationSpeed(144f)
@@ -193,6 +193,11 @@ class ResultActivity : AppCompatActivity() {
             loadPieChart = null
         })
         loadPieChart.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundPool.release()
     }
 
 }

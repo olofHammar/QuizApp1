@@ -30,6 +30,7 @@ class CountDownActivity : AppCompatActivity() {
                 intent.putExtra(Constants.USER_NAME, userName)
                 intent.putExtra(Constants.TOTAL_QUESTIONS, totalNrOfQuestions)
                 startActivity(intent)
+                finish()
             }
             override fun onTick(millisUntilFinished: Long) {
                 soundPool.play(R.raw.click_djungle)
@@ -54,8 +55,9 @@ class CountDownActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        soundPool.unload(R.raw.tick_finished_marimba)
-        soundPool.unload(R.raw.click_djungle)
+        //soundPool.unload(R.raw.tick_finished_marimba)
+        //soundPool.unload(R.raw.click_djungle)
         super.onDestroy()
+        soundPool.release()
     }
 }

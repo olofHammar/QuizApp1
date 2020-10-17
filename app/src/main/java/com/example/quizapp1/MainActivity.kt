@@ -66,11 +66,11 @@ class MainActivity : AppCompatActivity(), Communicator {
         fragmentPlay.arguments = bundle
 
         transaction.replace(R.id.fragment_layout, fragmentPlay)
+        transaction.addToBackStack(null)
         transaction.commit()
     }
     override fun onDestroy() {
-
-        soundPool.unload(R.raw.click_mouth_pop)
         super.onDestroy()
+        soundPool.release()
     }
 }

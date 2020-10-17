@@ -32,7 +32,7 @@ class HomeFragment : Fragment(){
         return view
     }
     override fun onDestroy() {
-        soundPool.unload(R.raw.click_mouth_pop)
         super.onDestroy()
+        soundPool.release()
     }
 }

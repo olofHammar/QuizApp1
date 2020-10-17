@@ -22,7 +22,11 @@ class SoundPool(maxStreams: Int = 3) {
     }
 
     fun unload(resourceId: Int) {
-        aliases[resourceId]?.let { soundPool.unload(it); soundPool.release(); soundPool = null }
+        aliases[resourceId]?.let { soundPool.unload(it)}
+    }
+    fun release() {
+        soundPool.release()
+        soundPool = null
     }
 
     fun play(resourceId: Int) {
