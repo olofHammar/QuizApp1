@@ -2,6 +2,7 @@ package com.example.quizapp1
 
 import android.content.Context
 import android.media.AudioAttributes
+//I denna klass skapar jag en Soundpool med funktioner för att ladda, spela och radera ljud.
 
 class SoundPool(maxStreams: Int = 3) {
     val audioAttributes = AudioAttributes
