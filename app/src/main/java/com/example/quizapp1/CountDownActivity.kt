@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_count_down.*
 import java.io.Serializable
 
-
+//Denna aktivitet är en nedräkning inför att quizet startar.
 class CountDownActivity : AppCompatActivity() {
 
     private var soundPool = SoundPool()
@@ -55,8 +55,6 @@ class CountDownActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        //soundPool.unload(R.raw.tick_finished_marimba)
-        //soundPool.unload(R.raw.click_djungle)
         super.onDestroy()
         soundPool.release()
     }
