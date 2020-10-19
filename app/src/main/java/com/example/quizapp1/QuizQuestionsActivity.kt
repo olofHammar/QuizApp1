@@ -20,11 +20,14 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCurrentPosition: Int = 1
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
-    private var mTotalNrOfQuestions: Int = 10
+    private var mTotalNrOfQuestions: Int = 0
     private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
     private var soundPool = SoundPool()
+    /*Denna timer räknar ner från tio när en ny fråga startar. När tiden är ute så kallas funktionen submitAnswer.
+    mSelectedOption... är då satt till 0 vilket är fel svar.
+     */
     private val countDownTimer = object : CountDownTimer(10000, 1000) {
         override fun onFinish() {
             submitAnswer()
@@ -33,6 +36,12 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             tv_timer.text = "${(millisUntilFinished+1000)/1000}"
         }
     }
+    /*
+    Dessa två timers fungerar som delay när användaren valt ett svar. Utan detta delay startades nästa fråga
+    innan användaren hann se svaret. Jag använde först Handler men från vad jag har läst så är det ganska dålig praxis.
+    Sen kollade jag på coroutines men hade svårt att få det att fungera som jag ville. Så jag valde till slut att använda
+    dessa timers.
+     */
     private val setQuestionTimer = object : CountDownTimer (1500,1000){
         override fun onFinish() {
             setQuestion()
@@ -52,10 +61,12 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         soundPool.load(this, R.raw.alert_right_answer)
         soundPool.load(this, R.raw.alert_wrong_answer)
-        //Här hämtar jag in användarnamnet från mainActivity
+
+        //Här hämtar jag in variablerna jag skickade från PlayFragment.
         mUserName = intent.getStringExtra(Constants.USER_NAME)
         mTotalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
-        //Här hämtar jag in frågor som jag sparar i en lista som sedan blandas med shuffle
+
+        //Här hämtar jag frågorna till mQuestionsList från funktion getQuestions i Constants sedan blandar jag frågorna med shuffle.
         mQuestionsList = Constants.getQuestion()
         Collections.shuffle(mQuestionsList)
 
@@ -68,6 +79,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_four.setOnClickListener(this)
     }
 
+    //Denna funktion återställer alla svarsalternativ till default-design
     private fun defaultOptionsView() {
         val options = ArrayList<TextView>()
         options.add(0, tv_option_one)
@@ -77,11 +89,11 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         for (option in options) {
             option.setTextColor(Color.parseColor("#000000"))
-            //option.typeface = Typeface.DEFAULT
             option.setBackgroundResource(R.drawable.default_option_border_bg)
         }
     }
 
+    //Denna funktion byter design på det valda svarsalternativet.
     private fun answerView(answer: Int, drawableView: Int) {
         when (answer) {
             1 -> {tv_option_one.background = ContextCompat.getDrawable(this, drawableView)}
@@ -92,10 +104,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 /*
-Denna funktion skapar en fråga. Jag gör svarsalternativen klickbara, och sätter dom till deras default illustration.
+Denna funktion skapar en fråga. Jag gör svarsalternativen klickbara, och sätter dom till deras default-design.
 Jag skapar sedan variabeln question som hämtar en fråga från listan med hjälp av mCurrentPosition
 Sedan ger jag varje text/imageView rätt variabel från question och startar countDownTimer.
-Min timer består av fyra delar, en textView för nedräkning av siffror, en circularProgressBar,
+Min timer består av fyra delar, en textView för nedräkning av siffror, en circularProgressBar som är satt till tio sekunder,
 en imageView som visar rött eller grönt vid fel/rätt svar samt en textView som skriver ut om det var rätt eller fel svar.
 Jag sätter svaret till fel som default och väljer vilka delar av timern som ska synas från början.
  */
@@ -131,6 +143,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         progress_bar_timer.visibility = View.VISIBLE
     }
 
+    //När något av svarsalternativen klickas på så sätts mSelected... till det matchande numret och skickas sedan till submitAnswer
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tv_option_one -> {mSelectedOptionPosition = 1; submitAnswer()}
@@ -140,6 +153,13 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         }
     }
 
+    /*
+    Denna funktion kollar om svaret användaren uppgivit är rätt eller fel.
+    Först så gör jag så att svarsalternativen ej är klickbara, sedan stoppar jag timern och byter design på den genom visibility.
+    Sedan jämför jag question.correctAnswer med den valda mSelectedPos... om dessa är samma är svaret rätt annars är svaret fel.
+    Efter det laddas en ny fråga så länge som mCurrentPosition är mindre eller lika med mTotalNrOf...
+    Annars går vi vidare till resultActivity.
+     */
     private fun submitAnswer() {
 
         questionSubmitted = true
