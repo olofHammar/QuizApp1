@@ -18,19 +18,21 @@ class PlayFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_play, container, false)
-        /*
-        Här skapar jag en variabel som kopplas till startknappen. Sedan sätter jag en klicklyssnare till den knappen.
-        Lyssnaren kräver att användaren skriver in sitt namn, görs ej detta så visas en Toast som ber användaren skriva in sitt namn.
-        Är namnet ifyllt så skickas vi till QuizActivity. Jag skickar med namnet på spelaren. Jag skickar även med informationen från
-        det förra fragmentet gällande hur många frågot quizet ska innehålla.
-         */
+
+        //Här hämtar jag totalNrOfQuestions från mainActivity
         totalQuestions = arguments?.getInt("Q")
+
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
-        //Detta är en toast som ber användaren att skriva in sitt namn.
+        //Detta är en toast som ber användaren att skriva in sitt namn. Denna fungerar på exakt samma sätt som toasten i tidigare fragment.
         val btnEnterNameMessage: TextView = view.findViewById(R.id.tv_enter_name_message)
         val btnStart: Button = view.findViewById(R.id.btn_start)
+
         btnEnterNameMessage.visibility = View.GONE
 
+        /*
+        Här sätter jag en klick-lyssnare till knappen btnStart. Knappen kräver att användaren skriver in text, annars visas en toast.
+        Om användaren har skrivit in text så startas nästa aktivitet. Till nästa aktivitet så skickar jag med userName och totalQuestions.
+         */
         btnStart.setOnClickListener {
             if (et_name.text.toString().isEmpty()) {
 
@@ -49,8 +51,7 @@ class PlayFragment : Fragment(){
 
                 soundPool.play(R.raw.click_mouth_pop)
                 val userName = et_name.text.toString()
-                val intent =
-                    Intent(this@PlayFragment.context, CountDownActivity::class.java)
+                val intent = Intent(this@PlayFragment.context, CountDownActivity::class.java)
                 startActivity(intent)
                 intent.putExtra(Constants.USER_NAME, userName)
                 intent.putExtra(Constants.TOTAL_QUESTIONS, totalQuestions)
