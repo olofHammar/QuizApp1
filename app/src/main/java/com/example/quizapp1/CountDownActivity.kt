@@ -6,6 +6,7 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_count_down.*
+import java.io.Serializable
 
 
 class CountDownActivity : AppCompatActivity() {
@@ -18,6 +19,7 @@ class CountDownActivity : AppCompatActivity() {
 
         soundPool.load(this, R.raw.tick_finished_marimba)
         soundPool.load(this, R.raw.click_djungle)
+        soundPool.load(this, R.raw.alert_right_answer)
         val quizCountDownTimer = object: CountDownTimer (2500,1000){
             override fun onFinish() {
                 soundPool.play(R.raw.tick_finished_marimba)

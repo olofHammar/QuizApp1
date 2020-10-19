@@ -6,20 +6,24 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Communicator {
-
+//I varje aktivitet/fragment där jag använder ljud så skapar jag ett objekt av klassen SoundPool
     private var soundPool = SoundPool()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Genom att kalla på SoundPool-funktionen load så hämtar jag alla ljud jag behöver i denna aktivitet.
         soundPool.load(this, R.raw.click_mouth_pop)
 
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
 
-        //Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
-        //Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
+        /*
+        Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
+        Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
+
+         */
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_home -> {
@@ -65,6 +69,7 @@ class MainActivity : AppCompatActivity(), Communicator {
         transaction.addToBackStack(null)
         transaction.commit()
     }
+    //Denna funktion slänger bort alla ljud som skapats i denna aktivitet när aktiviteten avslutas
     override fun onDestroy() {
         super.onDestroy()
         soundPool.release()
