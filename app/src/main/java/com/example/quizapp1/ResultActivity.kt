@@ -29,6 +29,7 @@ class ResultActivity : AppCompatActivity() {
     private var totalQuestions = 0
     private var correctAnswers = 0
     private var wrongAnswers = 0
+    //Dessa variabler används i pieChart
     private var correctAnswersFloat: Float = 0F
     private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
@@ -48,20 +49,18 @@ class ResultActivity : AppCompatActivity() {
         soundPool.load(this, R.raw.click_mouth_pop)
         soundPool.load(this, R.raw.fanfare_highscore)
 
-        tvHighScoreMessage = findViewById<TextView>(R.id.tv_highscore_message)
+        tvHighScoreMessage = findViewById(R.id.tv_highscore_message)
         pieChart = findViewById(R.id.piechart)
         tvRight = findViewById(R.id.tv_correct_answers)
         tvWrong = findViewById(R.id.tv_wrong_answers)
 
-        /*
-        Här hämtar jag information från tidigare aktiviteter som sätts till nya variabler i denna aktivitet.
-        Sedan skapar jag en variabel för sharedPreferences.
-         */
+        //Här hämtar jag allt som skickats från tidigare aktivitet.
         username = intent.getStringExtra(Constants.USER_NAME).toString()
         totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         wrongAnswers = (totalQuestions - correctAnswers)
 
+        //Här hämtar jag nuvarande highscore-lista så att jag kan jämföra det nya resultatet med den.
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
         highScoreNrOne.playerName = pref.getString("highScoreOneName", "---").toString()
@@ -79,7 +78,7 @@ class ResultActivity : AppCompatActivity() {
         setData()
         loadPieChart(this)
         /*
-        Om spelarens poäng är högre än någon av tidigar highscore så sparas denna poäng och flyttar ner
+        Om spelarens poäng är högre än någon av tidigare highscore så sparas denna poäng och flyttar ner
         det tidigare highscoren ett snäpp ner i listan.
          */
         when {
@@ -115,12 +114,17 @@ class ResultActivity : AppCompatActivity() {
         )
 
         btn_finish.setOnClickListener {
+            //Kommentaren under kan avkommenteras om man vill nollställa highscore-listan
             //pref.edit().clear().apply()
             soundPool.play(R.raw.click_mouth_pop)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
+    /*
+    Denna funktion skiver ut ett meddelande som berättar om användaren tog sig in på highscore-listan eller inte.
+    Ifall användaren gjorde det så spelas en fanfar.
+    */
     @ExperimentalStdlibApi
     private fun displayResultMessage () {
         when {
@@ -147,11 +151,13 @@ class ResultActivity : AppCompatActivity() {
             }
         }
     }
+    //Denna funktion skickar in resultatet i pieChart och visar det.
     private fun setData() {
 
         val percentageRight = (correctAnswers.toDouble() / totalQuestions) * 100
         val percentageWrong = (wrongAnswers.toDouble() / totalQuestions) * 100
 
+        //Jag lyckas av någon anledning inte ändra dessa två till en value/string utan att appen crashar.
         tvRight.setText("$percentageRight % Rätt")
         tvWrong.setText("$percentageWrong % Fel")
 
@@ -171,8 +177,12 @@ class ResultActivity : AppCompatActivity() {
         )
         pieChart.startAnimation()
     }
+    /*
+    Denna funktion fyller skärmen med konfetti om användaren tog sig in på highscore-listan.
+    Konfettin är importerad i implementations och skapas sedan här.
+     */
+
     private fun confetti() {
-    //Konfettin är importerad i implementations och skapas sedan här.
         ParticleSystem(this, 80, R.drawable.confeti2, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 0)
             .setRotationSpeed(144f)
@@ -187,11 +197,11 @@ class ResultActivity : AppCompatActivity() {
     }
     fun loadPieChart (context: Context) {
         var loadPieChart = MediaPlayer.create(context, R.raw.load_piechart)
-        loadPieChart.setOnCompletionListener(MediaPlayer.OnCompletionListener { mp ->
+        loadPieChart.setOnCompletionListener { mp ->
             mp.reset()
             mp.release()
             loadPieChart = null
-        })
+        }
         loadPieChart.start()
     }
 
