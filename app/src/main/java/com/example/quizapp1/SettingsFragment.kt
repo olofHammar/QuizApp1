@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import kotlinx.android.synthetic.main.fragment_settings.*
 import java.util.*
-
+//Detta är fragmentet för inställningar. Hittills finns bara en inställning som stänger av och på ljudet.
 class SettingsFragment : Fragment(){
 
     private var soundPool = SoundPool()
@@ -28,9 +28,10 @@ class SettingsFragment : Fragment(){
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
         soundPool.load(activity!!.applicationContext, R.raw.click_slime_drip)
 
+        //jag använder SharedPreferences för att spara inställningen om ljudet ska vara av eller på.
         val pref = context?.getSharedPreferences("soundSettings", Context.MODE_PRIVATE)
 
-        //Denna variabel använder jag för att spara ljudinställningarna i sharedPreferences
+        //Denna variabel använder jag för att hämta ljudinställningarna.
         var soundSetting = pref!!.getInt("soundSettings", 0)
 
         val btnBackHome: Button = view.findViewById(R.id.btn_back_home)
@@ -55,6 +56,11 @@ class SettingsFragment : Fragment(){
             val mFrag: Fragment = HomeFragment()
             t.replace(R.id.fragment_layout, mFrag)
             t.commit()
+            /*
+            Jag satte en timer här som väntar 1,5 sekunder med att kasta bort fragmentets uppladdade ljud.
+            Jag kunde inte använda onDestroy i detta fragment utan att det crashade och utan timern så blev ljudet
+            lite buggigt.
+             */
             object: CountDownTimer (1500,1000){
                 override fun onFinish() {
                     soundPool.release()
@@ -85,6 +91,7 @@ class SettingsFragment : Fragment(){
         return view
     }
 
+    //Denna funktion återställer knapparna till default-design.
     private fun defaultButtonView() {
         val options = ArrayList<TextView>()
         options.add(0, btn_sound_on)
@@ -95,7 +102,7 @@ class SettingsFragment : Fragment(){
             option.setTextColor(Color.parseColor("#888888"))
         }
     }
-
+    //Denna funktion stänger av allt ljud.
     @RequiresApi(Build.VERSION_CODES.M)
     private fun mute() {
 
@@ -107,6 +114,7 @@ class SettingsFragment : Fragment(){
         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_TOGGLE_MUTE, 0)
         audioManager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_TOGGLE_MUTE, 0)
     }
+    //Denna funktion sätter på allt ljud.
     @RequiresApi(Build.VERSION_CODES.M)
     private fun unMute() {
 
@@ -118,5 +126,4 @@ class SettingsFragment : Fragment(){
         audioManager.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0)
         audioManager.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_UNMUTE, 0)
     }
-
 }
