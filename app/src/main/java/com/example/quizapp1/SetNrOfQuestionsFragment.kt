@@ -14,6 +14,7 @@ import java.util.*
 
 class SetNrOfQuestionsFragment : Fragment(){
 
+    //Här skapar jag en communicator så att jag kan skicka data tillbaka till mainactivity och sedan vidare till Playfragment
     private lateinit var communicator: Communicator
     private var soundPool = SoundPool()
 
@@ -25,16 +26,21 @@ class SetNrOfQuestionsFragment : Fragment(){
         soundPool.load(activity!!.applicationContext, R.raw.click_slime_drip)
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
 
+        //Jag sätter värdet på totalNr.. till 0 vid uppstart om detta värde inte ändras så visas en toast som ber användaren välja ett nummer.
         var totalNrOfQuestions = 0
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
         val btnSelectThirty: Button = view.findViewById(R.id.btn_select_thirty)
         val btnNext: Button = view.findViewById(R.id.btn_next)
 
-        //Detta är en toast som säger åt användaren att välja nummer
+        //Detta är toasten som säger åt användaren att välja nummer
         val btnEnterNrOfQuestionsMessage = view.findViewById<TextView>(R.id.tv_enter_nr_of_questions_message)
+        //Den är osynlig så länge inte användaren klickar på next utan att välja ett nummer.
         btnEnterNrOfQuestionsMessage.visibility = View.GONE
 
+        /*Här sätter jag klick-lyssnare på varje nummer-knapp. Varje knapp använder funktionen defaultButtonView så att knappens design
+        återställs när användaren klickar på en annan nummer-knapp.
+         */
         btnSelectTen.setOnClickListener {
             soundPool.play(R.raw.click_slime_drip)
             defaultButtonView()
@@ -56,6 +62,10 @@ class SetNrOfQuestionsFragment : Fragment(){
             btnSelectThirty.setTextColor(Color.parseColor("#696969"))
             totalNrOfQuestions = 30
         }
+        /*
+        Denna knapp visaren antingen en toast om användaren ej gjort ett val alt skickas antalet valda frågor tillbaka till
+        mainactivity genom communicators funktion sendaData.
+         */
         btnNext.setOnClickListener {
 
             soundPool.play(R.raw.click_mouth_pop)
@@ -76,7 +86,7 @@ class SetNrOfQuestionsFragment : Fragment(){
         }
         return view
     }
-
+//Denna funktion återställer alla knappar till default-design
     private fun defaultButtonView() {
         val options = ArrayList<TextView>()
         options.add(0, btn_select_ten)
