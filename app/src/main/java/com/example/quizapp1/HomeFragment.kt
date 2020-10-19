@@ -1,6 +1,5 @@
 package com.example.quizapp1
 
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +8,10 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 
+/*
+Detta fragment är det första som syns när appen startas. Fragmentet visar ett välkomstmeddelande och har även en knapp som
+skickar användaren vidare till settings-fragmentet.
+ */
 class HomeFragment : Fragment(){
 
     private var soundPool = SoundPool()
