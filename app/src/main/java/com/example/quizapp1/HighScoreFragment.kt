@@ -15,6 +15,10 @@ class HighScoreFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_high_score, container, false)
 
+        /*
+        Här skapar jag en pref-variabel som jag använder för att kunna hämta in den sparade highscore-listan
+        genom SharedPreferences.
+         */
         val pref = context?.getSharedPreferences("highScore", Context.MODE_PRIVATE)
         val pOne = PlayerHighScore()
         pOne.playerName = pref?.getString("highScoreOneName", "---").toString()

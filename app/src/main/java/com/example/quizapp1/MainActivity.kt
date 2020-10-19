@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity(), Communicator {
         /*
         Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
         Varje itemId i navigationsmenyn är kopplat till ett fragment som öppnas vid klick på respektive itemId.
-
          */
         bottom_navigation_view.setOnNavigationItemSelectedListener {
             when (it.itemId) {
