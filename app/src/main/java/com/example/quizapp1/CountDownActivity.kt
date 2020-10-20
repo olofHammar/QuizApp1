@@ -6,7 +6,6 @@ import android.os.CountDownTimer
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_count_down.*
-import java.io.Serializable
 
 //Denna aktivitet är en nedräkning inför att quizet startar.
 class CountDownActivity : AppCompatActivity() {
@@ -30,6 +29,7 @@ class CountDownActivity : AppCompatActivity() {
                 intent.putExtra(Constants.USER_NAME, userName)
                 intent.putExtra(Constants.TOTAL_QUESTIONS, totalNrOfQuestions)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_in)
                 finish()
             }
             override fun onTick(millisUntilFinished: Long) {
