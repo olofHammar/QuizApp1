@@ -431,6 +431,281 @@ object Constants {
             4)
         questionsList.add(q38)
 
+        val q39 = Question (
+            39,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.finland,
+            "Estland",
+            "Skottland",
+            "Finland",
+            "Sverige",
+            3)
+        questionsList.add(q39)
+
+        val q40 = Question (
+            40,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.frankrike,
+            "Frankrike",
+            "Ryssland",
+            "Holland",
+            "Tjeckien",
+            1)
+        questionsList.add(q40)
+
+        val q41 = Question (
+            41,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.gerorgien,
+            "England",
+            "Georgien",
+            "Nord Irland",
+            "Malta",
+        2)
+        questionsList.add(q41)
+
+        val q42 = Question (
+            42,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.grekland,
+            "Skottland",
+            "Israel",
+            "Grekland",
+            "Finland",
+            3)
+        questionsList.add(q42)
+
+        val q43 = Question (
+            43,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.gronland,
+            "Japan",
+            "Bangladesh",
+            "Haiti",
+            "Grönland",
+            4)
+        questionsList.add(q43)
+
+        val q44 = Question (
+            44,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.gtyskland,
+            "Tyskland",
+            "Belgien",
+            "Luxenburg",
+            "Frankrike",
+            1)
+        questionsList.add(q44)
+
+        val q45 = Question (
+            45,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.haiti,
+            "Mongoliet",
+            "Haiti",
+            "Nepal",
+            "Andorra",
+            2)
+        questionsList.add(q45)
+
+        val q46 = Question (
+            46,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.holland,
+            "Ryssland",
+            "Slovakien",
+            "Holland",
+            "Paraguay",
+            3)
+        questionsList.add(q46)
+
+        val q47 = Question (
+            47,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.honduras,
+            "Grekland",
+            "El salvador",
+            "Belize",
+            "Honduras",
+            4)
+        questionsList.add(q47)
+
+        val q48 = Question (
+            48,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.hungern,
+            "Ungern",
+            "Bulgarien",
+            "Rumänien",
+            "Italien",
+            1)
+        questionsList.add(q48)
+
+        val q49 = Question (
+            49,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.indonesien,
+            "Polen",
+            "Indonesien",
+            "Malta",
+            "Singapore",
+            2)
+        questionsList.add(q49)
+
+        val q50 = Question (
+            50,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.irak,
+            "Egypten",
+            "Iran",
+            "Irak",
+            "Jordanien",
+            3)
+        questionsList.add(q50)
+
+        val q51 = Question (
+            51,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.iran,
+            "Burma",
+            "Liberia",
+            "Irak",
+            "Iran",
+            4)
+        questionsList.add(q51)
+
+        val q52 = Question (
+            52,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.island,
+            "Island",
+            "Norge",
+            "Grönland",
+            "Sverige",
+            1)
+        questionsList.add(q52)
+
+        val q53 = Question (
+            53,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.italien,
+            "Bulgarien",
+            "Italien",
+            "Mexico",
+            "Ungern",
+            2)
+        questionsList.add(q53)
+
+        val q54 = Question (
+            54,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.jamaica,
+            "Kuba",
+            "Costa Rica",
+            "Jamaica",
+            "Haiti",
+            3)
+        questionsList.add(q54)
+
+        val q55 = Question (
+            55,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.jordanien,
+            "Irak",
+            "Egypten",
+            "Iran",
+            "Jordanien",
+            4)
+        questionsList.add(q55)
+
+        val q56 = Question (
+            56,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.kenya,
+            "Kenya",
+            "Somalia",
+            "Etiopien",
+            "Uganda",
+            1)
+        questionsList.add(q56)
+
+        val q57 = Question (
+            57,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.kosovo,
+            "Serbien",
+            "Kosovo",
+            "Montenegro",
+            "Moldavien",
+            2)
+        questionsList.add(q57)
+
+        val q58 = Question (
+            58,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.laos,
+            "Kambodja",
+            "Indonesien",
+            "Laos",
+            "Thailand",
+            3)
+        questionsList.add(q58)
+
+        val q59 = Question (
+            59,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.lettland,
+            "Litauen",
+            "Moldavien",
+            "Norge",
+            "Lettland",
+            4)
+        questionsList.add(q59)
+
+        val q60 = Question (
+            60,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.liberia,
+            "Liberia",
+            "Puerto Rico",
+            "USA",
+            "Hawaii",
+            1)
+        questionsList.add(q60)
+
+        val q61 =Question (
+            61,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.litauen,
+            "Burma",
+            "Litauen",
+            "Ghana",
+            "Senegal",
+            2)
+        questionsList.add(q61)
+
+        val q62 = Question (
+            62,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.luxenburg,
+            "Holland",
+            "Ryssland",
+            "Luxenburg",
+            "Frankrike",
+            3)
+        questionsList.add(q62)
+
+        val q63 = Question (
+            63,
+            "Vilket land tillhör denna flagga?",
+            R.drawable.kazakstan,
+            "Uzbekistan",
+            "Jordanien",
+            "Turkmenistan",
+            "Kazakstan",
+            4)
+        questionsList.add(q63)
+
         return questionsList
     }
 
