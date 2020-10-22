@@ -1,7 +1,11 @@
-package com.example.quizapp1
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 
-//Detta interface används för att kommunicera mellan fragment
-interface Communicator {
+class Communicator : ViewModel(){
 
-    fun sendData (nr: Int)
+    val message = MutableLiveData<Any>()
+
+    fun setMsgCommunicator(nr:Int){
+        message.setValue(nr)
+    }
 }

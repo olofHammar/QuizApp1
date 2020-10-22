@@ -1,5 +1,6 @@
 package com.example.quizapp1
 
+import Communicator
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_play.*
 
 class PlayFragment : Fragment(){
@@ -20,7 +23,15 @@ class PlayFragment : Fragment(){
         val view: View = inflater.inflate(R.layout.fragment_play, container, false)
 
         //Här hämtar jag totalNrOfQuestions från mainActivity
-        totalQuestions = arguments?.getInt("Q")
+        //totalQuestions = arguments?.getInt("Q")
+
+        val model= ViewModelProviders.of(activity!!).get(Communicator::class.java)
+
+        model.message.observe(this, object : Observer<Any> {
+            override fun onChanged(o: Any?) {
+                totalQuestions = o!!.toString().toInt()
+            }
+        })
 
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
         //Detta är en toast som ber användaren att skriva in sitt namn. Denna fungerar på exakt samma sätt som toasten i tidigare fragment.
