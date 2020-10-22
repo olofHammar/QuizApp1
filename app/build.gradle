@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
     implementation 'com.plattysoft.leonids:LeonidsLib:1.3.2'
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 }

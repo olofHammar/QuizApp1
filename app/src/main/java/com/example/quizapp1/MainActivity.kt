@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), Communicator {
+
 //I varje aktivitet/fragment där jag använder ljud så skapar jag ett objekt av klassen SoundPool
     private var soundPool = SoundPool()
 
