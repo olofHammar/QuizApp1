@@ -29,7 +29,7 @@ class ResultActivity : AppCompatActivity() {
     private var totalQuestions = 0
     private var correctAnswers = 0
     private var wrongAnswers = 0
-    //Dessa variabler används i pieChart
+    //Dessa variabler används för att kunna rita upp pieChart
     private var correctAnswersFloat: Float = 0F
     private var wrongAnswersFloat: Float = 0F
     @ExperimentalStdlibApi
@@ -76,6 +76,7 @@ class ResultActivity : AppCompatActivity() {
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
 
         setData()
+        //Detta ljud var också en soundPool från början men hann inte ladda i tid. Därför ändrade jag denna till MediaPlayer
         loadPieChart(this)
         /*
         Om spelarens poäng är högre än någon av tidigare highscore så sparas denna poäng och flyttar ner
@@ -183,13 +184,13 @@ class ResultActivity : AppCompatActivity() {
      */
 
     private fun confetti() {
-        ParticleSystem(this, 80, R.drawable.confeti2, 10000)
+        ParticleSystem(this, 80, R.drawable.confeti3, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.3f, 180, 0)
             .setRotationSpeed(144f)
             .setAcceleration(0.00005f, 90)
             .emit(findViewById(R.id.emiter_top_right), 8)
 
-        ParticleSystem(this, 80, R.drawable.confeti3, 10000)
+        ParticleSystem(this, 80, R.drawable.confeti2, 10000)
             .setSpeedModuleAndAngleRange(0f, 0.3f, 0, 0)
             .setRotationSpeed(144f)
             .setAcceleration(0.00005f, 90)
