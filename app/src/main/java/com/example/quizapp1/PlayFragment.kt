@@ -25,9 +25,9 @@ class PlayFragment : Fragment(){
         //Här hämtar jag totalNrOfQuestions från mainActivity
         //totalQuestions = arguments?.getInt("Q")
 
-        val model= ViewModelProviders.of(activity!!).get(Communicator::class.java)
+        val communicator= ViewModelProviders.of(activity!!).get(Communicator::class.java)
 
-        model.message.observe(this, object : Observer<Any> {
+        communicator.nrOfQuestions.observe(this, object : Observer<Any> {
             override fun onChanged(o: Any?) {
                 totalQuestions = o!!.toString().toInt()
             }

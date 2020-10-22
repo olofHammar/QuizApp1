@@ -1,11 +1,12 @@
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+//Denna klass använder jag för att kommunicera mellan fragment.
 class Communicator : ViewModel(){
 
-    val message = MutableLiveData<Any>()
+    val nrOfQuestions = MutableLiveData<Any>()
 
-    fun setMsgCommunicator(nr:Int){
-        message.setValue(nr)
+    fun sendNrOfQuestions(nr:Int){
+        nrOfQuestions.setValue(nr)
     }
 }

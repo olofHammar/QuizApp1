@@ -17,20 +17,21 @@ import java.util.*
 class SetNrOfQuestionsFragment : Fragment(){
 
     //Här skapar jag en communicator så att jag kan skicka data tillbaka till mainactivity och sedan vidare till Playfragment
-    private var model: Communicator?=null
+    private var communicator: Communicator? = null
+    private var totalNrOfQuestions = 0
     private var soundPool = SoundPool()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_set_nr_of_questions, container, false)
 
-        model= ViewModelProviders.of(activity!!).get(Communicator::class.java)
+        communicator= ViewModelProviders.of(activity!!).get(Communicator::class.java)
 
 
         soundPool.load(activity!!.applicationContext, R.raw.click_slime_drip)
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
 
         //Jag sätter värdet på totalNr.. till 0 vid uppstart om detta värde inte ändras så visas en toast som ber användaren välja ett nummer.
-        var totalNrOfQuestions = 0
+        //var totalNrOfQuestions = 0
         val btnSelectTen: Button = view.findViewById(R.id.btn_select_ten)
         val btnSelectTwenty: Button = view.findViewById(R.id.btn_select_twenty)
         val btnSelectThirty: Button = view.findViewById(R.id.btn_select_thirty)
@@ -84,12 +85,7 @@ class SetNrOfQuestionsFragment : Fragment(){
                 messageTimer.start()
             }
             else {
-                model!!.setMsgCommunicator(totalNrOfQuestions)
-                val myfragment = PlayFragment()
-                val fragmentTransaction = fragmentManager!!.beginTransaction()
-                fragmentTransaction.replace(R.id.fragment_layout, myfragment)
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
+                loadPlayAndSendData()
             }
         }
         return view
@@ -105,6 +101,15 @@ class SetNrOfQuestionsFragment : Fragment(){
             option.setBackgroundResource(R.drawable.round_button)
             option.setTextColor(Color.parseColor("#888888"))
         }
+    }
+
+    private fun loadPlayAndSendData() {
+        communicator!!.sendNrOfQuestions(totalNrOfQuestions)
+        val myfragment = PlayFragment()
+        val fragmentTransaction = fragmentManager!!.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_layout, myfragment)
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
     }
 
     override fun onDestroy() {
