@@ -1,6 +1,5 @@
 package com.example.quizapp1
 
-import Communicator
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.fragment_set_nr_of_questions.*
 import java.util.*
 
