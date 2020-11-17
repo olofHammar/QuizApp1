@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_play -> {
-                    soundPool.play(R.raw.click_mouth_pop); loadFragment(SetNrOfQuestionsFragment())
+                    soundPool.play(R.raw.click_mouth_pop); loadFragment(PlayFragment())
                     return@setOnNavigationItemSelectedListener true
                 }
 

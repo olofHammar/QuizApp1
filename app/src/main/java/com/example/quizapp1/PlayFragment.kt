@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_play.*
 
 class PlayFragment : Fragment(){
 
-    private var totalQuestions: Int? = 0
     private var soundPool = SoundPool()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -24,14 +23,6 @@ class PlayFragment : Fragment(){
 
         //Här hämtar jag totalNrOfQuestions från mainActivity
         //totalQuestions = arguments?.getInt("Q")
-
-        val communicator= ViewModelProviders.of(activity!!).get(Communicator::class.java)
-
-        communicator.nrOfQuestions.observe(this, object : Observer<Any> {
-            override fun onChanged(o: Any?) {
-                totalQuestions = o!!.toString().toInt()
-            }
-        })
 
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
         //Detta är en toast som ber användaren att skriva in sitt namn. Denna fungerar på exakt samma sätt som toasten i tidigare fragment.
@@ -60,6 +51,7 @@ class PlayFragment : Fragment(){
             }
             else {
 
+                val totalQuestions = 10
                 soundPool.play(R.raw.click_mouth_pop)
                 val userName = et_name.text.toString()
                 val intent = Intent(this@PlayFragment.context, CountDownActivity::class.java)

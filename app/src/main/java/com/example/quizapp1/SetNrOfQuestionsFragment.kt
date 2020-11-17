@@ -17,15 +17,11 @@ import java.util.*
 class SetNrOfQuestionsFragment : Fragment(){
 
     //Här skapar jag en communicator så att jag kan skicka data tillbaka till mainactivity och sedan vidare till Playfragment
-    private var communicator: Communicator? = null
     private var totalNrOfQuestions = 0
     private var soundPool = SoundPool()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_set_nr_of_questions, container, false)
-
-        communicator= ViewModelProviders.of(activity!!).get(Communicator::class.java)
-
 
         soundPool.load(activity!!.applicationContext, R.raw.click_slime_drip)
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
@@ -104,7 +100,6 @@ class SetNrOfQuestionsFragment : Fragment(){
     }
 
     private fun loadPlayAndSendData() {
-        communicator!!.sendNrOfQuestions(totalNrOfQuestions)
         val myfragment = PlayFragment()
         val fragmentTransaction = fragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_layout, myfragment)
