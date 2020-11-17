@@ -9,12 +9,12 @@ import androidx.room.Query
 interface QuestionDao {
 
     @Insert
-    fun insert(word: Word)
+    fun insert(questionTemplate: QuestionTemplate)
 
     @Delete
-    fun delete(word: Word)
+    fun delete(questionTemplate: QuestionTemplate)
 
     @Query("SELECT * FROM question")
-    fun getAll() : List<Word>
+    fun getAll() : List<QuestionTemplate>
 
 }

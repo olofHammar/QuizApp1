@@ -1,18 +1,43 @@
 package com.example.quizapp1
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CoroutineScope {
 
-//I varje aktivitet/fragment där jag använder ljud så skapar jag ett objekt av klassen SoundPool
+    private lateinit var job : Job
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    var questionList : QuestionList? = null
+    var curretQuestion : QuestionTemplate? = null
+    private lateinit var db  : AppDatabase
+
+
     private var soundPool = SoundPool()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val argentina = R.drawable.argentina
+
+        job = Job()
+        db = AppDatabase.getInstance(this)
+
+        addNewQuestion(
+            QuestionTemplate(0, "Vilket land tillhör denna flagga?", argentina, "Argentina",
+        "Honduras", "Uruguay", "El Salvador", 1)
+        )
+
 
         //Genom att kalla på SoundPool-funktionen load så hämtar jag alla ljud jag behöver i denna aktivitet.
         soundPool.load(this, R.raw.click_mouth_pop)
@@ -42,6 +67,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             false
+        }
+    }
+    fun addNewQuestion(questionTemplate: QuestionTemplate) {
+
+        launch(Dispatchers.IO) {
+            db.questionDao.insert(questionTemplate)
         }
     }
     //Denna funktion skapar fragmentet i mainActivity

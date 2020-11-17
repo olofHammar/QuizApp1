@@ -6,7 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "question")
-data class Word(@PrimaryKey(autoGenerate = true) val id: Int,
+data class QuestionTemplate(@PrimaryKey(autoGenerate = true) val id: Int,
                 @ColumnInfo(name = "question") var question: String,
                 @ColumnInfo(name = "image") var image: Int,
                 @ColumnInfo(name = "optionone") val optionOne: String,
