@@ -17,4 +17,7 @@ interface QuestionDao {
     @Query("SELECT * FROM question")
     fun getAll() : List<QuestionTemplate>
 
+    @Query("DELETE FROM question")
+    fun delete()
+
 }

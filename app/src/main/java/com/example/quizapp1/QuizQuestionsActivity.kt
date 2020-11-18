@@ -9,19 +9,24 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_quiz_questions.*
+import kotlinx.coroutines.*
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
 /*
 Jag har satt en onClickListener här som fungerar som lyssnare till alla knappar som ska klickas.
 Jag har sedan skapat en override funktion som hanterar vad som ska hända vid respektive klick.
  */
-class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
+class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener{
+
+    private val mQuestionsList = MainActivity.questionList
 
     private var mCurrentPosition: Int = 1
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswers: Int = 0
     private var mTotalNrOfQuestions: Int = 0
-    private lateinit var mQuestionsList: ArrayList<Question>
+    private var currentQuestion : QuestionTemplate? = null
+    //private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
     private var soundPool = SoundPool()
@@ -67,8 +72,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         mTotalNrOfQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS,0)
 
         //Här hämtar jag frågorna till mQuestionsList från funktion getQuestions i Constants sedan blandar jag frågorna med shuffle.
-        mQuestionsList = Constants.getQuestion()
-        Collections.shuffle(mQuestionsList)
+        //Collections.shuffle(mQuestionsList)
 
         //Här kallar jag på funktionen som skapar en fråga
         setQuestion()
@@ -112,6 +116,8 @@ en imageView som visar rött eller grönt vid fel/rätt svar samt en textView so
 Jag sätter svaret till fel som default och väljer vilka delar av timern som ska synas från början.
  */
     private fun setQuestion() {
+    if (currentQuestion == null)
+        return
 
         tv_option_one.isClickable = true
         tv_option_two.isClickable = true
@@ -120,7 +126,7 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         questionSubmitted = false
         mSelectedOptionPosition = 0
 
-        val question = mQuestionsList[mCurrentPosition - 1]
+        currentQuestion = mQuestionsList!!.getNewQuestion()
 
         defaultOptionsView()
 
@@ -129,12 +135,12 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         progress_bar.progress = mCurrentPosition
         tv_progress.text = resources.getString(R.string.tv_progress_bar_text_sv, mCurrentPosition.toString(), progress_bar.max.toString())
 
-        tv_question.text = question.question
-        iv_image.setImageResource(question.image)
-        tv_option_one.text = question.optionOne
-        tv_option_two.text = question.optionTwo
-        tv_option_three.text = question.optionThree
-        tv_option_four.text = question.optionFour
+        tv_question.text = currentQuestion!!.question
+        iv_image.setImageResource(currentQuestion!!.image)
+        tv_option_one.text = currentQuestion!!.optionOne
+        tv_option_two.text = currentQuestion!!.optionTwo
+        tv_option_three.text = currentQuestion!!.optionThree
+        tv_option_four.text = currentQuestion!!.optionFour
         countDownTimer.start()
         tv_circle_answer_text.setText(R.string.question_answer_wrong_sv)
         iv_circle_answer.setImageResource(R.drawable.circle_count_down)
@@ -173,8 +179,8 @@ Jag sätter svaret till fel som default och väljer vilka delar av timern som sk
         iv_circle_answer.visibility = View.VISIBLE
         tv_circle_answer_text.visibility = View.VISIBLE
 
-        val question = mQuestionsList.get(mCurrentPosition - 1)
-        if (question.correctAnswer != mSelectedOptionPosition) {
+        val question = currentQuestion
+        if (question!!.correctAnswer != mSelectedOptionPosition) {
             soundPool.play(R.raw.alert_wrong_answer)
             iv_circle_answer.setImageResource(R.drawable.circle_wrong_answer)
             answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
