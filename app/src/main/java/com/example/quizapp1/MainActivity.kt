@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*
         val argentina = R.drawable.argentina
         val aland = R.drawable.aland
         val antarktis = R.drawable.antarktis
@@ -36,13 +37,12 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         val usa = R.drawable.usa
         val belgien = R.drawable.belgien
         val bolivia = R.drawable.bolivia
-
+         */
         job = Job()
         db = AppDatabase.getInstance(this)
 
-
         //deleteQuestions()
-/*
+        /*
         addNewQuestion(QuestionTemplate(0, "Vilket land tillhör denna flagga?", argentina, "Argentina",
         "Honduras", "Uruguay", "El Salvador", 1))
         addNewQuestion(QuestionTemplate(0,"Vilket land tillhör denna flagga?", aland, "Norge", "Island",
@@ -63,9 +63,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         "Belgien", "Uganda", 3))
         addNewQuestion(QuestionTemplate(0, "Vilket land tillhör denna flagga?", bolivia, "Bolivia", "Senegal",
         "Etiopien", "Litauen", 1))
-
- */
-
+        */
 
         //Genom att kalla på SoundPool-funktionen load så hämtar jag alla ljud jag behöver i denna aktivitet.
         soundPool.load(this, R.raw.click_mouth_pop)
@@ -73,21 +71,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
         loadAllQuestions()
-
-
-
-        /*
-        if (questions == null) {
-            Log.d("!!!", "listan är tom")
-        }
-        else {
-            Log.d("!!!", "listan är inte tom")
-        }
-
-         */
-
-
-
 
         /*
         Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
@@ -124,7 +107,6 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             questionList = QuestionList(list)
         }
     }
-
 
     fun addNewQuestion(questionTemplate: QuestionTemplate) {
 

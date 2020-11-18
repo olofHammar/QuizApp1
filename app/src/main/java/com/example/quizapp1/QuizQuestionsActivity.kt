@@ -26,7 +26,6 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener{
     private var mCorrectAnswers: Int = 0
     private var mTotalNrOfQuestions: Int = 0
     private var currentQuestion : QuestionTemplate? = null
-    //private lateinit var mQuestionsList: ArrayList<Question>
     private var mUserName: String? = null
     private var questionSubmitted: Boolean = false
     private var soundPool = SoundPool()
@@ -116,8 +115,6 @@ en imageView som visar rött eller grönt vid fel/rätt svar samt en textView so
 Jag sätter svaret till fel som default och väljer vilka delar av timern som ska synas från början.
  */
     private fun setQuestion() {
-    if (currentQuestion == null)
-        return
 
         tv_option_one.isClickable = true
         tv_option_two.isClickable = true
