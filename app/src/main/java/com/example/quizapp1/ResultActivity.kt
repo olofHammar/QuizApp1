@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.plattysoft.leonids.ParticleSystem
@@ -34,9 +35,9 @@ class ResultActivity : AppCompatActivity(), CoroutineScope {
     private lateinit var tvHighScoreMessage: TextView
     private lateinit var username: String
     private var soundPool = SoundPool()
-    private var highScoreNrOne: PlayerHighScore = PlayerHighScore()
-    private var highScoreNrTwo: PlayerHighScore = PlayerHighScore()
-    private var highScoreNrThree: PlayerHighScore = PlayerHighScore()
+    lateinit var highScoreNrOne: Highscore
+    lateinit var highScoreNrTwo: Highscore
+    lateinit var highScoreNrThree: Highscore
     private var totalQuestions = 0
     private var correctAnswers = 0
     private var wrongAnswers = 0
@@ -74,18 +75,32 @@ class ResultActivity : AppCompatActivity(), CoroutineScope {
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         wrongAnswers = (totalQuestions - correctAnswers)
 
+        for (player in MainActivity.highscoreList!!) {
+            when (player.position) {
+                1 -> {highScoreNrOne = player}
+                2 -> {highScoreNrTwo = player}
+                3 -> {highScoreNrThree = player}
+            }
+
+
+        }
+        Log.d("!!!", "${highScoreNrOne.highscoreName} ${highScoreNrTwo.highscoreName} ${highScoreNrThree.highscoreName}")
+
 
         //Här hämtar jag nuvarande highscore-lista så att jag kan jämföra det nya resultatet med den.
+        /*
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
 
-        highScoreNrOne.playerName = pref.getString("highScoreOneName", "---").toString()
-        highScoreNrOne.playerPoints = pref.getInt("highScoreOnePoints", 0)
+        highScoreNrOne.highscoreOneName = pref.getString("highScoreOneName", "---").toString()
+        highScoreNrOne.highscoreOnePoints = pref.getInt("highScoreOnePoints", 0)
 
         highScoreNrTwo.playerName = pref.getString("highScoreTwoName","---").toString()
         highScoreNrTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
 
         highScoreNrThree.playerName = pref.getString("highScoreThreeName","---").toString()
         highScoreNrThree.playerPoints = pref.getInt("highScoreThreePoints",0)
+
+         */
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
@@ -98,31 +113,40 @@ class ResultActivity : AppCompatActivity(), CoroutineScope {
         det tidigare highscoren ett snäpp ner i listan.
          */
         when {
-            correctAnswers > highScoreNrOne.playerPoints -> {
-                updateHighscore(highScoreNrTwo.playerName, highScoreNrTwo.playerPoints, 3)
-                updateHighscore(highScoreNrOne.playerName, highScoreNrOne.playerPoints, 2)
+            correctAnswers > highScoreNrOne.highscorePoints -> {
+                updateHighscore(highScoreNrTwo.highscoreName, highScoreNrTwo.highscorePoints, 3)
+                updateHighscore(highScoreNrOne.highscoreName, highScoreNrOne.highscorePoints, 2)
                 updateHighscore(username, correctAnswers, 1)
+                /*
                 pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
                 pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", highScoreNrOne.playerName).apply()
                 pref.edit().putInt("highScoreTwoPoints", highScoreNrOne.playerPoints).apply()
                 pref.edit().putString("highScoreOneName", username).apply()
                 pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
+
+                 */
                 highScoreMessageTimer.start()
             }
-            correctAnswers > highScoreNrTwo.playerPoints -> {
-                updateHighscore(highScoreNrTwo.playerName, highScoreNrTwo.playerPoints, 3)
+            correctAnswers > highScoreNrTwo.highscorePoints -> {
+                updateHighscore(highScoreNrTwo.highscoreName, highScoreNrTwo.highscorePoints, 3)
                 updateHighscore(username, correctAnswers, 2)
+                /*
                 pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
                 pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", username).apply()
                 pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
+
+                 */
                 highScoreMessageTimer.start()
             }
-            correctAnswers > highScoreNrThree.playerPoints -> {
+            correctAnswers > highScoreNrThree.highscorePoints -> {
                 updateHighscore(username, correctAnswers, 3)
+                /*
                 pref.edit().putString("highScoreThreeName", username).apply()
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
+
+                 */
                 highScoreMessageTimer.start()
             }
             else -> {
@@ -162,19 +186,19 @@ class ResultActivity : AppCompatActivity(), CoroutineScope {
     @ExperimentalStdlibApi
     private fun displayResultMessage () {
         when {
-            correctAnswers > highScoreNrOne.playerPoints -> {
+            correctAnswers > highScoreNrOne.highscorePoints -> {
                 soundPool.play(R.raw.fanfare_highscore)
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_one_sv,
                     username.capitalize(Locale.ROOT))
             }
-            correctAnswers > highScoreNrTwo.playerPoints -> {
+            correctAnswers > highScoreNrTwo.highscorePoints -> {
                 soundPool.play(R.raw.fanfare_highscore)
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_two_sv, username.capitalize(
                     Locale.ROOT))
             }
-            correctAnswers > highScoreNrThree.playerPoints -> {
+            correctAnswers > highScoreNrThree.highscorePoints -> {
                 soundPool.play(R.raw.fanfare_highscore)
                 confetti()
                 tvHighScoreMessage.text = resources.getString(R.string.highscore_message_nr_three_sv, username.capitalize(

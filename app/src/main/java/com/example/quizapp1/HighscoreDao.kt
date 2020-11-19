@@ -9,9 +9,6 @@ interface HighscoreDao {
     @Insert
     fun insert(highscore: Highscore)
 
-    @Delete
-    fun delete(highscore: Highscore)
-
     @Query("UPDATE highscore SET highscorename= :playername, highscorepoints =:playerpoints WHERE position= :position")
     fun update(playername: String?, playerpoints: Int, position: Int)
 

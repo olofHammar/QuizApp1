@@ -21,7 +21,6 @@ class HomeFragment : Fragment(){
         val view: View = inflater.inflate(R.layout.fragment_home, container, false)
 
         soundPool.load(activity!!.applicationContext, R.raw.click_mouth_pop)
-        Log.d("!!!", "Hej hej")
 
         val btnSettings: Button = view.findViewById(R.id.btn_settings)
 

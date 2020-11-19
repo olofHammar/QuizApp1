@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     companion object {
         var questionList: QuestionList? = null
+        var highscoreList: MutableList<Highscore>? = null
     }
 
     private lateinit var job : Job
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-/*
+        /*
         val argentina = R.drawable.argentina
         val aland = R.drawable.aland
         val antarktis = R.drawable.antarktis
@@ -38,16 +39,18 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         val usa = R.drawable.usa
         val belgien = R.drawable.belgien
         val bolivia = R.drawable.bolivia
-
-
- */
+         */
 
         job = Job()
         db = AppDatabase.getInstance(this)
         hdb = HighscoreDatabase.getInstance(this)
 
         //deleteQuestions()
-/*
+        //deleteHighscore()
+
+
+
+        /*
         addNewQuestion(QuestionTemplate(0, "Vilket land tillhör denna flagga?", argentina, "Argentina",
         "Honduras", "Uruguay", "El Salvador", 1))
         addNewQuestion(QuestionTemplate(0,"Vilket land tillhör denna flagga?", aland, "Norge", "Island",
@@ -72,9 +75,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         addHighscore(Highscore(1, 1, "---", 0))
         addHighscore(Highscore(2, 2, "---", 0))
         addHighscore(Highscore(3, 3,"---", 0))
-
- */
-
+         */
 
         //Genom att kalla på SoundPool-funktionen load så hämtar jag alla ljud jag behöver i denna aktivitet.
         soundPool.load(this, R.raw.click_mouth_pop)
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         //Här laddar jag först fragmentet HomeFragment som är den första sidan som visas när appen öppnas
         loadFragment(HomeFragment())
         loadAllQuestions()
+        loadHighscore()
 
         /*
         Under detta fragment finns en navigationsmeny där användaren kan välja att spela spelet eller se highscore-listan.
@@ -125,6 +127,16 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             Log.d("!!!", "${list.size}")
         }
     }
+    fun loadHighscore() {
+        val h = async(Dispatchers.IO) {
+            hdb.highscoreDao.getAll()
+        }
+        launch {
+            val hslist = h.await().toMutableList()
+            highscoreList = hslist
+            Log.d("!!!", "${hslist.size}")
+        }
+    }
 
     fun addNewQuestion(questionTemplate: QuestionTemplate) {
 
@@ -135,6 +147,11 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     fun deleteQuestions () {
         launch(Dispatchers.IO) {
             db.questionDao.delete()
+        }
+    }
+    fun deleteHighscore () {
+        launch(Dispatchers.IO) {
+            hdb.highscoreDao.delete()
         }
     }
 
