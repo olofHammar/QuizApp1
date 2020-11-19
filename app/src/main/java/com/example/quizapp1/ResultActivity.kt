@@ -10,12 +10,23 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.plattysoft.leonids.ParticleSystem
 import kotlinx.android.synthetic.main.activity_result.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.PieModel
 import java.util.*
+import kotlin.coroutines.CoroutineContext
 
 //Denna aktivitet visar resultatet av quizet.
-class ResultActivity : AppCompatActivity() {
+class ResultActivity : AppCompatActivity(), CoroutineScope {
+
+    private lateinit var job : Job
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + job
+
+    private lateinit var db  : HighscoreDatabase
 
     private lateinit var pieChart: PieChart
     private lateinit var tvRight: TextView
@@ -46,6 +57,9 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+        job = Job()
+        db = HighscoreDatabase.getInstance(this)
+
         soundPool.load(this, R.raw.click_mouth_pop)
         soundPool.load(this, R.raw.fanfare_highscore)
 
@@ -59,6 +73,7 @@ class ResultActivity : AppCompatActivity() {
         totalQuestions = intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
         correctAnswers = intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
         wrongAnswers = (totalQuestions - correctAnswers)
+
 
         //Här hämtar jag nuvarande highscore-lista så att jag kan jämföra det nya resultatet med den.
         val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
@@ -84,6 +99,9 @@ class ResultActivity : AppCompatActivity() {
          */
         when {
             correctAnswers > highScoreNrOne.playerPoints -> {
+                updateHighscore(highScoreNrTwo.playerName, highScoreNrTwo.playerPoints, 3)
+                updateHighscore(highScoreNrOne.playerName, highScoreNrOne.playerPoints, 2)
+                updateHighscore(username, correctAnswers, 1)
                 pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
                 pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", highScoreNrOne.playerName).apply()
@@ -93,6 +111,8 @@ class ResultActivity : AppCompatActivity() {
                 highScoreMessageTimer.start()
             }
             correctAnswers > highScoreNrTwo.playerPoints -> {
+                updateHighscore(highScoreNrTwo.playerName, highScoreNrTwo.playerPoints, 3)
+                updateHighscore(username, correctAnswers, 2)
                 pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
                 pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
                 pref.edit().putString("highScoreTwoName", username).apply()
@@ -100,6 +120,7 @@ class ResultActivity : AppCompatActivity() {
                 highScoreMessageTimer.start()
             }
             correctAnswers > highScoreNrThree.playerPoints -> {
+                updateHighscore(username, correctAnswers, 3)
                 pref.edit().putString("highScoreThreeName", username).apply()
                 pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
                 highScoreMessageTimer.start()
@@ -120,6 +141,18 @@ class ResultActivity : AppCompatActivity() {
             soundPool.play(R.raw.click_mouth_pop)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+        }
+    }
+    fun addHighscore(highscore: Highscore) {
+
+        launch(Dispatchers.IO) {
+            db.highscoreDao.insert(highscore)
+        }
+    }
+    fun updateHighscore(playername: String, playerscore: Int, position: Int) {
+
+        launch(Dispatchers.IO) {
+            db.highscoreDao.update(playername, playerscore, position)
         }
     }
     /*

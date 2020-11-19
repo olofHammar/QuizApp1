@@ -20,13 +20,14 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         get() = Dispatchers.Main + job
 
     private lateinit var db  : AppDatabase
+    private lateinit var hdb : HighscoreDatabase
     private var soundPool = SoundPool()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*
+/*
         val argentina = R.drawable.argentina
         val aland = R.drawable.aland
         val antarktis = R.drawable.antarktis
@@ -37,12 +38,16 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         val usa = R.drawable.usa
         val belgien = R.drawable.belgien
         val bolivia = R.drawable.bolivia
-         */
+
+
+ */
+
         job = Job()
         db = AppDatabase.getInstance(this)
+        hdb = HighscoreDatabase.getInstance(this)
 
         //deleteQuestions()
-        /*
+/*
         addNewQuestion(QuestionTemplate(0, "Vilket land tillhör denna flagga?", argentina, "Argentina",
         "Honduras", "Uruguay", "El Salvador", 1))
         addNewQuestion(QuestionTemplate(0,"Vilket land tillhör denna flagga?", aland, "Norge", "Island",
@@ -63,7 +68,13 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         "Belgien", "Uganda", 3))
         addNewQuestion(QuestionTemplate(0, "Vilket land tillhör denna flagga?", bolivia, "Bolivia", "Senegal",
         "Etiopien", "Litauen", 1))
-        */
+
+        addHighscore(Highscore(1, 1, "---", 0))
+        addHighscore(Highscore(2, 2, "---", 0))
+        addHighscore(Highscore(3, 3,"---", 0))
+
+ */
+
 
         //Genom att kalla på SoundPool-funktionen load så hämtar jag alla ljud jag behöver i denna aktivitet.
         soundPool.load(this, R.raw.click_mouth_pop)
@@ -96,6 +107,12 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
             false
         }
     }
+    fun addHighscore(highscore: Highscore) {
+
+        launch(Dispatchers.IO) {
+            hdb.highscoreDao.insert(highscore)
+        }
+    }
 
     fun loadAllQuestions() {
         val q = async(Dispatchers.IO) {
@@ -105,6 +122,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         launch {
             val list = q.await().toMutableList()
             questionList = QuestionList(list)
+            Log.d("!!!", "${list.size}")
         }
     }
 

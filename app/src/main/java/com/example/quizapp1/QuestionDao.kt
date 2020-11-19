@@ -16,5 +16,4 @@ interface QuestionDao {
 
     @Query("DELETE FROM question")
     fun delete()
-
 }
