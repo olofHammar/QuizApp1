@@ -63,28 +63,26 @@ class HighScoreFragment : Fragment() {
             val tvHsThreeName: TextView = view.findViewById(R.id.tv_hs_three_name)
             val tvHsThreePoints: TextView = view.findViewById(R.id.tv_hs_three_points)
 
-           /*
+/*
            tvHsOneName.text = pOne.highscoreName
 
             tvHsOnePoints.text = resources.getString(
                 R.string.player_highscore_points,
                 pOne.highscorePoints.toString()
             )
-
             tvHsTwoName.text = pTwo.highscoreName
 
             tvHsTwoPoints.text = resources.getString(
                 R.string.player_highscore_points,
                 pTwo.highscorePoints.toString()
             )
-
             tvHsThreeName.text = pThree.highscoreName
             tvHsThreePoints.text = resources.getString(
                 R.string.player_highscore_points,
                 pThree.highscorePoints.toString()
             )
 
-            */
+ */
         }
             return view
     }

@@ -84,23 +84,6 @@ class ResultActivity : AppCompatActivity(), CoroutineScope {
 
 
         }
-        Log.d("!!!", "${highScoreNrOne.highscoreName} ${highScoreNrTwo.highscoreName} ${highScoreNrThree.highscoreName}")
-
-
-        //Här hämtar jag nuvarande highscore-lista så att jag kan jämföra det nya resultatet med den.
-        /*
-        val pref = getSharedPreferences("highScore", Context.MODE_PRIVATE)
-
-        highScoreNrOne.highscoreOneName = pref.getString("highScoreOneName", "---").toString()
-        highScoreNrOne.highscoreOnePoints = pref.getInt("highScoreOnePoints", 0)
-
-        highScoreNrTwo.playerName = pref.getString("highScoreTwoName","---").toString()
-        highScoreNrTwo.playerPoints = pref.getInt("highScoreTwoPoints",0)
-
-        highScoreNrThree.playerName = pref.getString("highScoreThreeName","---").toString()
-        highScoreNrThree.playerPoints = pref.getInt("highScoreThreePoints",0)
-
-         */
 
         correctAnswersFloat = correctAnswers.toFloat()
         wrongAnswersFloat = (totalQuestions.toFloat() - correctAnswersFloat)
@@ -117,36 +100,18 @@ class ResultActivity : AppCompatActivity(), CoroutineScope {
                 updateHighscore(highScoreNrTwo.highscoreName, highScoreNrTwo.highscorePoints, 3)
                 updateHighscore(highScoreNrOne.highscoreName, highScoreNrOne.highscorePoints, 2)
                 updateHighscore(username, correctAnswers, 1)
-                /*
-                pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
-                pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
-                pref.edit().putString("highScoreTwoName", highScoreNrOne.playerName).apply()
-                pref.edit().putInt("highScoreTwoPoints", highScoreNrOne.playerPoints).apply()
-                pref.edit().putString("highScoreOneName", username).apply()
-                pref.edit().putInt("highScoreOnePoints", correctAnswers).apply()
 
-                 */
                 highScoreMessageTimer.start()
             }
             correctAnswers > highScoreNrTwo.highscorePoints -> {
                 updateHighscore(highScoreNrTwo.highscoreName, highScoreNrTwo.highscorePoints, 3)
                 updateHighscore(username, correctAnswers, 2)
-                /*
-                pref.edit().putString("highScoreThreeName", highScoreNrTwo.playerName).apply()
-                pref.edit().putInt("highScoreThreePoints", highScoreNrTwo.playerPoints).apply()
-                pref.edit().putString("highScoreTwoName", username).apply()
-                pref.edit().putInt("highScoreTwoPoints", correctAnswers).apply()
 
-                 */
                 highScoreMessageTimer.start()
             }
             correctAnswers > highScoreNrThree.highscorePoints -> {
                 updateHighscore(username, correctAnswers, 3)
-                /*
-                pref.edit().putString("highScoreThreeName", username).apply()
-                pref.edit().putInt("highScoreThreePoints", correctAnswers).apply()
 
-                 */
                 highScoreMessageTimer.start()
             }
             else -> {
